@@ -3,3 +3,8 @@ authors = ["Michael Busbee"]
 language = "en"
 src = "src"
 title = "techbook"
+
+[output.html]
+additional-css = []
+additional-js = []
+favicon = "favicon.ico"
