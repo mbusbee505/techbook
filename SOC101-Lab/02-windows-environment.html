@@ -1,0 +1,391 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Windows Environment - techbook</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">techbook</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="previous-1-hypervisor--network"><a class="header" href="#previous-1-hypervisor--network">Previous: [[1. Hypervisor &amp; Network]]</a></h1>
+<p>Now that we have gotten a lot of the initial foundation done we have a place to build our lab environment in. On this page I am going to walk through setting up Windows in our lab environment. I am going to start with a Windows Server 2025 VM, promote it to domain controller, and join a Windows 11 workstation machine to it to simulate a small office environment. Later on I will install network sensors and feed logs up into a SIEM so we can do some real security stuff.</p>
+<h1 id="windows-server"><a class="header" href="#windows-server">Windows Server</a></h1>
+<p>Microsoft developed Windows Server as a solution to manage organization's Active Directories, DNS, DHCP, Group Policy all from a centralized location. You can set servers to act as Domain Controllers, Certificate Authorities and other important network appliances to organize company data and digital environments. In our case we will use it mainly as an Domain Controller so we can have an Active Directory domain in an attempt to simulate a real organization.</p>
+<h2 id="download--install"><a class="header" href="#download--install">Download &amp; Install</a></h2>
+<p>As with any virtual machine in Proxmox, setting it up begins with loading the ISO file into the hypervisor so it can be used to install the machine. To download Windows Server 2025 to our proxmox machine I am going to use the following commands:</p>
+<pre><code>STORAGEPATH="/var/lib/vz/template/iso"
+ISO_URL="https://go.microsoft.com/fwlink/?linkid=2293312&amp;clcid=0x409&amp;culture=en-us&amp;country=us"
+wget -c -L -O "${STORAGEPATH}/WinSrv2025_EVAL_en-us.iso" "${ISO_URL}"
+</code></pre>
+<p>To confirm the download was successful I can go to <code>Datacenter &gt; [Node] &gt; local([Node]) </code>. Here we can see it downloaded into our ISO bin.</p>
+<p><img src="attachments/02-windows-environment-1.png" alt="Windows Server 2025 ISO file in Proxmox storage" /></p>
+<p>Confirm you see the ISO here, then click the Create VM button in the top right corner of the Proxmox portal to open the Create VM wizard again. I'm going to give the server install these values:</p>
+<ul>
+<li><strong>VM ID</strong>: 902</li>
+<li><strong>Name</strong>: WinServer-Lab</li>
+<li><strong>Guest OS Type</strong>: Microsoft Windows</li>
+<li><strong>Disk size</strong>: 60</li>
+<li><strong>CPU Cores</strong>: 4</li>
+<li><strong>Memory</strong>: 6144</li>
+<li><strong>Bridge</strong>: vmbr1</li>
+</ul>
+<p>Once these settings are in place and the VM is built, go ahead and turn it on. You will need to go to <code>Datacenter &gt; [Node] &gt; WinServer-Lab &gt; Console</code> to view the Windows installation wizard.</p>
+<p><img src="attachments/02-windows-environment-2.png" alt="Windows Server installation wizard showing edition selection" /></p>
+<p>Make sure to select the Standard Evaluation (Desktop Experience) version of the install. Click Next, Accept the licensing terms, then choose the hard drive it will install on. There should only be the 60 GB VM drive we created earlier.</p>
+<p><img src="attachments/02-windows-environment-3.png" alt="Windows Server installation drive selection screen" /></p>
+<p>Once the installer kicks off you can sit back and let Windows do its thing for a few minutes. Eventually you will be prompted to enter an Administrator password. Create a secure one, then log into the machine. With Proxmox you may need to use the NoVNC sidebar to send the CTRL+ALT+DEL button presses to the machine.</p>
+<p>Once logged in, open Command Prompt and run a ping to the pfSense router IP to make sure it is connected correctly.</p>
+<p><img src="attachments/02-windows-environment-4.png" alt="Command prompt showing successful ping to pfSense router" /></p>
+<h2 id="lab-config"><a class="header" href="#lab-config">Lab Config</a></h2>
+<p>Now that the Windows Server is up and running there are a few settings we need to change. For the server to operate effectively it will need to have a static IP address. We also want RDP and WinRM turned on so that we can connect to the server via remote desktop.</p>
+<p>To set the static IP you just need to assign the MAC address of the Windows Server machine to the IP address you want in pfSense. First we need to grab the MAC Address by going to <code>Datacenter &gt; [Node] &gt; WinServer-Lab &gt; Hardware &gt; Network Device</code> and you can copy the address to paste into pfSense.</p>
+<p><img src="attachments/02-windows-environment-5.png" alt="Windows Server MAC address in Proxmox hardware settings" /></p>
+<p>Now go back to the pfSense web portal and select <code>Services &gt; DHCP Server</code>. Make sure the Address Pool Range is set for 172.16.0.100-200 then scroll down to the bottom of the page and click the Add Static Mapping button. Paste the MAC Address into the field where it asks for, then enter the desired IP address.</p>
+<p><img src="attachments/02-windows-environment-6.png" alt="pfSense DHCP static mapping configuration for Windows Server" /></p>
+<p>With that in place just scroll down to the bottom of the page and click Save &gt; Apply Changes. This change will not take effect until we reboot our Windows Server VM, but first lets enable RDP and WinRM.</p>
+<p>To do that we need to go back into our Windows Server machine and choose <code>Settings &gt; System &gt; Remote Desktop</code> and change the toggle to On. Next go to <code>Server Manager &gt; Local Server</code> and confirm that Remote management and Remote Desktop are both set to Enabled.</p>
+<p><img src="attachments/02-windows-environment-7.png" alt="Windows Server Manager showing Remote Desktop and Remote Management enabled" /></p>
+<p>Lastly I wanted to change the name of the Windows PC. By clicking on the randomly generated name next to Computer Name you will open a window that allows you to change the name. Change it to WinServer-Lab and allow it restart when prompted.</p>
+<p>Now that RDP is enabled I can connect to the machine using a remote desktop tool such as Microsoft's Windows App. You will need to give it the IP address of the machine as the PC name. You can also create a friendly name for it like WinServer-Lab and make it a part of a machine group to keep it organized. I would also go ahead and save the Administrator credentials for easier use.</p>
+<p><img src="attachments/02-windows-environment-8.png" alt="Windows App remote desktop connection configuration for WinServer-Lab" /></p>
+<p>Save and connect to the machine to verify it works. Now we can copy/paste commands into PowerShell and have a little better quality of life trying to use the server.</p>
+<h2 id="domain-controller"><a class="header" href="#domain-controller">Domain Controller</a></h2>
+<p>Up next is to promote our Windows Server to a Domain Controller. In a real environment there would likely be several DC's stitched together to provide availability and redundancy for Active Directory. It allows computers to connect to the organizational domain and have access to shared resources and management. It allows users to log in with an organization domain account rather than a local account and can carry it with them from computer to computer.</p>
+<p>Before we get started setting that up, I want to make sure the server is fully updated by going to <code>Settings &gt; Windows Update</code> and making sure all updates have been downloaded and installed.</p>
+<p>With updates done we can now move on to domain controller promotion. Click <code>Server Manager &gt; Manage &gt; Add Roles and Features</code> to open the wizard. Click the next button a few times until you get to the Server Roles page. Look for the Active Directory Domain Services option and check the box.</p>
+<p><img src="attachments/02-windows-environment-9.png" alt="Server Manager Add Roles wizard showing Active Directory Domain Services selection" /></p>
+<p>A box will pop up asking you to Add Features related to this role. Keep the defaults and click Add Features. Now keep clicking Next until you get to the end of the wizard and click Install. Windows Server will need some time to run as it installs the features and roles we selected.</p>
+<p>Once the installation is finished close the box, then go back to the Yellow Flag icon in the top right corner of Server Manager. It will now have an option to "Promote this server to a domain controller".</p>
+<p><img src="attachments/02-windows-environment-10.png" alt="Server Manager notification to promote server to domain controller" /></p>
+<p>Select this option to open the Domain Services Configuration Wizard. This will let you select options to configure the domain controller. I used the following settings:</p>
+<ul>
+<li><strong>Add a new forest</strong>: Checked</li>
+<li><strong>Root Domain Name</strong>: busbeecorp.lab</li>
+<li><strong>DNS Delegation</strong>: Ignore warning and continue</li>
+<li><strong>NetBIOS name</strong>: BUSBEECORP</li>
+<li><strong>Prerequisite Checks</strong>: Ignore any soft warnings here about DNS delegation or static IP</li>
+</ul>
+<p>Put those settings in place then click Install to send the Windows Server off begin promoting itself to controller of the domain you built. You may notice the machine automatically reboot during this process. You can confirm the promotion took effect by going to <code>Server Manager &gt; Tools &gt; Active Directory Users and Computers</code>. If this page opens without error you should be good.</p>
+<p><img src="attachments/02-windows-environment-11.png" alt="Active Directory Users and Computers management console" /></p>
+<h2 id="create-users"><a class="header" href="#create-users">Create Users</a></h2>
+<p>While in here we can make some users for our lab environment. Just go to <code>Users &gt; New &gt; User</code> which will pop up a new window to create a user.</p>
+<p><img src="attachments/02-windows-environment-13.png" alt="New user creation dialog for Alice" /></p>
+<p>I will name our first user Alice and give her a strong password.</p>
+<p><img src="attachments/02-windows-environment-14.png" alt="Password configuration for user Alice" /></p>
+<p>Alice will be the Domain Admin of our lab so I will add her to the Domain Admin and Administrator groups. To add a user to a group, just double-click that user then then go to the Member Of tab. Here you can type the names of the two groups and click Ok &gt; Apply to save the settings. You should see something like this:</p>
+<p><img src="attachments/02-windows-environment-16.png" alt="Alice user group membership showing Domain Admin and Administrator groups" /></p>
+<p>Now I will make a second user Bob, who will be our Analyst in the lab. Bob will be a member of the Domain Users and Remote Desktop Users groups. Since the first is a default group I just have to create the Bob user, then add the Remote Desktop Users group to his list of groups.</p>
+<h2 id="installing-sysmon"><a class="header" href="#installing-sysmon">Installing Sysmon</a></h2>
+<p>System Monitor aka Sysmon is a <a href="https://learn.microsoft.com/en-us/sysinternals/">Windows Sysinternals</a> tool used to collect and parse detailed Windows event data. For our lab we will use it to forward event data to our Splunk SIEM. Sysmon also lets you load a config file that can be used to fine-tune the log collection. There is a well known and trusted Sysmon config file created and maintained by SwiftOnSecurity that can be found <a href="https://github.com/SwiftOnSecurity/sysmon-config">here</a>.</p>
+<p>Sysmon and the SwiftOnSecurity config file and be downloaded and installed using the following elevated (admin) PowerShell that was adapted from <a href="https://gist.github.com/ajpc500/3a86ba1741d4868b69be5ce3a142d527">ajpc500's GitHub post</a>:</p>
+<pre><code>[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$wc = New-Object System.Net.WebClient
+if (!(Test-Path "C:\Tools")) { New-Item -Path "C:\" -Name "Tools" -ItemType "directory" }
+
+# Download Sysmon
+$SysmonDirectory = "C:\Tools\Sysmon\"
+$SysmonLocalZip = "C:\Tools\Sysmon.zip"
+$SysmonURL = "https://download.sysinternals.com/files/Sysmon.zip"
+if (!(Test-Path $SysmonLocalZip)) {
+    $wc.DownloadFile($SysmonURL, $SysmonLocalZip)
+    Expand-Archive -LiteralPath $SysmonLocalZip -DestinationPath $SysmonDirectory
+}
+
+# Download SwiftOnSecurity Config
+$SysmonLocalConfig = $SysmonDirectory + "sysmonconfig-export.xml"
+$SysmonConfigURL = "https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-config/master/sysmonconfig-export.xml"
+if (!(Test-Path $SysmonLocalConfig)) {
+    $wc.DownloadFile($SysmonConfigURL, $SysmonLocalConfig)
+}
+
+# Install Sysmon
+$ServiceName = 'Sysmon'
+$SysmonService = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
+if ($SysmonService.Status -ne 'Running') {
+    $SysmonExe = $SysmonDirectory + "Sysmon.exe"
+    &amp; $SysmonExe -i $SysmonLocalConfig -accepteula
+}
+</code></pre>
+<p>Once that's done we can move on to installing the Windows 11 workstation machine.</p>
+<h2 id="atomic-red-team"><a class="header" href="#atomic-red-team">Atomic Red Team</a></h2>
+<p>Atomic Red Team is an open-source framework for simulating MITRE ATT&amp;CK adversary techniques via executable tests, aiding red teaming, detection engineering, and security validation. We can use it to run attacks and test our detection setup thus far. To install Atomic Red Team on the Windows Server run the following commands:</p>
+<pre><code>Set-ExecutionPolicy RemoteSigned -Scope LocalMachine
+Register-PSRepository -Default
+Install-Module -Name invoke-atomicredteam,powershell-yaml -Scope AllUsers
+Import-Module invoke-atomicredteam
+</code></pre>
+<p>Verify Installation:</p>
+<pre><code>Get-Module -ListAvailable invoke-atomicredteam,powershell-yaml
+</code></pre>
+<h1 id="windows-workstation"><a class="header" href="#windows-workstation">Windows Workstation</a></h1>
+<p>Our lab will need a Windows workstation machine to simulate a real environment. We want it to connect to our domain so we can log in with our domain user accounts. By now we should be familiar with the process. To start off lets download the Windows 11 ISO:</p>
+<h2 id="download--install-1"><a class="header" href="#download--install-1">Download &amp; Install</a></h2>
+<pre><code>STORAGEPATH="/var/lib/vz/template/iso"
+ISO_URL="https://archive.org/download/windows-11-23h2-english-x64v2/Win11_23H2_English_x64v2.iso"
+wget -c -L -O "${STORAGEPATH}/Win11_23H2_English_x64.iso" "${ISO_URL}"
+</code></pre>
+<p>Once downloaded, click the Create VM button and add these settings to the wizard:</p>
+<ul>
+<li><strong>VM ID</strong>: 903</li>
+<li><strong>Name</strong>: WinWS01-Lab</li>
+<li><strong>ISO</strong>: Win11_23H2_English_x64.iso</li>
+<li><strong>Guest OS Type</strong>: Microsoft Windows</li>
+<li><strong>Disk Size</strong>: 64 GB</li>
+<li><strong>CPU Cores</strong>: 2</li>
+<li><strong>Memory</strong>: 4096 MB</li>
+<li><strong>Bridge</strong>: vmbr1</li>
+<li><strong>Start after created</strong>: Checked</li>
+</ul>
+<p>Now go to <code>Datacenter &gt; [Node] &gt; WinWS01-Lab &gt; Console</code> and walk through the Windows 11 installer. Make sure to select Windows 11 Pro so that the workstation is able to join the domain we created.</p>
+<blockquote>
+<p>Note: Windows 11 Home does not allow domain join and would need to be upgraded or replaced with Pro to support our needs.</p>
+</blockquote>
+<p><img src="attachments/02-windows-environment-17.png" alt="Windows 11 edition selection showing Windows 11 Pro" /></p>
+<p>The rest of the installer is pretty straight forward. Accept the license, Choose Custom (Install Only), choose the VM hard drive as the install location, and let the installer rip. Eventually you will get to the point where it asks the user to set up their device.</p>
+<p>During this setup I named the computer WinWS01-Lab like its called within Proxmox. The installer will next ask if you want to set up Windows for Home or for Work/School. Choose the Work/School option.</p>
+<p><img src="attachments/02-windows-environment-18.png" alt="Windows 11 setup asking to choose between Home or Work/School" /></p>
+<p>It will ask you to login with a Microsoft account. You can instead click Sign-in options &gt; Domain join which will trigger the device to begin local account setup. We can make an account named <code>admin</code> and give it a strong password.</p>
+<p><img src="attachments/02-windows-environment-19.png" alt="Windows 11 local account creation for admin user" /></p>
+<p>After creating the local account, the Windows installer will run a lengthy process of downloading and installing the latest updates. When this is done you will be able to log into the local account. Let's do that, then edit the Remote Desktop settings, change DNS to the Windows Server, and join the device to the domain.</p>
+<h2 id="join-the-domain"><a class="header" href="#join-the-domain">Join The Domain</a></h2>
+<p>Go to <code>Settings &gt; System &gt; Remote Desktop</code> and change the toggle to On. Here we will also need to give Bob rights to use this machine. Click Remote Desktop Users &gt; Add and search for the bob username. You will be prompted to verify this change with a domain admin so you can use Alice's login to make this work.</p>
+<p>Next go to <code>Settings &gt; Network &amp; internet &gt; Ethernet &gt; DNS Server assignment &gt; Edit</code> and change the IPv4 DNS Server address to 172.16.0.10.</p>
+<p>Once that's done, go to <code>Accounts &gt; Access work or school &gt; Connect &gt; Join this device to a local Active Directory domain</code> and type in the name of the domain we set in the previous step.</p>
+<p><img src="attachments/02-windows-environment-20.png" alt="Domain join dialog with busbeecorp.lab domain entered" /></p>
+<p>Since Alice is our only domain admin, she will have to be the one to approve this device to join the domain.</p>
+<p><img src="attachments/02-windows-environment-22.png" alt="Domain admin Alice credentials for authorizing domain join" /></p>
+<p>If you get a step to add a user, skip it and choose not to restart the computer.</p>
+<p>One last step before we can connect to RDP via our lab user Bob, is to give the workstation a static IP. Similar to before we need to go over to the WinWS01-Lab network settings to grab the MAC address then paste it into <code>Services &gt; DHCP Server &gt; Add Static Mapping</code> and give it the IP address 172.16.0.11.</p>
+<h2 id="connect-via-rdp"><a class="header" href="#connect-via-rdp">Connect via RDP</a></h2>
+<p>Now restart the Windows workstation machine and connect to it from the Windows App. You will need to create a new PC using the new static IP address.</p>
+<p><img src="attachments/02-windows-environment-23.png" alt="Windows App PC configuration for WinWS01-Lab workstation" /></p>
+<p>Create a new user with Bob's credentials since this will be his machine.</p>
+<p><img src="attachments/02-windows-environment-24.png" alt="User account configuration with Bob&#39;s domain credentials" /></p>
+<p>Now you should be able to connect to the WinWS01-Lab machine through RDP with Bob's login. If you have any errors connecting, go back and make sure you set everything correctly.</p>
+<h2 id="installing-sysmon-again"><a class="header" href="#installing-sysmon-again">Installing Sysmon (again)</a></h2>
+<p>We will want Sysmon installed on all Windows devices in our lab for monitoring purposes. Luckily the install instructions are exactly the same for Windows 11 as it is Windows Server. Just make sure to open a Windows PowerShell terminal as administrator then run the same commands as above.</p>
+<h2 id="atomic-red-team-again"><a class="header" href="#atomic-red-team-again">Atomic Red Team (again)</a></h2>
+<p>We also want to install Atomic Red Team on our workstation machine. To do so you can run the exact same commands again but from an Administrator PowerShell.</p>
+<p>Once you get to this step you should be basically done setting up the windows environment.Up next we need to build a Security Onion VM to act as a network monitor.</p>
+<h1 id="next-3-security-onion"><a class="header" href="#next-3-security-onion">Next: [[3. Security Onion]]</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../SOC101-Lab/01-hypervisor-and-network.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../SOC101-Lab/03-security-onion.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../SOC101-Lab/01-hypervisor-and-network.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../SOC101-Lab/03-security-onion.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

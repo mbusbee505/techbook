@@ -1,0 +1,369 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Installing Apps - techbook</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">techbook</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="previous-3-polishing-oobe"><a class="header" href="#previous-3-polishing-oobe">Previous: [[3. Polishing OOBE]]</a></h1>
+<h1 id="installation-methods"><a class="header" href="#installation-methods">Installation Methods</a></h1>
+<p>I wanted to test a few commonly used apps that also showcase the different methods of installing apps with Intune. I decided on the following:</p>
+<ul>
+<li>Line-of-business (LOB) - Zoom Workplace</li>
+<li>Win32 App - Google Chrome</li>
+<li>Microsoft Store app - GlobalProtect VPN</li>
+<li>Microsoft 365 Apps for Windows 11</li>
+</ul>
+<p>I will also need to make sure my [[2. Enrolling Devices#Creating an Enrollment Status Page (ESP)|Enrollment Status Page]] settings block the user from accessing the device until the installations are complete.</p>
+<h1 id="line-of-business-lob---zoom-workplace"><a class="header" href="#line-of-business-lob---zoom-workplace">Line-of-business (LOB) - Zoom Workplace</a></h1>
+<p>To create a LOB app you basically just need to find the .msi version of the app's installer and load it into Intune. Just go to <code>Intune &gt; Apps &gt; All apps &gt; Create &gt; App type &gt; Line-of-business app</code>.</p>
+<p><img src="attachments/04-installing-apps-1.png" alt="Intune app creation menu showing line-of-business option" /></p>
+<p>Next it will ask to upload the file you can select it from your computer locally after downloading it from the internet or wherever else.</p>
+<p><img src="attachments/04-installing-apps-2.png" alt="App package file upload screen" /></p>
+<p>In my case I went to <a href="https://zoom.us/download/admin">Zoom's Downloads for IT Admins</a>, selected the Download (ARM64), and downloaded it to my computer. I then went back to Intune and selected this file for the upload.</p>
+<p><img src="attachments/04-installing-apps-3.png" alt="Zoom installer file selected for upload" /></p>
+<blockquote>
+<p>Keep in mind I only chose ARM due to the VM used for testing. In another environment you would want to consider the architecture and OS requirements for your app/device compatibility.</p>
+</blockquote>
+<p>Luckily for me the Intune LOB App Wizard pre-populated a lot of the information to set up the app including the Name and Description. It labeled it as (ARM64) so if I needed to also provision the AMD64 version it would be easy to tell them apart.</p>
+<p>For the Command-line arguments section I added the following:</p>
+<pre><code>/qn /norestart
+</code></pre>
+<p>This will prevent the device from restarting after the Zoom install is complete.</p>
+<p>I also needed to set the App install context to <code>Device</code> so that it automatically installs it during OOBE setup. If you keep it as the default <code>User</code> it will only install it after the user logs in, and it is only available for that user on the machine. I found it made more sense to keep it device-wide.</p>
+<p>On the Assignments page I chose the <code>All-Windows-11</code> group to receive this install. This is where I could consider separating app availability by group membership but for now I will allow it on all Windows 11 devices.</p>
+<p><img src="attachments/04-installing-apps-4.png" alt="Zoom app configuration settings in Intune" /></p>
+<h1 id="win32-app---google-chrome"><a class="header" href="#win32-app---google-chrome">Win32 App - Google Chrome</a></h1>
+<p>If the app developer does not provide an MSI version of the installer and you are forced to use an EXE or some form of script, you can wrap it in a Win32 App to make it usable within Intune. This can be done by using Microsoft's <a href="https://github.com/Microsoft/Microsoft-Win32-Content-Prep-Tool">Content-Prep-Tool</a> which is a Windows only tool for creating Win32 Apps.</p>
+<p>Since I had to use Windows, I downloaded the tool on my Windows machine, calling the file "Win32Prep" and created the following file structure:</p>
+<pre><code>C:/
+├─ Source/
+│  ├─ Chrome/
+│  │  ├─ ChromeSetup.exe
+├─ Tools/
+│  ├─ Win32Prep/
+│  │  ├─ IntuneWinAppUtil.exe
+├─ Output/
+</code></pre>
+<p>I then used the following command in a Windows machine to turn the Google Chrome:</p>
+<pre><code>C:\Tools\Win32Prep\IntuneWinAppUtil.exe `
+  -c "C:\Source\Chrome" `
+  -s "ChromeSetup.exe" `
+  -o "C:\Output"
+</code></pre>
+<p>Once this process completes you should see a <code>ChromeSetup.intunewin</code> file in the Win32Oput folder. Next is uploading this to Intune and creating an App for it.</p>
+<p>Back in Intune I went to <code>Intune &gt; Apps &gt; All Apps &gt; Create &gt; App Type &gt; Windows app (Win32)</code> and when it asked for the file I gave it the .intunewin I just made. I gave it the name Google Chrome (ARM64) to be consistent with the Zoom App.</p>
+<p>I then entered the following settings:</p>
+<ul>
+<li><strong>Install command</strong>: <code>ChromeSetup.exe /silent /install</code></li>
+<li><strong>Uninstall command</strong>: <code>"%ProgramFiles%\Google\Chrome\Application\chrome.exe" --uninstall --system-level --force-uninstall</code></li>
+<li><strong>Allow available uninstall</strong>: No</li>
+<li><strong>Install Behavior</strong>: System</li>
+<li><strong>Device restart behavior</strong>: No specific action</li>
+</ul>
+<p>This will make sure Chrome installs for all users, the users are not allowed to uninstall the app, and the app will not restart the device after installation.</p>
+<p>On the Requirements page I selected the following:</p>
+<ul>
+<li><strong>Check operating system architecture</strong>: Yes - Install on ARM64 system</li>
+<li><strong>Minimum operating system</strong>: Windows 11 21H2</li>
+</ul>
+<p>This ensures this app can only install on ARM64 devices with any version of Windows 11. Since this is a fairly small app install I did not make any hardware requirements.</p>
+<p>Detection Rule settings:</p>
+<ul>
+<li><strong>Rule type</strong>: File</li>
+<li><strong>Path</strong>: C:\Program Files\Google\Chrome\</li>
+<li><strong>File or folder</strong>: chrome.exe</li>
+<li><strong>Detection Method</strong>: File or folder exists</li>
+</ul>
+<p>For Assignments I selected this app be required for the All-Windows-11 group to be available for all Windows-11 users.</p>
+<p>With all of that in place I hit Create and let Intune build the app for me and everything seemed good to go.</p>
+<h1 id="microsoft-store-app---globalprotect-vpn"><a class="header" href="#microsoft-store-app---globalprotect-vpn">Microsoft Store app - GlobalProtect VPN</a></h1>
+<p>To create a Microsoft Store app you just need to go to <code>Intune &gt; Apps &gt; All Apps &gt; Create &gt; App type &gt; Microsoft Store app (new)</code> and searched for "GlobalProtect" in the search bar.</p>
+<p><img src="attachments/04-installing-apps-5.png" alt="Microsoft Store app search for GlobalProtect" /></p>
+<p>When I selected this it auto-populated most of the information for me in the App Information settings. I did however change the Install behavior to <code>system</code> to ensure this would apply to all users on the device.</p>
+<p>On the next page I assigned this to be required for the All-Windows-11 group then hit Create to let Intune build this for me.</p>
+<h1 id="microsoft-365-apps-for-windows-11"><a class="header" href="#microsoft-365-apps-for-windows-11">Microsoft 365 Apps for Windows 11</a></h1>
+<p>Microsoft Office 365 Apps are another install that will often be requested in corporate enterprise environments. Microsoft makes it easy to install this by offering the Office 365 installer as a built in option in the Intune Apps Create menu. Just go to <code>Intune &gt; Apps &gt; All Apps &gt; Create &gt; App Type &gt; Microsoft 365 Apps &gt; Windows 10 and later</code> to start the creation wizard.</p>
+<p>For the App Setup Information I kept the defaults, feel free to tweak as needed. On the Configure App Suite page I made the following changes:</p>
+<ul>
+<li><strong>Select Office Apps</strong>:
+<ul>
+<li>Excel</li>
+<li>Outlook</li>
+<li>PowerPoint</li>
+<li>Teams</li>
+<li>Word</li>
+</ul>
+</li>
+<li><strong>Architecture</strong>: 64-bit</li>
+<li><strong>Default file format</strong>: Office Open XML Format</li>
+<li><strong>Update Channel</strong>: Monthly Enterprise</li>
+<li><strong>Remove Other Versions</strong>: Yes</li>
+<li><strong>Use shared computer activation</strong>: Yes</li>
+</ul>
+<p>On the assignments page I set the install to run for all devices in the All-Windows-11 group and clicked Create so Intune could start building the app.</p>
+<h1 id="testing"><a class="header" href="#testing">Testing</a></h1>
+<p>After all the apps were set up in the portal I restarted my VM OOBE snapshot to start fresh. I let it run for a few minutes and saw the Enrollment Status Page say Installed Apps: 4 out of 4. I was then taken to the device desktop where I confirmed all apps installed.</p>
+<p><img src="attachments/04-installing-apps-6.png" alt="Enrollment Status Page showing 4 out of 4 apps installed" /></p>
+<p>You can also confirm the apps were installed from the Intune portal by going to  <code>Intune &gt; Devices &gt; Windows &gt; [Device Name] &gt; Managed Apps</code>.</p>
+<p><img src="attachments/04-installing-apps-7.png" alt="Managed apps list in Intune portal for device" /></p>
+<h1 id="bonus-vmware-tools-win32-app"><a class="header" href="#bonus-vmware-tools-win32-app">Bonus: VMware Tools (Win32 App)</a></h1>
+<p>I decided it would be easier on me if I could have my test devices automatically install VMware Tools. Since the installer only comes in the form of an EXE I had to do it as a Win32 App.</p>
+<p>First I needed to get the EXE file and create the wrapper file. I found the file <code>setup.exe</code> by finding the ARM version of the <code>windows.iso</code> and mounting it to my system and looking inside. The method of doing this will be different depending on your version of VMware and the OS of your hypervisor host.</p>
+<p>Once you have the EXE you can perform a similar step as above with Chrome:</p>
+<pre><code>C:\Tools\Win32Prep\IntuneWinAppUtil.exe `
+  -c "C:\Source\VMwareTools" `
+  -s "setup.exe" `
+  -o "C:\Output"
+</code></pre>
+<p>This created a file called <code>setup.intunewin</code> which I could then upload to Intune.</p>
+<p>Before I did that I needed to create a new dynamic group that only applies to VMware VMs. I created one in Entra using the following dynamic rule and called it <code>All-VMware</code></p>
+<pre><code>(device.deviceModel -contains "VMware") 
+     or (device.deviceManufacturer -contains "VMware")
+</code></pre>
+<p>For the Win32 App I used the following settings:</p>
+<ul>
+<li><strong>Name</strong>: VMwareTools (ARM64)</li>
+<li><strong>Description</strong>: VMwareTools (ARM64)</li>
+<li><strong>Publisher</strong>: VMware</li>
+<li><strong>Install Command</strong>: setup.exe /S /v "/qn REBOOT=R ADDLOCAL=ALL"</li>
+<li><strong>Uninstall Command</strong>: setup.exe /S /v "/qn REMOVE=ALL REBOOT=R"</li>
+<li><strong>Allow available uninstall</strong>: No</li>
+<li><strong>Install Behavior</strong>: System</li>
+<li><strong>Device restart behavior</strong>: App install may force a device restart</li>
+<li><strong>Minimum Operation System</strong>: Windows 11 21H2</li>
+<li><strong>Detection Rule</strong>:
+<ul>
+<li><strong>Rule Type</strong>: File</li>
+<li><strong>Path</strong>: C:\Program Files\VMware\VMware Tools\</li>
+<li><strong>File or folder</strong>: vmtoolsd.exe</li>
+<li><strong>Detection method</strong>: File or folder exists</li>
+<li><strong>Associated with a 32-bit app on 64-bit clients</strong>: Yes</li>
+</ul>
+</li>
+<li><strong>Assignment</strong>: All-VMware</li>
+</ul>
+<h1 id="next-5-creating-update-rings"><a class="header" href="#next-5-creating-update-rings">Next: [[5. Creating Update Rings]]</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../Intune-Lab/03-polishing-oobe.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../Intune-Lab/05-creating-update-rings.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../Intune-Lab/03-polishing-oobe.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../Intune-Lab/05-creating-update-rings.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

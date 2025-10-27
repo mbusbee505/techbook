@@ -1,0 +1,392 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Security Onion - techbook</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">techbook</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="previous-2-windows-environment"><a class="header" href="#previous-2-windows-environment">Previous: [[2. Windows Environment]]</a></h1>
+<p>Security Onion is a Swiss Army Knife of security tools that has several different systems built in such as Zeek, Suricata, osquery and can be used to monitor networks and capture network packets. For this lab we will use it mainly as a network monitor that will forward Zeek logs to Splunk for log analysis.</p>
+<h1 id="download-iso"><a class="header" href="#download-iso">Download ISO</a></h1>
+<p>Installing Security Onion is similar to the other VMs so far. First we need to download the ISO to Proxmox, then build out a VM for it in the Wizard. Here's a few commands you can use to download Security Onion from the Proxmox terminal:</p>
+<pre><code>STORAGEPATH="/var/lib/vz/template/iso"
+VERSION="2.4.180-20250916"
+ISO="securityonion-${VERSION}.iso"
+ISO_URL="https://download.securityonion.net/file/securityonion/${ISO}"
+
+wget -c -L -O "${STORAGEPATH}/${ISO}" "${ISO_URL}"
+</code></pre>
+<p>The ISO file is rather large (14GB) so you may want to go take a break while waiting for this to finish. Once its done you can click the Create VM in the top right corner of Proxmox to start the wizard. I used the following config for Security Onion:</p>
+<ul>
+<li><strong>VM ID</strong>: 904</li>
+<li><strong>Name</strong>: SecOnion-Lab</li>
+<li><strong>Disk size</strong>: 250GB</li>
+<li><strong>CPU Cores</strong>: 4</li>
+<li><strong>Memory</strong>: 24GB</li>
+<li><strong>Bridge</strong>: vmbr1</li>
+</ul>
+<h1 id="span-port"><a class="header" href="#span-port">SPAN port</a></h1>
+<p>Before turning on the machine and installing Security Onion we will need to make some changes to the network settings. Security Onion has the ability to listen to the network on a second port on the network called a SPAN port that allows it to hear all traffic flowing through the network, not just those intended for the SO machine or broadcasts to all machines. This means Security Onion can hear two other machines on the network talking to each other, which would be impossible only using the one standard network connection.</p>
+<p>We will need to make some changes within Proxmox to allow for this. First we need to create a second NIC on the Security Onion hardware settings by going to <code>Datacenter &gt; [Node] &gt; SecOnion-Lab &gt; Hardware &gt; Add &gt; Network Device &gt; OVS Bridge</code>. Use the following settings:</p>
+<ul>
+<li><strong>Model</strong>: VirtIO (paravirtualized)</li>
+<li><strong>Bridge</strong>: vmbr1</li>
+<li><strong>Firewall</strong>: Unchecked</li>
+</ul>
+<p>This sets the SPAN port to listen on vmbr1. Now we just need to get Proxmox to mirror all traffic on vmbr1 to this port. This can be done by going to the Proxmox terminal at <code>Datacenter &gt; [Node] &gt; Shell</code> and running this command:</p>
+<pre><code>ovs-vsctl clear bridge vmbr1 mirrors 
+
+ovs-vsctl -- --id=@p get port tap904i1 -- --id=@m create mirror name=span1 select-all=true output-port=@p -- set bridge vmbr1 mirrors=@m
+</code></pre>
+<p>The command above does the following:</p>
+<ul>
+<li>Clears out any previous mirrors on vmbr1</li>
+<li>Creates a new mirror called span1</li>
+<li>Sets it to mirror vmbr1</li>
+<li>Connects the mirror to output to the net1 NIC on VM ID 904.</li>
+</ul>
+<blockquote>
+<p>For better understanding of this command I found this blog post incredibly helpful: https://vext.info/2018/09/03/cheat-sheet-port-mirroring-ids-data-into-a-proxmox-vm.html</p>
+</blockquote>
+<p>Unfortunately, Proxmox does not save this mirror setting in the event of a power off or reboot. This means we will either need to run this command every time Proxmox restarts or create a script to automate that action. The blog post above provides a solution to this which I will show below as well.</p>
+<pre><code>#!/bin/bash
+
+# seconiontap.sh
+
+SECONIONLOG=/root/seconiontap.log
+
+date &gt;&gt; $SECONIONLOG
+
+echo "####################" &gt;&gt; $SECONIONLOG
+
+
+echo "Clearing any existing mirror..." &gt;&gt; $SECONIONLOG
+
+ovs-vsctl clear bridge vmbr1 mirrors
+
+echo "Creating mirror on vmbr1 for Security Onion..." &gt;&gt; $SECONIONLOG
+
+ovs-vsctl -- --id=@p get port tap904i1 -- --id=@m create mirror name=span1 select-all=true output-port=@p -- set bridge vmbr1 mirrors=@m &gt;&gt; $SECONIONLOG
+
+echo "Showing existing mirrors..." &gt;&gt; $SECONIONLOG
+
+ovs-vsctl list Mirror &gt;&gt; $SECONIONLOG
+
+echo "####################" &gt;&gt; $SECONIONLOG
+</code></pre>
+<p>The script sets the mirror but more importantly provides logging functionality so we can look into any issues that may arise over time. I created this script in the <code>/root/</code> folder and called it <code>seconiontap.sh</code>.</p>
+<p>I then ran <code>crontab -e</code> to add this line to the Crontab file:</p>
+<pre><code>@reboot sleep 120 &amp;&amp; /root/seconiontap.sh
+</code></pre>
+<p>This will tell Proxmox to run the script 120 seconds after rebooting. You may have to fine tune the number of seconds to make sure the Security Onion VM is up and running first before the script runs.</p>
+<h1 id="set-static-mapping"><a class="header" href="#set-static-mapping">Set Static Mapping</a></h1>
+<p>Now find the MAC address of the Security Onion VM by going to <code>Datacenter &gt; [Node] &gt; Hardware &gt; Network Device (net0)</code> which should be the NIC of the vmbr1 network interface. Now lets go to the pfSense console at https://172.16.0.1 and log in with your admin account.
+Next go to <code>Services &gt; DHCP Server &gt; Add Static Mappings</code> and add a new entry for Security Onion. Paste in the MAC address for the Security Onion VM vmbr1 NIC and set it to the IP address 172.16.0.12. Now click Save &gt; Apply Changes to save the mapping.</p>
+<h1 id="install-vm"><a class="header" href="#install-vm">Install VM</a></h1>
+<p>Now we can turn on the Security Onion VM and walk through setup. After clicking Start go to the console page for the VM where you should be greeted with the initial install page for Security Onion. You can select the first option which will give us a standard Security Onion install.</p>
+<p><img src="attachments/03-security-onion-3.png" alt="Security Onion installation welcome screen with install options" /></p>
+<p>You will then be asked whether it's okay to delete the contents of the VM hard drive to install Security Onion. Since this is a fresh virtual HD we have nothing to worry about.</p>
+<p><img src="attachments/03-security-onion-4.png" alt="Security Onion disk deletion confirmation prompt" /></p>
+<p>Type <code>yes</code> to continue. You will then be asked to create an administrative user for this install. I chose the name <code>admin</code> and gave it a strong password. Next it will kick off the installer. You will need to let this run for a while. Eventually you will see a screen asking you to press Enter to Reboot. Do that and wait for it to turn back on.</p>
+<p>After the reboot finishes Security Onion will ask you to login with the account created during setup. Give it those credentials then click Yes on the screen asking you to continue.</p>
+<p><img src="attachments/03-security-onion-5.png" alt="Security Onion login screen after reboot" /></p>
+<p>Next choose Install from the menu.</p>
+<p><img src="attachments/03-security-onion-6.png" alt="Security Onion setup menu with Install option highlighted" /></p>
+<p>On the next screen choose Standalone.</p>
+<p><img src="attachments/03-security-onion-7.png" alt="Security Onion installation type selection showing Standalone option" /></p>
+<p>Type AGREE to accept the license terms then select Standard as the network type.</p>
+<p><img src="attachments/03-security-onion-8.png" alt="Security Onion network type selection showing Standard option" /></p>
+<p>Give it the hostname seconion-lab to match the Proxmox naming.</p>
+<p><img src="attachments/03-security-onion-9.png" alt="Security Onion hostname configuration screen" /></p>
+<blockquote>
+<p>Note: Uppercase characters can cause conflicts in some instances so its best to make sure your hostname uses all lowercase.</p>
+</blockquote>
+<p>Next you will be asked to select the NIC to be used for management. This is referring to the standard network connection that will be provided by the vmbr1 interface. Make sure to select the correct MAC address that corresponds to this NIC.</p>
+<blockquote>
+<p>Note: You may have to look at the hardware settings for the Security Onion VM to tell these apart.</p>
+</blockquote>
+<p><img src="attachments/03-security-onion-10.png" alt="Security Onion management NIC selection screen" /></p>
+<p>Next it will ask whether to use a Static IP or DHCP. I will set it to DHCP here so that our pfSense static mapping can take over. On the next page you will be warned that a DHCP address can cause problems but don't worry about that if you have the static mapping in pfSense set up.</p>
+<p>On the next two pages you will be asked whether to connect to the internet directly or via proxy and whether to use the default docker IP range. Choose direct and yes respectively.</p>
+<p><img src="attachments/03-security-onion-11.png" alt="Security Onion proxy configuration screen showing direct connection option" /></p>
+<p>On the next page you will be asked to select the Monitor Interface. We want to make sure the MAC address of the vmbr2 SPAN port we created is selected. You can tap the Spacebar with the selection highlighted to add an asterisk to the selection. Then click Ok to move on to the next page.</p>
+<p>The next page will ask to enter an email address for an admin user. Provide this and create a strong password to go with it.</p>
+<p><img src="attachments/03-security-onion-12.png" alt="Security Onion admin email and password configuration" /></p>
+<p>The next page will ask which method you would like to use to access the Security Onion web interface. Select IP here for simplicity. If we decide to implement DNS later we can come back to this. On the next page choose Yes to allow access to the web interface.</p>
+<p><img src="attachments/03-security-onion-13.png" alt="Security Onion web interface access configuration with IP option selected" /></p>
+<p>You will then be asked to provide an IP or network range that is allowed to view the web interface. Here enter 172.16.0.0/24 so it is visible from our network. Later we may want to consider restricting this down somewhat.</p>
+<p>On the last page you will be given a list of your chosen configuration settings. Click Yes to approve these settings and let Security Onion go off and begin installing its necessary items.</p>
+<p>When the install finishes you should be spit back out into the terminal console. You can type <code>sudo so-status</code> to see the current status of the Security Onion services.</p>
+<p><img src="attachments/03-security-onion-17.png" alt="Security Onion so-status command output showing service status" /></p>
+<p>You should also be able to visit https://172.16.0.12 in your browser to see the Security Onion web console. You will need to login using the email address and password supplied during setup.</p>
+<p><img src="attachments/03-security-onion-18.png" alt="Security Onion web console login page" /></p>
+<p>Once logged in you should see the dashboard with several views and tools on the left sidebar. Now there are just a few bits of housekeeping left to do to get us up and running.</p>
+<h1 id="post-install-config"><a class="header" href="#post-install-config">Post-Install Config</a></h1>
+<p>Go back to your Security Onion terminal in Proxmox and run the following commands to switch to the root user and update the SO packages.</p>
+<pre><code>sudo su -
+soup
+</code></pre>
+<blockquote>
+<p>Note: You will either need to reboot because updates were found or switch back to your user account if reboot is unnecessary by using <code>su &lt;username&gt;</code></p>
+</blockquote>
+<p>Next we need to run a series of commands to enable promiscuous mode on the the SPAN interface in a way that is persistent. First we need to create a new service by first switching to root <code>sudo su -</code> and then running the following command:</p>
+<pre><code>echo "[Unit]
+Description=Enable promisc on SPAN iface
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/ip link set ens19 promisc on
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target" &gt; /etc/systemd/system/promisc.service
+</code></pre>
+<p>Next run these commands to enable the service and reboot Security Onion.</p>
+<pre><code>systemctl daemon-reload &amp;&amp; systemctl enable promisc.service
+reboot
+</code></pre>
+<p>After it reboots check that <code>ens19</code> is running in promiscuous mode by running:</p>
+<pre><code>ip link show ens19
+</code></pre>
+<p>You should see something that looks like this:</p>
+<p><img src="attachments/03-security-onion-19.png" alt="Terminal output showing ens19 interface in promiscuous mode" /></p>
+<p>If you see this it should mean everything was installed correctly.</p>
+<h1 id="testing-mirrored-traffic"><a class="header" href="#testing-mirrored-traffic">Testing Mirrored Traffic</a></h1>
+<p>There are two ways you can check whether Proxmox is correctly mirroring traffic to the SPAN port, by running tcpdump and viewing the Kibana dashboard on Security Onion's web portal.</p>
+<p>For tcpdump, go to a Proxmox shell and run:</p>
+<pre><code>tcpdump -i tap904i1 -n 
+</code></pre>
+<p>You should see a lot of packets begin to flow in from various source and destination IP addresses.</p>
+<p><img src="attachments/03-security-onion-20.png" alt="tcpdump output showing mirrored network traffic on SPAN port" /></p>
+<p>You can also go to your Security Onion web portal at https://172.16.0.12 and choose Kibana on the left side to get to the Kibana data visualization page.</p>
+<p><img src="attachments/03-security-onion-21.png" alt="Kibana dashboard showing network event data" /></p>
+<p>The Kibana dashboard will show you a lot of information about what it sees. To drill deeper into the network data you can click Network in the Event Category section.</p>
+<p><img src="attachments/03-security-onion-22.png" alt="Kibana event category section with Network events highlighted" /></p>
+<p>Here you can see a breakdown of network traffic by a few different dimensions.</p>
+<p><img src="attachments/03-security-onion-23.png" alt="Kibana detailed network traffic breakdown by various dimensions" /></p>
+<p>Seeing all of this tells me that our Security Onion install is a success and we can move on to setting up Splunk for log management and visibility.</p>
+<h1 id="next-4-splunk"><a class="header" href="#next-4-splunk">Next: [[4. Splunk]]</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../SOC101-Lab/02-windows-environment.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../SOC101-Lab/04-splunk.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../SOC101-Lab/02-windows-environment.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../SOC101-Lab/04-splunk.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

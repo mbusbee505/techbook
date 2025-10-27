@@ -1,0 +1,1797 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>techbook</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">techbook</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <hr />
+<h2 id="title--home"><a class="header" href="#title--home">title: 🏡 Home</a></h2>
+<h1 id="busbeetech"><a class="header" href="#busbeetech">BusbeeTech</a></h1>
+<p>This is where I park my lab notes and how-tos—take what you need and break things with me. The Intune-Lab is now wrapped up, so if you want a zero-touch Windows 11 deployment that’s ready for a new hire in under an hour, start there. Next I’m kicking off the SOC101-Lab, wiring Zeek sensors into Splunk and Elastic, tossing Atomic Red Team at the targets, and tuning detections as I go. Stick around if that sounds fun.</p>
+<hr />
+<div style="break-before: page; page-break-before: always;"></div><h1 id="intunelab"><a class="header" href="#intunelab">Intune‑Lab</a></h1>
+<h2 id="about-the-project"><a class="header" href="#about-the-project">About the Project</a></h2>
+<p>The <strong>Intune‑Lab</strong> exists to give me (and anyone who follows along) hands‑on, end‑to‑end practice with <strong>Intune</strong>, <strong>Autopilot</strong>, <strong>Entra ID</strong>, <strong>Defender for Endpoint</strong>, and adjacent Microsoft 365 technologies.  The focus is on building a <em>production‑style</em> lab that:</p>
+<ul>
+<li>Automates new‑hire onboarding via Intune and Autopilot.</li>
+<li>Applies role‑based security and update policies using Entra dynamic groups.</li>
+<li>Demonstrates real‑world scenarios such as white‑glove provisioning, remote user OOBE, and mobile device management.</li>
+</ul>
+<p>To keep things realistic, I asked ChatGPT to generate simulation data—a 25‑user <strong>CSV import file</strong> with randomized names, departments, and job titles.  That file (and every other artifact the lab produces) lives in this repo so you can clone, tweak, and reuse them in your own tenant.</p>
+<blockquote>
+<p><strong>Quick links</strong><br />
+• <strong>Repo:</strong> <a href="https://github.com/mbusbee505/Intune-Lab"><code>mbusbee505/Intune-Lab</code></a><br />
+• <strong>User CSV:</strong> <a href="https://raw.githubusercontent.com/mbusbee505/IntuneLab/main/busbeecorp_user_import.csv"><code>busbeecorp_user_import.csv</code></a></p>
+</blockquote>
+<h2 id="lab-outline"><a class="header" href="#lab-outline">Lab Outline</a></h2>
+<ol>
+<li><strong>Set up the lab environment</strong>
+<ol>
+<li>Sign up for free trials</li>
+<li>Upload users to Entra</li>
+<li>Create groups in Entra</li>
+<li>Assign licenses to users</li>
+</ol>
+</li>
+<li><strong>Enroll devices to Intune</strong>
+<ol>
+<li>Gather hardware hashes</li>
+<li>Create deployment profile</li>
+<li>Configure Enrollment Status Page</li>
+<li>Confirm OOBE proof‑of‑concept</li>
+</ol>
+</li>
+<li><strong>Improve OOBE experience</strong>
+<ol>
+<li>Remove unnecessary user prompts</li>
+</ol>
+</li>
+<li><strong>Install apps</strong>
+<ol>
+<li>Google Chrome</li>
+<li>Zoom</li>
+<li>Microsoft Office</li>
+<li>GlobalProtect VPN</li>
+</ol>
+</li>
+<li><strong>Configure update rings</strong>
+<ol>
+<li>Pilot group</li>
+<li>Broad user group</li>
+</ol>
+</li>
+<li><strong>Improve security posture</strong>
+<ol>
+<li>Install security baselines</li>
+<li>Connect Defender for Endpoint</li>
+<li>Create compliance policies</li>
+<li>Enforce compliance via Conditional Access</li>
+</ol>
+</li>
+<li><strong>Set up iPhone enrollments</strong>
+<ol>
+<li>Apple Push Notification certificate</li>
+<li>Company Portal app</li>
+<li>User login &amp; profile installation</li>
+<li>Deploy Intune apps from Company Portal</li>
+</ol>
+</li>
+<li><strong>Set up Android enrollments</strong>
+<ol>
+<li>Connect Managed Google Play</li>
+<li>Company Portal login</li>
+<li>Deploy Intune apps from Managed Play Store</li>
+</ol>
+</li>
+</ol>
+<h1 id="helpful-links"><a class="header" href="#helpful-links">Helpful Links</a></h1>
+<h2 id="admin-portals"><a class="header" href="#admin-portals">Admin Portals</a></h2>
+<ul>
+<li><strong>Intune admin center:</strong> <a href="https://intune.microsoft.com">https://intune.microsoft.com</a></li>
+<li><strong>Entra admin center:</strong> <a href="https://entra.microsoft.com">https://entra.microsoft.com</a></li>
+<li><strong>Defender portal:</strong> <a href="https://security.microsoft.com">https://security.microsoft.com</a></li>
+</ul>
+<h2 id="lab-resources"><a class="header" href="#lab-resources">Lab Resources</a></h2>
+<ul>
+<li><strong>GitHub repo:</strong> <a href="https://github.com/mbusbee505/IntuneLab">https://github.com/mbusbee505/IntuneLab</a></li>
+<li><strong>Users CSV:</strong> <a href="https://raw.githubusercontent.com/mbusbee505/IntuneLab/main/busbeecorp_user_import.csv">https://raw.githubusercontent.com/mbusbee505/IntuneLab/main/busbeecorp_user_import.csv</a></li>
+</ul>
+<h2 id="microsoft-365-free-trials"><a class="header" href="#microsoft-365-free-trials">Microsoft 365 Free Trials</a></h2>
+<ul>
+<li><strong>Intune free trial:</strong> <a href="https://aka.ms/IntuneTrial">https://aka.ms/IntuneTrial</a></li>
+<li><strong>Entra ID free trial:</strong> <a href="https://aka.ms/EntraSuiteTrial">https://aka.ms/EntraSuiteTrial</a></li>
+<li><strong>Defender for Endpoint P2 trial:</strong> <a href="https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint">https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint</a></li>
+</ul>
+<h1 id="next-1-setting-up-the-lab"><a class="header" href="#next-1-setting-up-the-lab">Next: [[1. Setting Up The Lab]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-intune-lab0-project-introduction0-project-introduction"><a class="header" href="#previous-intune-lab0-project-introduction0-project-introduction">Previous: [[Intune-Lab/0. Project Introduction|0. Project Introduction]]</a></h1>
+<h1 id="signing-up-for-intune"><a class="header" href="#signing-up-for-intune">Signing Up for Intune</a></h1>
+<p>First things first, I had to sign up for the <a href="https://aka.ms/IntuneTrial">Intune Free Trial</a>, provided an email address and a few other pieces of info.</p>
+<p>The trial allows for 25 users but we get all the same features as the paid version of the environment.</p>
+<p><img src="Intune-Lab/attachments/01-setting-up-the-lab-1.png" alt="Setting up Intune screenshot 1" /></p>
+<h1 id="nuke-the-security-defaults"><a class="header" href="#nuke-the-security-defaults">Nuke The Security Defaults</a></h1>
+<p>Next up I needed to turn off the Entra security defaults so theres room for my conditional access policies to take effect without conflict. To do this I went to Entra &gt; Overview &gt; Properties &gt; Manage security defaults and set it to <code>Disabled (not recommended)</code>.</p>
+<p><img src="Intune-Lab/attachments/01-setting-up-the-lab-2.png" alt="Security defaults settings" /></p>
+<p>When asked for the reason, I selected "My organization plans to use Conditional Access".</p>
+<h1 id="signing-up-for-entra-id"><a class="header" href="#signing-up-for-entra-id">Signing Up for Entra ID</a></h1>
+<p>You will need to use <a href="https://signup.microsoft.com/get-started/signup?products=2ebf8ffa-7de1-4d14-9b15-238f5ca77671&amp;mproducts=CFQ7TTC0NZT8:0001&amp;fmproducts=CFQ7TTC0NZT8:0001&amp;ali=1">this page</a> to sign up for Entra ID and use the same Microsoft account as you used for the Intune trial. Once this is complete you will be able to use Entra in your environment.</p>
+<p>Before you begin you may need to assign a license to your user. If this happens go to Microsoft 365 Admin Center &gt; Billing &gt; Licenses and ensure there is a license assigned to your user. If not, assign one manually from this page by clicking Microsoft Entra Suite &gt; Users &gt; Assign Licenses and choose yourself.</p>
+<p>Next we will move on to adding more users for our organization and ensure they have licenses.</p>
+<h1 id="uploading-corporate-workforce"><a class="header" href="#uploading-corporate-workforce">Uploading Corporate Workforce</a></h1>
+<p>Every good organization needs at least a few users, so to make things seem more real I'm going to upload to Entra a <a href="https://raw.githubusercontent.com/mbusbee505/IntuneLab/refs/heads/main/busbeecorp_user_import.csv">CSV file of simulated User data</a> that makes up my fake company workforce.</p>
+<p>To get to the user upload I went to Entra &gt; Users &gt; Bulk Operations &gt; Bulk Create and selected my file in the search field.</p>
+<p><img src="Intune-Lab/attachments/01-setting-up-the-lab-3.png" alt="Bulk create users" /></p>
+<p>If you need a fresh template for new users you can download one provided by Microsoft here as well.</p>
+<p>To see that it worked I refreshed the page and went to the All Users section.</p>
+<p><img src="Intune-Lab/attachments/01-setting-up-the-lab-4.png" alt="All users list" /></p>
+<h1 id="setting-up-security-groups"><a class="header" href="#setting-up-security-groups">Setting Up Security Groups</a></h1>
+<p>With Microsoft Azure you can do most things through the web portal online or using PowerShell. When you want to solve problems at scale or do something in an automated way its sometimes better to use PowerShell. I wanted a way to automate the group creation in this way so I tried with a PowerShell command.</p>
+<p>First make sure you have Microsoft Graph installed.</p>
+<pre><code>Install-Module Microsoft.Graph -Scope CurrentUser
+</code></pre>
+<p>Then connect to your tenant:</p>
+<pre><code>Connect-MgGraph -Scopes "Group.ReadWrite.All" -TenantID "&lt;Your Tenant ID&gt;"
+</code></pre>
+<p>The Tenant ID can be found by going to Entra &gt; Overview</p>
+<p><img src="Intune-Lab/attachments/01-setting-up-the-lab-5.png" alt="Tenant ID location" /></p>
+<p>After running this command for the first time like I was, you may have a pop-up browser window asking for permission to connect. Make sure to give it the access so you can continue running commands.</p>
+<p>To test that the connection works run</p>
+<pre><code>Get-MgContext
+</code></pre>
+<p>It should output some info about your Tenant like below. If this doesn't work you will need to check your connect command again and ensure you are using the right Tenant ID.</p>
+<p><img src="Intune-Lab/attachments/01-setting-up-the-lab-6.png" alt="Get-MgContext output" /></p>
+<p>Once I confirmed connection I ran the command below which added the following security groups to Entra. Since its a dynamic group, users and devices will be added to them automatically based on their properties.</p>
+<ul>
+<li>Exec</li>
+<li>HR</li>
+<li>Finance</li>
+<li>IT</li>
+<li>Sales</li>
+<li>Marketing</li>
+<li>Eng</li>
+<li>Support</li>
+<li>All-Devices</li>
+<li>All-iOS</li>
+<li>All-Android</li>
+</ul>
+<pre><code># Map each DisplayName to its dynamic rule
+$dynamicMap = @{
+    'Executive'     = '(user.jobTitle -contains "Chief")'
+    'Human Resources'       = '(user.department -eq "Human Resources")'
+    'Finance'  = '(user.department -eq "Finance")'
+    'IT'       = '(user.department -eq "IT")'
+    'Security'       = '(user.department -eq "Security")'
+    'Research'       = '(user.department -eq "Research")'
+    'Sales'    = '(user.department -eq "Sales")'
+    'Marketing'= '(user.department -eq "Marketing")'
+    'Engineering'      = '(user.department -eq "Engineering")'
+    'Support'  = '(user.department -eq "Support")'
+    'All-Devices' = '(device.deviceId -ne null)'      # dynamic **device** group
+    'All-iOS'     = '(device.deviceOSType -contains "iOS")'
+    'All-Android' = '(device.deviceOSType -contains "Android")'
+}
+
+foreach ($kv in $dynamicMap.GetEnumerator()) {
+    $name = $kv.Key
+    $rule = $kv.Value
+
+    $params = @{
+        DisplayName                 =  $name
+        MailNickname                = ($name -replace '\s','')
+        Description                 = "$name dynamic security group"
+        SecurityEnabled             = $true          # keeps it a security group
+        MailEnabled                 = $false
+        GroupTypes                  = @('DynamicMembership')
+        MembershipRule              = $rule
+        MembershipRuleProcessingState = 'On'
+    }
+
+    New-MgGroup @params
+}
+</code></pre>
+<p><img src="Intune-Lab/attachments/01-setting-up-the-lab-7.png" alt="PowerShell group creation success" /></p>
+<p>Once I saw the success screen come through I went to Entra &gt; Groups &gt; All Groups and found the groups added via PowerShell.</p>
+<p><img src="Intune-Lab/attachments/01-setting-up-the-lab-8.png" alt="All groups view" /></p>
+<p>According to Microsoft, it can take up to 24 hours for these groups to apply to users. While I waited for this to end I moved on to setting up a dynamic device group for Windows 11 devices.</p>
+<p><img src="Intune-Lab/attachments/01-setting-up-the-lab-9.png" alt="Dynamic device group" /></p>
+<p>In the <code>Add dynamic query</code> page I added the following settings:</p>
+<p><img src="Intune-Lab/attachments/01-setting-up-the-lab-10.png" alt="Dynamic query settings" /></p>
+<h1 id="assigning-entraintune-licenses"><a class="header" href="#assigning-entraintune-licenses">Assigning Entra+Intune Licenses</a></h1>
+<p>I discovered in order to get the Automatic Enrollment to work on Intune during the OOBE setup I needed each user to have an Entra and Intune license assigned. Since I had only signed up for the Intune Trial so far, I had to go back and make sure to sign up for an Entra ID Free Trial as well under the same Microsoft account.</p>
+<p>The Free Trials for Entra and Intune both came with 25 users each so I decided to cull my workforce down to 25 users (including myself), then apply the licenses to each user. I did not want to apply to all users, just those that are employees of the company. The smartest way to do this seemed to be by creating a dynamic group based on the user's Company Name property and assign licenses to members of that group.</p>
+<p>First I needed to set the Company Name property correctly for all 25 of my current users, since I know these are all employees. The following PowerShell commands set the Company Name for all users.</p>
+<pre><code>$CompanyName = "BusbeeCorp"
+$domain      = "@busbeecorp.onmicrosoft.com"
+
+Get-MgUser `
+    -Filter "endswith(userPrincipalName,'$domain')" `
+    -ConsistencyLevel eventual `
+    -All |                             
+ForEach-Object {
+    Update-MgUser -UserId $_.Id -CompanyName $CompanyName
+}
+</code></pre>
+<blockquote>
+<p>In the real world I would want to make sure data entry for each new user is happening correctly.</p>
+</blockquote>
+<p>With the Company Name set I just needed to create a dynamic group for All-Employees based on the Company Name property BusbeeCorp</p>
+<pre><code>$rule = 'user.companyName -eq "BusbeeCorp"'
+
+New-MgGroup -DisplayName "All-Employees" `
+            -Description "Every Employee of BusbeeCorp" `
+            -MailEnabled:$false `
+            -SecurityEnabled:$true `
+            -MailNickname "all-employees" `
+            -GroupTypes "DynamicMembership" `
+            -MembershipRule $rule `
+            -MembershipRuleProcessingState "On"
+</code></pre>
+<p>I found that to get the Licenses assigned to the All-Employees group I had to first update Microsoft Graph to get a few modules not included by default.The following command will install this and open a new PowerShell session.</p>
+<pre><code>Register-PSRepository -Name PSGallery -SourceLocation "https://www.powershellgallery.com/api/v2" -InstallationPolicy Trusted -ErrorAction SilentlyContinue
+
+Install-Module Microsoft.Graph -Scope CurrentUser -Force
+pwsh 
+</code></pre>
+<p>Once in the new session I ran the commands below to apply the License SKUs to the All-Employees group.</p>
+<pre><code>Connect-MgGraph -Scopes "Directory.ReadWrite.All","LicenseAssignment.ReadWrite.All","Group.ReadWrite.All"
+
+$skuIntune  = "061f9ace-7d42-4136-88ac-31dc755f143f"
+$skuEntraP2 = "f9602137-2203-447b-9fff-41b36e08ce5d"
+$groupId    = (Get-MgGroup -Filter "displayName eq 'All-Employees'").Id
+
+Set-MgGroupLicense -GroupId $groupId `
+    -AddLicenses  @(@{SkuId=$skuIntune}, @{SkuId=$skuEntraP2}) `
+    -RemoveLicenses @()
+</code></pre>
+<p>I confirmed this took effect by going to Entra &gt; Billing &gt; Licenses &gt; All Products and saw 25 Assigned licenses for each product.</p>
+<p><img src="Intune-Lab/attachments/01-setting-up-the-lab-11.png" alt="Assigned licenses" /></p>
+<h1 id="signing-up-for-defender-for-endpoint"><a class="header" href="#signing-up-for-defender-for-endpoint">Signing Up for Defender for Endpoint</a></h1>
+<p>First, Go to the sign up page for <a href="https://www.microsoft.com/en-us/security/business/endpoint-security/microsoft-defender-endpoint">Microsoft Defender for Endpoint P2 Free Trial</a> and sign up using the same login you used for the rest of the lab. Complete the sign up flow, then go to <code>Microsoft 365 Admin Center &gt; Billing &gt; Licenses</code> page and click Microsoft Defender for Endpoint P2. In this page click <code>Groups &gt; Assign Licenses</code> and assign them to the All-Employees group.</p>
+<p>Next we can setup Defender for Endpoint to connect with each of our devices in Intune so we can get visibility over the devices security and compliance status. Defender for Endpoint provides comprehensive protection for endpoint devices to guard users and provide better management capabilities for IT admins.</p>
+<p>To configure Defender for Endpoint you must first connect it to the Intune environment. In Intune go to <code>Intune &gt; Endpoint security &gt; Microsoft Defender for Endpoint</code> and set the following setting:</p>
+<ul>
+<li><strong>Allow Microsoft Defender for Endpoint to enforce Endpoint Security Configurations</strong>: On</li>
+</ul>
+<p>This will let Defender control the configurations within the Intune environment.</p>
+<p>You will next need to go to the Defender portal and connect Defender to Intune on the other side. Go to <code>Defender &gt; Settings &gt; Endpoint &gt; Advanced Features &gt; Microsoft Intune Connection</code> and set it to On.</p>
+<p>On the Intune side you will need to go to <code>Intune &gt; Tenant Administration &gt; Connectors and tokens &gt; Microsoft Defender for Endpoint</code> and make sure all devices are set to connect to MDE.</p>
+<p><img src="Intune-Lab/attachments/01-setting-up-the-lab-13.png" alt="Defender for Endpoint connection" /></p>
+<p>These being connected ensures Defender for Endpoint is able to connect to the Intune devices.</p>
+<h1 id="next-2-enrolling-devices"><a class="header" href="#next-2-enrolling-devices">Next: [[2. Enrolling Devices]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-1-setting-up-the-lab"><a class="header" href="#previous-1-setting-up-the-lab">Previous: [[1. Setting Up The Lab]]</a></h1>
+<h1 id="getting-the-hardware-hash"><a class="header" href="#getting-the-hardware-hash">Getting the Hardware Hash</a></h1>
+<p>In a real world scenario hardware hashes for each device would be provided to the organization by the device manufacturer, but since I can't do that I had to fake it a bit.</p>
+<p>I created a new Windows 11 VM and when it got to the select region screen I pressed Shift+F10 to open command prompt then ran the command <code>powershell</code> to get to open a new PowerShell session.</p>
+<p>The commands below do the following things:</p>
+<ul>
+<li>Installs Microsoft Graph</li>
+<li>Connects to Microsoft Graph using the TenantID provided</li>
+<li>Sets Execution Policy to Bypass</li>
+<li>Installs Windows Autopilot Info module</li>
+<li>Generates the device hardware hash and uploads it to the tenant</li>
+</ul>
+<pre><code>Set-ExecutionPolicy -Scope Process Bypass -Force
+Install-Module Microsoft.Graph -Scope CurrentUser
+Connect-MgGraph -Scopes "Group.ReadWrite.All" -TenantID "&lt;Your Tenant ID&gt;"
+Install-Script -Name Get-WindowsAutopilotInfo -Force
+Get-WindowsAutopilotInfo -Online
+</code></pre>
+<p><img src="Intune-Lab/attachments/02-enrolling-devices-1.png" alt="PowerShell command prompt installing Autopilot modules" /></p>
+<p>To confirm this was successful you can go to Intune &gt; Devices &gt; Enrollment &gt; Windows Autopilot &gt; Devices</p>
+<p><img src="Intune-Lab/attachments/02-enrolling-devices-2.png" alt="Windows Autopilot devices list in Intune" /></p>
+<p>Here I can see my VM running on VMware "hardware". With this in place I'm ready to move on.</p>
+<h1 id="creating-autopilot-device-group"><a class="header" href="#creating-autopilot-device-group">Creating Autopilot Device Group</a></h1>
+<p>I created a Dynamic Security group called All-Registered-Autopilot that will grab all devices registered to Autopilot. This will be the group I assign the Deployment Profile and Enrollment Status Page to.</p>
+<p>Intune &gt; Groups &gt; New Group</p>
+<ul>
+<li><strong>Name</strong>: All-Registered-Autopilot</li>
+<li><strong>Description</strong>: All Devices registered to Autopilot</li>
+<li><strong>Membership Type</strong>: Dynamic Device</li>
+</ul>
+<p>Edit Dynamic Query &gt; Configuration Rules</p>
+<pre><code>(device.devicePhysicalIds -any (_ -startsWith "[ZTDId]"))
+</code></pre>
+<h1 id="creating-the-deployment-profile"><a class="header" href="#creating-the-deployment-profile">Creating The Deployment Profile</a></h1>
+<p>My goal is to get a Windows 11 device to the point it could be purchased from the manufacturer, sent to a new employee, then the employee can use their corporate login credentials to sign in and set up the laptop. The configuration should take care of all setup and installs and leave as little as possible to the user.</p>
+<p>I went to Intune &gt; Devices &gt; Enrollment &gt; Windows &gt; Deployment Profiles &gt; Create Profile</p>
+<p>I gave the following settings to create the profile:</p>
+<ul>
+<li><strong>Name</strong>: Employee New Device</li>
+<li><strong>Description</strong>: Windows 11 Employee Config</li>
+<li><strong>Deployment Mode</strong>: User-Driven</li>
+<li><strong>Joint to Microsoft Entra ID as</strong>: Microsoft Entra Joined</li>
+<li><strong>Apply a device name template</strong>: Yes - <code>%SERIAL%-W</code></li>
+<li><strong>Add Groups</strong>: All-Registered-Autopilot</li>
+</ul>
+<p>Summary of the Out-of-box experience (OOBE) settings</p>
+<p><img src="Intune-Lab/attachments/02-enrolling-devices-3.png" alt="Deployment profile OOBE settings summary" /></p>
+<h1 id="creating-an-enrollment-status-page-esp"><a class="header" href="#creating-an-enrollment-status-page-esp">Creating an Enrollment Status Page (ESP)</a></h1>
+<p>Next I needed to create an Enrollment Status Page to prevent the user from affecting the device setup and also provide them visibility into the setup status.</p>
+<p>To access the ESP settings I went to Intune &gt; Devices &gt; Enrollment &gt; Windows &gt; Enrollment Status Page &gt; Create</p>
+<p>I gave it a name to match the Configuration Profile and set <strong>Show app and profile configuration progress</strong> to Yes and left all other settings as default on this page. I also assigned it to apply to the All-Windows-11 group.</p>
+<p>Summary of ESP Settings below:</p>
+<p><img src="Intune-Lab/attachments/02-enrolling-devices-4.png" alt="Enrollment Status Page settings summary" /></p>
+<p>The following settings are important here to make sure apps we install during setup finish before the computer is released to the user:</p>
+<ul>
+<li><strong>Block device use until all apps and profiles are installed</strong>: Yes</li>
+<li><strong>Block device use until required apps are installed if they are assigned to the user/device</strong>: All</li>
+</ul>
+<h1 id="testing-out-of-box-experience-oobe"><a class="header" href="#testing-out-of-box-experience-oobe">Testing Out-of-box experience (OOBE)</a></h1>
+<p>With the command prompt still open on the Windows VM, I ran the command below to shutdown the device and set it back to OOBE mode.</p>
+<pre><code>%SystemRoot%\System32\Sysprep\Sysprep.exe /oobe /shutdown
+</code></pre>
+<p>Once it turned back on I noticed the setup was different. It was now asking for a Microsoft Work/School account immediately. I chose one of the accounts from my organization at random and used their email address and password to login.</p>
+<p>I noticed there were a few things I did not like about the OOBE setup. It asked the user to change their password as soon as they logged in. This may have been due to this being the first time they have ever logged in, or it could be set by Autopilot. I will need to look into this.</p>
+<p>I also noticed it pushed the user into setting up a Windows Hello pin and then used that for login. I would instead prefer the user to have to use a domain user and password for login.</p>
+<p>Lastly, I noticed it asked if the user wanted Microsoft 365 Copilot added to taskbar. I do not want my users to have this, or the question asking about it so I want to look into how to remove it.</p>
+<h1 id="next-3-polishing-oobe"><a class="header" href="#next-3-polishing-oobe">Next: [[3. Polishing OOBE]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-2-enrolling-devices"><a class="header" href="#previous-2-enrolling-devices">Previous: [[2. Enrolling Devices]]</a></h1>
+<h1 id="removing-windows-hello"><a class="header" href="#removing-windows-hello">Removing Windows Hello</a></h1>
+<p>When I ran my first OOBE test my user was prompted with the requirement to setup Windows Hello. I want to turn this off entirely so I found going to <code>Intune &gt; Devices &gt; Enrollment &gt; Windows Hello for Business</code> and set Configure Windows Hello for Business to Disabled and clicked Save.</p>
+<h1 id="removing-365-copilot-pin-prompt"><a class="header" href="#removing-365-copilot-pin-prompt">Removing 365 Copilot Pin Prompt</a></h1>
+<p>Another thing I noticed on the last OOBE test was a prompt asking the user to pin Microsoft 365 Copilot to their taskbar. I do not want users to have to worry about this so I looked into how to disable it in the portal.</p>
+<p>Turns out you can go to <code>Microsoft 365 &gt; Copilot &gt; Settings &gt; User Access</code> and set Pin Microsoft 365 Copilot App to the Windows Taskbar setting to Do Not Pin and click save.</p>
+<p><img src="Intune-Lab/attachments/03-polishing-oobe-1.png" alt="Microsoft 365 Copilot taskbar pin settings" /></p>
+<p>While I was in here I also went through and disabled Copilot across most of the tenant settings.</p>
+<h1 id="testing-setup"><a class="header" href="#testing-setup">Testing Setup</a></h1>
+<p>Now comes the time to reboot/startup the VM and see if the changes too effect. I started it up and instead of the initial questions where setup asks me to choose a region and language, it instead immediately asked me to sign in with a Microsoft account. Here this should let my user log in with their corporate account that was made for them.</p>
+<p><img src="Intune-Lab/attachments/03-polishing-oobe-2.png" alt="Windows OOBE Microsoft account sign-in screen" /></p>
+<p>After logging in I got a screen that says "Please wait while we set up your device..."</p>
+<p><img src="Intune-Lab/attachments/03-polishing-oobe-3.png" alt="Device setup progress screen" /></p>
+<p>Once set up completed it logged me into my account and showed me the desktop. I was not prompted with any Windows Hello or 365 Copilot questions.</p>
+<p><img src="Intune-Lab/attachments/03-polishing-oobe-4.png" alt="Windows desktop after successful setup" /></p>
+<p>I checked settings and it shows I'm logged in with my corporate account and the name scheme took effect labeling the device as <code>[Serial Number]-W</code>. It looks like the initial run was successful. Next I want to test installing apps on the device.</p>
+<p><img src="Intune-Lab/attachments/03-polishing-oobe-5.png" alt="Windows settings showing corporate account and device name" /></p>
+<h1 id="next-4-installing-apps"><a class="header" href="#next-4-installing-apps">Next: [[4. Installing Apps]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-3-polishing-oobe"><a class="header" href="#previous-3-polishing-oobe">Previous: [[3. Polishing OOBE]]</a></h1>
+<h1 id="installation-methods"><a class="header" href="#installation-methods">Installation Methods</a></h1>
+<p>I wanted to test a few commonly used apps that also showcase the different methods of installing apps with Intune. I decided on the following:</p>
+<ul>
+<li>Line-of-business (LOB) - Zoom Workplace</li>
+<li>Win32 App - Google Chrome</li>
+<li>Microsoft Store app - GlobalProtect VPN</li>
+<li>Microsoft 365 Apps for Windows 11</li>
+</ul>
+<p>I will also need to make sure my [[2. Enrolling Devices#Creating an Enrollment Status Page (ESP)|Enrollment Status Page]] settings block the user from accessing the device until the installations are complete.</p>
+<h1 id="line-of-business-lob---zoom-workplace"><a class="header" href="#line-of-business-lob---zoom-workplace">Line-of-business (LOB) - Zoom Workplace</a></h1>
+<p>To create a LOB app you basically just need to find the .msi version of the app's installer and load it into Intune. Just go to <code>Intune &gt; Apps &gt; All apps &gt; Create &gt; App type &gt; Line-of-business app</code>.</p>
+<p><img src="Intune-Lab/attachments/04-installing-apps-1.png" alt="Intune app creation menu showing line-of-business option" /></p>
+<p>Next it will ask to upload the file you can select it from your computer locally after downloading it from the internet or wherever else.</p>
+<p><img src="Intune-Lab/attachments/04-installing-apps-2.png" alt="App package file upload screen" /></p>
+<p>In my case I went to <a href="https://zoom.us/download/admin">Zoom's Downloads for IT Admins</a>, selected the Download (ARM64), and downloaded it to my computer. I then went back to Intune and selected this file for the upload.</p>
+<p><img src="Intune-Lab/attachments/04-installing-apps-3.png" alt="Zoom installer file selected for upload" /></p>
+<blockquote>
+<p>Keep in mind I only chose ARM due to the VM used for testing. In another environment you would want to consider the architecture and OS requirements for your app/device compatibility.</p>
+</blockquote>
+<p>Luckily for me the Intune LOB App Wizard pre-populated a lot of the information to set up the app including the Name and Description. It labeled it as (ARM64) so if I needed to also provision the AMD64 version it would be easy to tell them apart.</p>
+<p>For the Command-line arguments section I added the following:</p>
+<pre><code>/qn /norestart
+</code></pre>
+<p>This will prevent the device from restarting after the Zoom install is complete.</p>
+<p>I also needed to set the App install context to <code>Device</code> so that it automatically installs it during OOBE setup. If you keep it as the default <code>User</code> it will only install it after the user logs in, and it is only available for that user on the machine. I found it made more sense to keep it device-wide.</p>
+<p>On the Assignments page I chose the <code>All-Windows-11</code> group to receive this install. This is where I could consider separating app availability by group membership but for now I will allow it on all Windows 11 devices.</p>
+<p><img src="Intune-Lab/attachments/04-installing-apps-4.png" alt="Zoom app configuration settings in Intune" /></p>
+<h1 id="win32-app---google-chrome"><a class="header" href="#win32-app---google-chrome">Win32 App - Google Chrome</a></h1>
+<p>If the app developer does not provide an MSI version of the installer and you are forced to use an EXE or some form of script, you can wrap it in a Win32 App to make it usable within Intune. This can be done by using Microsoft's <a href="https://github.com/Microsoft/Microsoft-Win32-Content-Prep-Tool">Content-Prep-Tool</a> which is a Windows only tool for creating Win32 Apps.</p>
+<p>Since I had to use Windows, I downloaded the tool on my Windows machine, calling the file "Win32Prep" and created the following file structure:</p>
+<pre><code>C:/
+├─ Source/
+│  ├─ Chrome/
+│  │  ├─ ChromeSetup.exe
+├─ Tools/
+│  ├─ Win32Prep/
+│  │  ├─ IntuneWinAppUtil.exe
+├─ Output/
+</code></pre>
+<p>I then used the following command in a Windows machine to turn the Google Chrome:</p>
+<pre><code>C:\Tools\Win32Prep\IntuneWinAppUtil.exe `
+  -c "C:\Source\Chrome" `
+  -s "ChromeSetup.exe" `
+  -o "C:\Output"
+</code></pre>
+<p>Once this process completes you should see a <code>ChromeSetup.intunewin</code> file in the Win32Oput folder. Next is uploading this to Intune and creating an App for it.</p>
+<p>Back in Intune I went to <code>Intune &gt; Apps &gt; All Apps &gt; Create &gt; App Type &gt; Windows app (Win32)</code> and when it asked for the file I gave it the .intunewin I just made. I gave it the name Google Chrome (ARM64) to be consistent with the Zoom App.</p>
+<p>I then entered the following settings:</p>
+<ul>
+<li><strong>Install command</strong>: <code>ChromeSetup.exe /silent /install</code></li>
+<li><strong>Uninstall command</strong>: <code>"%ProgramFiles%\Google\Chrome\Application\chrome.exe" --uninstall --system-level --force-uninstall</code></li>
+<li><strong>Allow available uninstall</strong>: No</li>
+<li><strong>Install Behavior</strong>: System</li>
+<li><strong>Device restart behavior</strong>: No specific action</li>
+</ul>
+<p>This will make sure Chrome installs for all users, the users are not allowed to uninstall the app, and the app will not restart the device after installation.</p>
+<p>On the Requirements page I selected the following:</p>
+<ul>
+<li><strong>Check operating system architecture</strong>: Yes - Install on ARM64 system</li>
+<li><strong>Minimum operating system</strong>: Windows 11 21H2</li>
+</ul>
+<p>This ensures this app can only install on ARM64 devices with any version of Windows 11. Since this is a fairly small app install I did not make any hardware requirements.</p>
+<p>Detection Rule settings:</p>
+<ul>
+<li><strong>Rule type</strong>: File</li>
+<li><strong>Path</strong>: C:\Program Files\Google\Chrome\</li>
+<li><strong>File or folder</strong>: chrome.exe</li>
+<li><strong>Detection Method</strong>: File or folder exists</li>
+</ul>
+<p>For Assignments I selected this app be required for the All-Windows-11 group to be available for all Windows-11 users.</p>
+<p>With all of that in place I hit Create and let Intune build the app for me and everything seemed good to go.</p>
+<h1 id="microsoft-store-app---globalprotect-vpn"><a class="header" href="#microsoft-store-app---globalprotect-vpn">Microsoft Store app - GlobalProtect VPN</a></h1>
+<p>To create a Microsoft Store app you just need to go to <code>Intune &gt; Apps &gt; All Apps &gt; Create &gt; App type &gt; Microsoft Store app (new)</code> and searched for "GlobalProtect" in the search bar.</p>
+<p><img src="Intune-Lab/attachments/04-installing-apps-5.png" alt="Microsoft Store app search for GlobalProtect" /></p>
+<p>When I selected this it auto-populated most of the information for me in the App Information settings. I did however change the Install behavior to <code>system</code> to ensure this would apply to all users on the device.</p>
+<p>On the next page I assigned this to be required for the All-Windows-11 group then hit Create to let Intune build this for me.</p>
+<h1 id="microsoft-365-apps-for-windows-11"><a class="header" href="#microsoft-365-apps-for-windows-11">Microsoft 365 Apps for Windows 11</a></h1>
+<p>Microsoft Office 365 Apps are another install that will often be requested in corporate enterprise environments. Microsoft makes it easy to install this by offering the Office 365 installer as a built in option in the Intune Apps Create menu. Just go to <code>Intune &gt; Apps &gt; All Apps &gt; Create &gt; App Type &gt; Microsoft 365 Apps &gt; Windows 10 and later</code> to start the creation wizard.</p>
+<p>For the App Setup Information I kept the defaults, feel free to tweak as needed. On the Configure App Suite page I made the following changes:</p>
+<ul>
+<li><strong>Select Office Apps</strong>:
+<ul>
+<li>Excel</li>
+<li>Outlook</li>
+<li>PowerPoint</li>
+<li>Teams</li>
+<li>Word</li>
+</ul>
+</li>
+<li><strong>Architecture</strong>: 64-bit</li>
+<li><strong>Default file format</strong>: Office Open XML Format</li>
+<li><strong>Update Channel</strong>: Monthly Enterprise</li>
+<li><strong>Remove Other Versions</strong>: Yes</li>
+<li><strong>Use shared computer activation</strong>: Yes</li>
+</ul>
+<p>On the assignments page I set the install to run for all devices in the All-Windows-11 group and clicked Create so Intune could start building the app.</p>
+<h1 id="testing"><a class="header" href="#testing">Testing</a></h1>
+<p>After all the apps were set up in the portal I restarted my VM OOBE snapshot to start fresh. I let it run for a few minutes and saw the Enrollment Status Page say Installed Apps: 4 out of 4. I was then taken to the device desktop where I confirmed all apps installed.</p>
+<p><img src="Intune-Lab/attachments/04-installing-apps-6.png" alt="Enrollment Status Page showing 4 out of 4 apps installed" /></p>
+<p>You can also confirm the apps were installed from the Intune portal by going to  <code>Intune &gt; Devices &gt; Windows &gt; [Device Name] &gt; Managed Apps</code>.</p>
+<p><img src="Intune-Lab/attachments/04-installing-apps-7.png" alt="Managed apps list in Intune portal for device" /></p>
+<h1 id="bonus-vmware-tools-win32-app"><a class="header" href="#bonus-vmware-tools-win32-app">Bonus: VMware Tools (Win32 App)</a></h1>
+<p>I decided it would be easier on me if I could have my test devices automatically install VMware Tools. Since the installer only comes in the form of an EXE I had to do it as a Win32 App.</p>
+<p>First I needed to get the EXE file and create the wrapper file. I found the file <code>setup.exe</code> by finding the ARM version of the <code>windows.iso</code> and mounting it to my system and looking inside. The method of doing this will be different depending on your version of VMware and the OS of your hypervisor host.</p>
+<p>Once you have the EXE you can perform a similar step as above with Chrome:</p>
+<pre><code>C:\Tools\Win32Prep\IntuneWinAppUtil.exe `
+  -c "C:\Source\VMwareTools" `
+  -s "setup.exe" `
+  -o "C:\Output"
+</code></pre>
+<p>This created a file called <code>setup.intunewin</code> which I could then upload to Intune.</p>
+<p>Before I did that I needed to create a new dynamic group that only applies to VMware VMs. I created one in Entra using the following dynamic rule and called it <code>All-VMware</code></p>
+<pre><code>(device.deviceModel -contains "VMware") 
+     or (device.deviceManufacturer -contains "VMware")
+</code></pre>
+<p>For the Win32 App I used the following settings:</p>
+<ul>
+<li><strong>Name</strong>: VMwareTools (ARM64)</li>
+<li><strong>Description</strong>: VMwareTools (ARM64)</li>
+<li><strong>Publisher</strong>: VMware</li>
+<li><strong>Install Command</strong>: setup.exe /S /v "/qn REBOOT=R ADDLOCAL=ALL"</li>
+<li><strong>Uninstall Command</strong>: setup.exe /S /v "/qn REMOVE=ALL REBOOT=R"</li>
+<li><strong>Allow available uninstall</strong>: No</li>
+<li><strong>Install Behavior</strong>: System</li>
+<li><strong>Device restart behavior</strong>: App install may force a device restart</li>
+<li><strong>Minimum Operation System</strong>: Windows 11 21H2</li>
+<li><strong>Detection Rule</strong>:
+<ul>
+<li><strong>Rule Type</strong>: File</li>
+<li><strong>Path</strong>: C:\Program Files\VMware\VMware Tools\</li>
+<li><strong>File or folder</strong>: vmtoolsd.exe</li>
+<li><strong>Detection method</strong>: File or folder exists</li>
+<li><strong>Associated with a 32-bit app on 64-bit clients</strong>: Yes</li>
+</ul>
+</li>
+<li><strong>Assignment</strong>: All-VMware</li>
+</ul>
+<h1 id="next-5-creating-update-rings"><a class="header" href="#next-5-creating-update-rings">Next: [[5. Creating Update Rings]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-4-installing-apps"><a class="header" href="#previous-4-installing-apps">Previous: [[4. Installing Apps]]</a></h1>
+<h1 id="what-is-an-update-ring"><a class="header" href="#what-is-an-update-ring">What is an Update Ring?</a></h1>
+<p>An Update Ring is a policy setting within Intune that controls how and when the connected devices are able to run Windows updates. You can set different options like number of deferral days, update deadlines, reboot behavior, etc. You can develop different Update Rings and apply each to a different device group in what ever configuration makes the most sense for your environment. Its also important to know that Update Ring only affects Windows OS and Microsoft First Party updates which means custom LOB/Win32 apps will need to be kept up-to-date separately.</p>
+<h1 id="wait-i-need-another-one"><a class="header" href="#wait-i-need-another-one">Wait, I need another one?</a></h1>
+<p>For most organizations it makes sense to make at least two Update Rings, one to pilot more risky changes and updates, and a broader ring that controls updates on all devices. The broad ring is a slower, less update ring that you can trust in production across all devices. You will want to fill the pilot ring with more tech-savvy users and those who are less impactful on production if they shutdown unexpectedly. There is a wide range of issues that can be caused by a bad update, from bad drivers, broken network connections, other bugs etc. Having a pilot group protects the rest of the organization from experiencing these disruptions. I decided for my environment I would make all members of the IT team the pilot group and everyone else is in the broad group.</p>
+<h1 id="the-update-of-the-rings"><a class="header" href="#the-update-of-the-rings">The Update of The Rings</a></h1>
+<p>To create the update rings you need to go to <code>Intune &gt; Devices &gt; Windows &gt; Windows Updates &gt; Update Rings &gt; Create Profile</code></p>
+<h2 id="pilot-ring"><a class="header" href="#pilot-ring">Pilot Ring</a></h2>
+<p>The following settings will create an update ring that allows pilot users to defer feature updates for 7 days but does not let them defer quality updates. It also creates a 7 day deadline with a 2 day grace period. The ring is set to only affect IT users.</p>
+<ul>
+<li><strong>Name</strong>: Pilot Update Ring</li>
+<li><strong>Description</strong>: Pilot Update Ring</li>
+<li><strong>Quality update deferral period (days)</strong>: 0</li>
+<li><strong>Feature update deferral period (days)</strong>: 7</li>
+<li><strong>Automatic update behavior</strong>: Auto install &amp; restart at maintenance time</li>
+<li><strong>Use deadline settings</strong>: Allow</li>
+<li><strong>Deadline for feature updates</strong>: 7</li>
+<li><strong>Deadline for quality updates</strong>: 7</li>
+<li><strong>Grace period</strong>: 2</li>
+<li><strong>Included Groups</strong>: IT</li>
+</ul>
+<h2 id="broad-ring"><a class="header" href="#broad-ring">Broad Ring</a></h2>
+<p>The following settings will create an update ring for the remaining users in the tenant. They are allowed to defer feature updates for 30 days and quality updates for 7 days. This setup also gives them a 14 day deadline with a 3 day grace period. This will apply to all users that are not in the IT department.</p>
+<ul>
+<li><strong>Name</strong>: Broad Update Ring</li>
+<li><strong>Description</strong>: Broad Update Ring</li>
+<li><strong>Quality update deferral period (days)</strong>: 7</li>
+<li><strong>Feature update deferral period (days)</strong>: 30</li>
+<li><strong>Automatic update behavior</strong>: Auto install &amp; restart at maintenance time</li>
+<li><strong>Use deadline settings</strong>: Allow</li>
+<li><strong>Deadline for feature updates</strong>: 14</li>
+<li><strong>Deadline for quality updates</strong>: 14</li>
+<li><strong>Grace period</strong>: 3</li>
+<li><strong>Included Groups</strong>: All-Employees</li>
+<li><strong>Excluded Groups</strong>: IT</li>
+</ul>
+<p>When all is said and done you should have something that looks like this.</p>
+<p><img src="Intune-Lab/attachments/05-creating-update-rings-1.png" alt="Pilot Update Ring configuration settings" /></p>
+<p><img src="Intune-Lab/attachments/05-creating-update-rings-2.png" alt="Broad Update Ring configuration settings" /></p>
+<p><img src="Intune-Lab/attachments/05-creating-update-rings-3.png" alt="Update rings list in Intune portal" /></p>
+<p>This one is a little tougher to test since we would have to wait for Microsoft to issue a new update for Windows so we could see how it hit user devices differently. For now however, let's just trust that it's working properly.</p>
+<h1 id="next-6-securing-devices"><a class="header" href="#next-6-securing-devices">Next: [[6. Securing Devices]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-5-creating-update-rings"><a class="header" href="#previous-5-creating-update-rings">Previous: [[5. Creating Update Rings]]</a></h1>
+<h1 id="introduction-to-security"><a class="header" href="#introduction-to-security">Introduction to Security</a></h1>
+<p>One benefit of managing devices with Intune is that it gives you control of security features across the devices it manages and allows IT admins the ability to fine-tune their environments to meet their security and compliance needs. There are several methods available such as security baselines, defender for endpoint, compliance policies, conditional access, etc. that can be used to our benefit.</p>
+<p>Every organization will have different concerns when it comes to data governance, risk, compliance, regulation, and other requirements make demands on how things can be structured. Since there is no one-size-fits-all solution to security, this section is meant as more of a walkthrough of options available within Intune rather than a comprehensive list of air-tight security measures. As always with security, consider your own threat model and how it applies to the resources available.</p>
+<h1 id="security-baselines"><a class="header" href="#security-baselines">Security Baselines</a></h1>
+<p>Conveniently, Microsoft created a way for administrators to change granular security settings that can be saved as templates called Security Baselines.</p>
+<p>To access Security Baselines just go to <code>Intune &gt; Endpoint security &gt; Security Baselines &gt; Security Baseline for Windows 10 and later &gt; Create policy</code>. Most of the recommended defaults Microsoft gives us are pretty good so generally it is good enough to keep what is already in there but this would be the place to go for granular changes.</p>
+<ul>
+<li><strong>Name</strong>: Windows 11 Baseline</li>
+<li><strong>Description</strong>: Windows 11 Baseline</li>
+<li><strong>Configuration Settings</strong>: Keep Defaults</li>
+<li><strong>Assignments</strong>: All-Employees and All-Windows-11</li>
+</ul>
+<p><img src="Intune-Lab/attachments/06-securing-devices-1.png" alt="Security baseline configuration settings" /></p>
+<p>Once you save this baseline the security settings chosen in Configuration Settings will be enforced on all users and Windows 11 devices. If we wanted to tweak these settings later on we could come back and change the settings or possibly create a new baseline and assign it to a different group of users or devices.</p>
+<p>We could also consider, for testing purposes, limiting the rollout of this Security Baseline to our IT pilot users similar to howe we did with the Update Rings. This way we could ensure the baseline works correctly for non-critical users before pushing it out to all users.</p>
+<h1 id="defender-for-endpoint"><a class="header" href="#defender-for-endpoint">Defender for Endpoint</a></h1>
+<p>Microsoft Defender for Endpoint can be used as an Endpoint Detection and Response solution within your environment. You can create policies with Intune that onboard MDE to each device so you have visibility into the security of your devices.</p>
+<p>Now go to <code>Defender &gt; Settings &gt; Endpoints &gt; Onboarding</code> where you can find the download button for the Onboarding package. Make sure to select "Mobile Device Management / Microsoft Intune" from the Deployment method dropdown first.</p>
+<p><img src="Intune-Lab/attachments/06-securing-devices-3.png" alt="Defender onboarding package download screen" /></p>
+<p>Clicking download will get you a file called <code>WindowsDefenderATP.onboarding</code> that can be uploaded into the Intune Portal.</p>
+<p>To create a new onboarding policy go to <code>Intune &gt; Endpoint security &gt; Endpoint detection and response &gt; Create policy</code></p>
+<blockquote>
+<p>On this page Intune will also show you how many devices you currently do not have onboarded.
+<img src="Intune-Lab/attachments/06-securing-devices-2.png" alt="Devices not onboarded count in Intune" /></p>
+</blockquote>
+<p>Now you will need to get the text from within the <code>WindowsDefenderATP.onboarding</code> file which Microsoft calls the Onboarding blob. You can open it in something standard like Notepad or VSCode and paste the entire thing in the field called Onboarding (Device) below. In the Create Profile wizard I added the following settings:</p>
+<ul>
+<li><strong>Platform</strong>: Windows</li>
+<li><strong>Profile</strong>: Endpoint Detection and Response</li>
+<li><strong>Name</strong>: EDR Onboarding</li>
+<li><strong>Description</strong>: EDR Onboarding</li>
+<li><strong>Microsoft Defender for Endpoint client configuration package type</strong>: Onboarding</li>
+<li><strong>Onboarding (Device)</strong>: Onboarding blob</li>
+<li><strong>Sample Sharing</strong>: All (Default)</li>
+<li><strong>Assignment</strong>: All-Windows-11 Include</li>
+</ul>
+<p>It took some time for the settings to sync but after a bit I came back and saw I had one onboarded device and two successful device checkins.</p>
+<p><img src="Intune-Lab/attachments/06-securing-devices-4.png" alt="EDR onboarding status showing one onboarded device" /></p>
+<p><img src="Intune-Lab/attachments/06-securing-devices-5.png" alt="Successful device checkins to MDE" /></p>
+<p>This means that Intune is successfully connected to MDE and onboarded to the EDR. Intune is now able to push security profiles to devices it manages as well as pull status reports from them.</p>
+<h1 id="compliance-policies"><a class="header" href="#compliance-policies">Compliance Policies</a></h1>
+<p>Compliance policies in Intune can be used as a way to enforce that certain security features are required on devices assigned to the policy. For instance you can require devices use BitLocker and Secure Boot to be marked compliant. Compliance policies can also send emails to the user that has a device marked non-compliant.</p>
+<p>Before we create a policy, let's create a template we can use later for the email we will send to users. To create a new template go to <code>Intune &gt; Devices &gt; Compliance &gt; Notifications &gt; Create Notification</code>. Below are the settings I used:</p>
+<p><strong>Name</strong>: Non-Compliance Email
+<strong>Show company logo</strong>: Enable
+<strong>Show company name</strong>: Enable
+<strong>Locale</strong>: English (United States)
+<strong>Subject</strong>: Device is Noncompliant
+<strong>Message</strong>:</p>
+<pre><code>Hello,
+
+Your device has been marked noncompliant. Please call the IT department at 555-555-5555 to resolve this issue.
+</code></pre>
+<p><strong>Set to default locale</strong>: Toggled On</p>
+<p><img src="Intune-Lab/attachments/06-securing-devices-9.png" alt="Non-compliance email notification template settings" /></p>
+<p>Now that we have an email template to send to users we can create the Compliance Policy by going to <code>Intune &gt; Devices &gt; Compliance &gt; Create Policy</code> and entering the following policy settings:</p>
+<p><strong>Platform</strong>: Windows 10 and later
+<strong>Profile type</strong>: Windows 10/11 compliance policy
+<strong>Name</strong>: Win Compliant – BitLocker + Secure Boot + MDE Healthy
+<strong>Description</strong>: Marks Windows devices compliant only if disk encryption, secure-boot &amp; Defender for Endpoint health are all good.</p>
+<p>On the next page you can choose security settings to be required for compliance at the granular level. Microsoft separates them into categories so you will need to browse through the options.</p>
+<p><img src="Intune-Lab/attachments/06-securing-devices-8.png" alt="Compliance policy settings categories" /></p>
+<p>Under the Device Health header you can find settings to require BitLocker and Secure Boot</p>
+<p><img src="Intune-Lab/attachments/06-securing-devices-6.png" alt="Device Health settings requiring BitLocker and Secure Boot" /></p>
+<p>Under the Microsoft Defender for Endpoint section you can find the option that requires devices report all clear on their machine risk score to be considered compliant.</p>
+<p><img src="Intune-Lab/attachments/06-securing-devices-7.png" alt="Microsoft Defender for Endpoint machine risk requirements" /></p>
+<p>Under the Actions for noncompliance page the policy will automatically set a rule to immediately mark the device as noncompliant but that can be delayed by a number of days. On the line underneath choose <code>send email to end user</code> with 0 days scheduled which will cause the email to send immediately. On the Choose template field, select the <code>Non-Compliance Email</code> template we created earlier.</p>
+<p><img src="Intune-Lab/attachments/06-securing-devices-10.png" alt="Actions for noncompliance email configuration" /></p>
+<p>There is also an option to select additional recipients of the email. We could choose to send this to a specific group of users such as the IT team. For now I will leave this blank.</p>
+<p>I will assign this policy to the All-Windows-11 group and finish creating the policy. Now if you refresh the page on Compliance Policies it will warn you that we are not using Conditional Access to enforce the policy.</p>
+<p><img src="Intune-Lab/attachments/06-securing-devices-11.png" alt="Warning about missing Conditional Access enforcement" /></p>
+<p>This means we will need to move on to the next section where we will create a Conditional Access policy in Entra and connect it to the compliance policy.</p>
+<h1 id="conditional-access-policy"><a class="header" href="#conditional-access-policy">Conditional Access Policy</a></h1>
+<p>Conditional Access Policies can be set in Entra and be used for enforcing the Compliance Policy we created in the previous step. To create the policy go to <code>Entra &gt; Conditional Access &gt; Create new policy</code> and fill out the fields like below:</p>
+<ul>
+<li><strong>Name</strong>: M365 – Require compliant device</li>
+<li><strong>Users</strong>: Include &gt; Select users and groups &gt; Users and groups &gt; All-Employees group</li>
+<li><strong>Target Resources</strong>:
+<ul>
+<li><strong>Select what this policy applies to</strong>: Resources (formerly cloud apps)</li>
+<li>Include &gt; Select resources &gt; Select &gt; Office365</li>
+</ul>
+</li>
+<li><strong>Network</strong>: No but here is where we could block based on network connection details</li>
+<li><strong>Grant</strong>: Grant access &gt; Require device to be marked as compliant</li>
+<li><strong>Enable Policy</strong>: Report-only (test first before locking yourself out).</li>
+</ul>
+<p>Click create to finish out the policy wizard.</p>
+<p><img src="Intune-Lab/attachments/06-securing-devices-12.png" alt="Conditional Access policy requiring compliant device" /></p>
+<p>Report-only will just create logs but not actually lock you out so you can test for a few times. You can verify the sign-in logs by going to <code>Entra &gt; Monitoring &amp; health &gt; Sign-in logs</code> and take a look at your logs while this policy is in Report-only mode.</p>
+<p><img src="Intune-Lab/attachments/06-securing-devices-13.png" alt="Sign-in logs showing successful conditional access" /></p>
+<p>Since my sign-ins though the online portal are showing as a Success it looks like its okay to turn the policy on for real. Your mileage may vary. This is why testing is important.</p>
+<p>Next up we want to create another policy to block legacy authentication. Go to <code>Entra &gt; Conditional Access &gt; Create new policy</code> and enter the following details:</p>
+<p><strong>Name</strong>: Block legacy authentication – All users
+<strong>Assignments</strong>: All Users
+<strong>Conditions</strong>: Client Apps &gt; Yes &gt; Other clients
+<strong>Grant</strong>: Block access
+<strong>Enable</strong>: Report-only to test then On</p>
+<p><img src="Intune-Lab/attachments/06-securing-devices-14.png" alt="Conditional Access policy blocking legacy authentication" /></p>
+<p>In my Intune Devices list I can confirm one of my devices is non-compliant. It is currently not using BitLocker or Secure Boot.</p>
+<p><img src="Intune-Lab/attachments/06-securing-devices-15.png" alt="Device list showing non-compliant device status" /></p>
+<p>Since these two failure points are things we would want to have setup before we ever ship devices to users I won't worry about fixing this now. It does at least show as a proof-of-concept that we can build compliance policies in Intune and use Entra to apply them with conditional access policies.</p>
+<h1 id="next-7-enrolling-iphones"><a class="header" href="#next-7-enrolling-iphones">Next: [[7. Enrolling iPhones]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-6-securing-devices"><a class="header" href="#previous-6-securing-devices">Previous: [[6. Securing Devices]]</a></h1>
+<h1 id="benefits-of-managed-iphones"><a class="header" href="#benefits-of-managed-iphones">Benefits of Managed iPhones</a></h1>
+<p>Intune allows you to enroll and manage other devices beyond just Windows 11. With some additional setup, you can connect Apple iPhone and Google Android devices. In this section I will show how to install an Apple Push Certificate so their servers are able to connect with Intune.</p>
+<p>When iPhones get enrolled through the Intune Company Portal, IT teams gain visibility into the device setting such as hardware, OS version, jailbreak status, and compliance status. Intune also can control settings on the device like passcode, Wi-Fi, certificate requirements as well as OS update deferral capability. Intune also has the ability to protect apps on the device with a MAM policy to prevent actions such as copy/paste from a managed app to an unmanaged one. Intune can also take action in the event the device is lost or stolen: full/selective wipe, lost-mode, lock-screen PIN reset, etc.</p>
+<h1 id="apple-mdm-push-certificate"><a class="header" href="#apple-mdm-push-certificate">Apple MDM Push Certificate</a></h1>
+<p>An Apple MDM Push Certificate is required to create a handshake between Intune and Apple's Push Notification (APN) service. It its what builds the trust relationship between the individual device and the Intune server. Every MDM command we order through Intune must pass through APN to reach the devices.</p>
+<p>To sign up for a new Push Certificate you will need to have an apple account. If you want to create a new account you can do so at <a href="https://appleid.apple.com">appleid.apple.com</a></p>
+<p>First you will need to go to Intune and download the Certificate Signing Request (CSR). This contains Intune's public key that will need to be signed by Apple. It can be found by going to <code>Intune &gt; Devices &gt; Enrollment &gt; Apple &gt; Apple MDM Push Certificate</code>.</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-1.png" alt="Apple MDM Push Certificate page in Intune" /></p>
+<p>In the Apple MDM Push Certificate section you will need to first check the box granting Microsoft permission to send info back and forth with Apple. Next you will need to download the IntuneCSR.csr file by clicking "Download your CSR". Once downloaded, click the link for "Create your MDM push Certificate" which will take you to Apple's page asking you to log in with your Apple ID.</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-2.png" alt="Download CSR and create certificate instructions" /></p>
+<p>Here you will need to log in with the Apple ID you intend to use with Intune.</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-3.png" alt="Apple ID sign-in page" /></p>
+<p>Logging in will take you to Apple Push Certificate Portal. You will just need to click the Create a Certificate button to get started.</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-4.png" alt="Apple Push Certificate Portal create certificate button" /></p>
+<p>Agree to the Terms and Conditions, then upload the CSR file we downloaded from Intune. You can leave a note for the certificate such as "Intune Lab Connector".</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-5.png" alt="Upload CSR file to Apple portal" /></p>
+<p>Once you click Upload you will be taken to the next page where your Push Certificate gets generated and you can download a copy.</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-6.png" alt="Download generated Apple Push Certificate" /></p>
+<p>Clicking download will provide a file called <code>MDM_ Microsoft Corporation_Certificate.pem</code> that we can take back to Intune. Clicking Manage Certificates takes you to a page where you can see all 3rd Party server certificates issued by this Apple account. You have the ability to revoke, renew, or download the certificate we just made.</p>
+<blockquote>
+<p>It's worth noting that the APN Certificate we created has an expiration set for 1 year from its issue date. This should be plenty of time for our lab setup but depending on your use-case you may want to consider renewing or replacing the certificate after one year.</p>
+</blockquote>
+<p>Now that we have the .pem file we can upload it back into Intune which will complete our trust connection between the two environments. Back on the Configure MDM Push Certificate blade where we were setting things up enter the Apple ID we used to create the certificate on step 4 and upload the .pem file on step 5.</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-7.png" alt="Upload certificate back to Intune" /></p>
+<p>Once finished you should immediately see a successful connection on the Apple MDM Push Certificate Page.</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-8.png" alt="Successful Apple MDM Push Certificate connection" /></p>
+<h1 id="company-portal-app"><a class="header" href="#company-portal-app">Company Portal App</a></h1>
+<p>The Company Portal app is one way to enroll devices on iPhone into the Intune. Users will need to download an app called Intune Company Portal from the Apple App Store and sign in using their organization login. Since this enrollment method requires user's devices to already be setup to access the App Store, Company Portal is better as an option for BYOD devices or those that require fewer restrictions.</p>
+<blockquote>
+<p>Another enrollment method would be to use Automated Device Enrollment to create an Out-of-the-box experience that automatically sets up the iPhone during first power on. Unfortunately, this method requires access to Apple Business Manager which can only be obtained by having a business account with Apple. This will be out of reach for many aspiring lab builders so I will leave it out of the scope of this guide.</p>
+</blockquote>
+<p>To setup the Company Portal go to <code>Intune &gt; Apps &gt; iOS/iPadOS apps &gt; Create &gt; iOS Store app</code>. In the create wizard you will need to select "Search the App Store" in the first step when selecting the app and search "Intune Company Portal".</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-9.png" alt="Search for Intune Company Portal in App Store" /></p>
+<p>For App Information I will keep the defaults the app provides. On the Assignments page I will apply this app to members of the All-Employees group under the "Available for enrolled devices" section.</p>
+<h1 id="testing-enrollment"><a class="header" href="#testing-enrollment">Testing Enrollment</a></h1>
+<p>It seems the only way to test an iPhone enrollment is to grab a device and download the Company Portal app. I tried running an iPhone simulator through Xcode but it does not allow app installs from the app store. Instead, enjoy these photos from my phone:</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-10.png" alt="iPhone showing Intune Company Portal app download" /></p>
+<p>First go to the App Store and search for and download the Intune Company Portal app. When you open the app it will ask you to sign in. Use the organization account of one of the users in Entra. Once signed in you will see a series of steps to complete to enroll your device.</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-11.png" alt="Company Portal app enrollment steps" /></p>
+<p>The first page will outline what information Intune can and can't see on your personal device. This will be important to users of the organization who may worry about what data they are sharing to the organization from their personal devices.</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-12.png" alt="Privacy information about Intune device management" /></p>
+<p>The next page will ask you to allow download the configuration profile required by Intune to be on the device. If your device is configured like mine is, this is the part that will trigger a 1 hour security delay on your iPhone that will require you to wait until resuming the setup process.</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-13.png" alt="Download management profile prompt with security delay" /></p>
+<p>Once the profile is downloaded you can go to <code>Settings app &gt; General &gt; VPN &amp; Device Management</code> and click Management Profile from the Downloaded Profile section. On the next page click Install in the top right corner, read the warning, then Install again in the top right corner.</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-14.png" alt="Install management profile in iPhone settings" /></p>
+<p>Once the profile is installed you will see a success screen and back on the VPN &amp; Device Management screen you will see this profile as an entry with the option to remove it from the device.</p>
+<p><img src="Intune-Lab/attachments/07-enrolling-iphones-15.png" alt="Successful profile installation and management screen" /></p>
+<p>The Intune Company Portal now allows users to download apps from the company to their phone as well as view devices they are connected to. Apps provided here by the company can be configured to have increased protection through Intune MAM policies.</p>
+<h1 id="next-8-enrolling-androids"><a class="header" href="#next-8-enrolling-androids">Next: [[8. Enrolling Androids]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-7-enrolling-iphones"><a class="header" href="#previous-7-enrolling-iphones">Previous: [[7. Enrolling iPhones]]</a></h1>
+<h1 id="benefits-of-managed-androids"><a class="header" href="#benefits-of-managed-androids">Benefits of Managed Androids</a></h1>
+<p>Intune allows you to enroll and manage other devices beyond just Windows 11. With some additional setup, you can connect Apple iPhone and Google Android devices. In this section I will show how to connect a Managed Google Play account to Intune.</p>
+<h1 id="managed-google-play"><a class="header" href="#managed-google-play">Managed Google Play</a></h1>
+<p>To make the connection just go to <code>Intune &gt; Devices &gt; Enrollment &gt;  Android &gt; Managed Google Play</code> which will open a blade allowing you to give permission to Intune to connect to Google Play then a button to log in with a Google account.</p>
+<p><img src="Intune-Lab/attachments/08-enrolling-androids-1.png" alt="Managed Google Play connection screen in Intune" /></p>
+<p>In a real scenario you would want to use a secure Google account managed by the organization but for the purposes of this lab I think it will be fine to just use a personal account. It will warn you that using a personal account limits you to Android only but this is fine since we don't plan on doing anything with Chromebooks or Google Workspace in this lab.</p>
+<p><img src="Intune-Lab/attachments/08-enrolling-androids-2.png" alt="Warning about using personal Google account" /></p>
+<p>After logging in you should see a splash screen. Click the Get started button. Next it will ask for your Company name, here you can just put the name of your fake organization as well as your contact info when it asks for company officers.</p>
+<p><img src="Intune-Lab/attachments/08-enrolling-androids-3.png" alt="Managed Google Play setup company information" /></p>
+<p>If everything worked correctly you should be able to go back to the Managed Google Play screen and see a successful Setup Status.</p>
+<p><img src="Intune-Lab/attachments/08-enrolling-androids-4.png" alt="Successful Managed Google Play connection status" /></p>
+<h1 id="testing-enrollment-1"><a class="header" href="#testing-enrollment-1">Testing Enrollment</a></h1>
+<p>To test enrollment I grabbed a virtual android install from the Android Studio and once it finished setting up I went to the Google Play Store and downloaded the Intune Company Portal app.</p>
+<p><img src="Intune-Lab/attachments/08-enrolling-androids-5.png" alt="Android device showing Company Portal download from Play Store" /></p>
+<p>When the app finishes downloading, open it and sign in with an organization account. It will then give you a rundown of what goes into enrolling the device with Intune.</p>
+<p><img src="Intune-Lab/attachments/08-enrolling-androids-6.png" alt="Android enrollment process overview screen" /></p>
+<p>When you click begin it will give you an outline of what the organization is and is not able to see through this Intune Company Portal connection. Click Accept &amp; Continue.</p>
+<p><img src="Intune-Lab/attachments/08-enrolling-androids-7.png" alt="Android work and personal apps separation explanation" /></p>
+<p>Once you move on from this page you will be shown another screen explaining that your work and personal apps will now be separated. Apps for work will now come with a briefcase icon in the bottom right corner to differentiate themselves. In the app drawer you will now see two separate folders to separate Personal and Work apps. You can click the Google Play for Work icon to see apps provided by the organization available for download.</p>
+<h1 id="next-9-monitoring-and-reporting"><a class="header" href="#next-9-monitoring-and-reporting">Next: [[9. Monitoring and Reporting]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-8-enrolling-androids"><a class="header" href="#previous-8-enrolling-androids">Previous: [[8. Enrolling Androids]]</a></h1>
+<h1 id="what-can-i-monitor"><a class="header" href="#what-can-i-monitor">What can I monitor?</a></h1>
+<p>Intune provides several ways to monitor devices it manages. You can make configuration and compliance reports, you can view deployment history or endpoint antivirus reports, or even drill down into a specific device for more information. When in doubt, poke around and take a look at anything that says monitoring and reporting.</p>
+<h1 id="compliance-reports"><a class="header" href="#compliance-reports">Compliance Reports</a></h1>
+<p>Go to <code>Intune &gt; Reports &gt; Device compliance</code> to view a summary of device compliance information. If nothing shows here you may need to click the "Generate" button to refresh the data on the page.</p>
+<p><img src="Intune-Lab/attachments/09-monitor-and-report-1.png" alt="Device compliance summary dashboard" /></p>
+<p>Here you will be able to see a breakdown of devices that are compliant vs not. You can also go deeper and get Intune to generate more specific reports such as a Noncompliant devices and settings report.</p>
+<p><img src="Intune-Lab/attachments/09-monitor-and-report-2.png" alt="Noncompliant devices and settings report" /></p>
+<p>The full list of built-in reports related to compliance can be found in the reports tab <code>Intune &gt; Reports &gt; Device compliance &gt; Reports</code></p>
+<p><img src="Intune-Lab/attachments/09-monitor-and-report-3.png" alt="List of built-in device compliance reports" /></p>
+<p>Options include:</p>
+<ul>
+<li>Device Compliance</li>
+<li>Device Compliance trends</li>
+<li>Noncompliant devices and settings</li>
+<li>Devices without compliance policy</li>
+<li>Settings compliance</li>
+<li>Policy compliance</li>
+<li>Windows hardware attestation report</li>
+</ul>
+<h1 id="configuration-reports"><a class="header" href="#configuration-reports">Configuration Reports</a></h1>
+<p>On the <code>Intune &gt; Reports &gt; Device configuration</code> screen you can see a summary of configuration policies and their success/failure device totals.</p>
+<p><img src="Intune-Lab/attachments/09-monitor-and-report-4.png" alt="Device configuration summary with policy status" /></p>
+<h1 id="microsoft-defender-antivirus"><a class="header" href="#microsoft-defender-antivirus">Microsoft Defender Antivirus</a></h1>
+<p>On the <code>Intune &gt; Reports &gt; Microsoft Defender Antivirus</code> to see a summary of Antivirus scans on devices managed by Intune. It will give a breakdown of number of devices by status such as clean, pending, critical etc.</p>
+<p><img src="Intune-Lab/attachments/09-monitor-and-report-5.png" alt="Microsoft Defender Antivirus summary by device status" /></p>
+<p>In the Reports section of this page you can also get a report of detected malware on endpoints.</p>
+<p><img src="Intune-Lab/attachments/09-monitor-and-report-6.png" alt="Detected malware report on endpoints" /></p>
+<h1 id="device-and-app-monitoring"><a class="header" href="#device-and-app-monitoring">Device and App Monitoring</a></h1>
+<p>Both <code>Intune &gt; Devices</code> and <code>Intune &gt; Apps</code> have their own page called Monitoring that has a list of reports specific to their category that can be generated to give teams more insight.</p>
+<p>Screenshot of available Device reports:</p>
+<p><img src="Intune-Lab/attachments/09-monitor-and-report-7.png" alt="Available device monitoring reports list" /></p>
+<p>Screenshot of available App reports:</p>
+<p><img src="Intune-Lab/attachments/09-monitor-and-report-8.png" alt="Available app monitoring reports list" /></p>
+<h1 id="next-10-project-conclusion"><a class="header" href="#next-10-project-conclusion">Next: [[10. Project Conclusion]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-9-monitoring-and-reporting"><a class="header" href="#previous-9-monitoring-and-reporting">Previous: [[9. Monitoring and Reporting]]</a></h1>
+<h1 id="now-what"><a class="header" href="#now-what">Now What?</a></h1>
+<p>I have reached the end of things I intended to experiment with in my lab for now, although there are many more stones to turn over that we didn't even get a chance to play with. It sometimes requires a living breathing environment to get a sense of how some of the tools and features work within Intune. I am not too heartbroken I wasn't able to test everything, but I am excited to get the chance to work on an even more complex Microsoft 365 environment.</p>
+<p>For the time being, there are a few last minute bits of tidying up to accomplish before I can close out the lab entirely.</p>
+<h1 id="collecting-lab-artifacts"><a class="header" href="#collecting-lab-artifacts">Collecting Lab Artifacts</a></h1>
+<p>First I want to collect as many bits of my lab as possible to save to the GitHub repository, like users, groups, and policies that can all be exported from the Intune portal. In the event I create a new lab down the road these pieces may save me time getting back up to where I was before.</p>
+<pre><code>Install-Module Microsoft.Graph -Scope CurrentUser -Force
+Connect-MgGraph -Scopes "Group.ReadWrite.All" -TenantID "&lt;TenantID&gt;"
+Install-Module IntuneBackupAndRestore -Scope CurrentUser -Force
+Import-Module IntuneBackupAndRestore
+Connect-MgGraph -Scopes `
+  "DeviceManagementConfiguration.Read.All", `
+  "Device.Read.All", `
+  "DeviceManagementApps.Read.All", `
+  "DeviceManagementManagedDevices.PrivilegedOperations.All" 
+cd ~/Desktop
+Start-IntuneBackup -Path ./IntuneBackup
+
+</code></pre>
+<p>Running the PowerShell commands above prompted me to sign in with my Microsoft account, then connected me to Intune and downloaded my Intune configurations into a folder on my Desktop called IntuneBackup.</p>
+<p><img src="Intune-Lab/attachments/10-conclusion-1.png" alt="IntuneBackup folder contents on desktop" /></p>
+<p>Inside the folder there were several subfolders that contain apps for devices, policies, profiles, scripts and settings. This folder should be all we need to import into a new Intune environment to get us back to where we were before. Now I just need to do another one of these for Entra.</p>
+<pre><code>Install-Module EntraExporter -Scope CurrentUser -Force
+Import-Module EntraExporter
+Connect-EntraExporter
+Export-Entra -Path ~\Desktop\EntraBackup -All
+</code></pre>
+<p>The above PowerShell commands will create a folder on the Desktop called EntraBackup. Sign into Microsoft when the pop-up requires it.</p>
+<p><img src="Intune-Lab/attachments/10-conclusion-2.png" alt="EntraBackup exported items list" /></p>
+<p>The image above shows all the items that Entra exported for us.</p>
+<p>I considered whether to put all of this data in GitHub. Considering all of my environment data is synthesized except for my own personal user in the tenant I just deleted that user out and decided it was safe enough.</p>
+<p>In the real world having your users personal info in JSON files publicly hosted on the internet would be a bad idea. It is also a bad idea to share to the world all of your compliance and conditional access policies because a threat actor could use it to build a plan to get around your security.</p>
+<h1 id="ending-the-free-trial"><a class="header" href="#ending-the-free-trial">Ending The Free Trial</a></h1>
+<p>One last thing I wanted to do with my project is end the free trial to make sure I don't get charged unexpectedly when the 30 day period ends. You can go to <code>Microsoft 365 Admin &gt; Billing &gt; Your products</code> and see a full list of every product connected to the account. You can go through them all and hit Cancel Subscription.</p>
+<p><img src="Intune-Lab/attachments/10-conclusion-3.png" alt="Microsoft 365 billing products and subscription cancellation" /></p>
+<p>I found that the default setting was for recurring billing to be turned off and to expire the trial at the end of the period which was kind of them. If you wanted to take it a step further you could also delete the tenant and Microsoft account for the trial. For now I'll leave that up in case I realize I need anything. With this now done I can consider this lab complete.</p>
+<h1 id="end-of-the-road"><a class="header" href="#end-of-the-road">End of the Road</a></h1>
+<p>Now that I have finished I think its a good idea to reflect on what we learned in this lab. We got to see how to upload a user database into Entra and assign them to dynamic groups based on their departments. We got to see how to assign licenses to users both by PowerShell scripts and through the portal. We got to learn how to get the hardware hashes of devices and upload them to Intune, as well as creating deployment and enrollment configurations to manage the out-of-the-box experience for users. We learned how to install apps, configure update rings, push security settings to devices as well as enrolling smartphones Lastly we learned how to secure and monitor our environment to ensure smooth operation. There are countless things in the Microsoft 365/Azure environment to learn but I think we did well getting this far.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="about-the-soc101-lab-project"><a class="header" href="#about-the-soc101-lab-project">About The SOC101-Lab Project</a></h1>
+<h1 id="project-outline"><a class="header" href="#project-outline">Project Outline</a></h1>
+<ol>
+<li>Set up the VMs
+<ol>
+<li>Windows</li>
+<li>Zeek</li>
+</ol>
+</li>
+<li>Sign up for Splunk/Elastic
+<ol>
+<li>Get Free Trial</li>
+<li>Forward VM data to SIEM</li>
+</ol>
+</li>
+<li>Install Atomic Red Team on VMs</li>
+<li>Run Atomic Red Team test on VMs
+<ol>
+<li>Find a few interesting tactics</li>
+<li>Run on target machine</li>
+<li>Search for IOCs in SIEM log data</li>
+</ol>
+</li>
+<li>Phishing Lab</li>
+<li>PCAP Analysis</li>
+<li>Malware Analysis</li>
+<li>Endpoint Security</li>
+</ol>
+<h1 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h1>
+<ul>
+<li>
+<h3 id="1-hypervisor--network"><a class="header" href="#1-hypervisor--network">[[1. Hypervisor &amp; Network]]</a></h3>
+</li>
+<li>
+<h3 id="2-windows-environment"><a class="header" href="#2-windows-environment">[[2. Windows Environment]]</a></h3>
+</li>
+<li>
+<h3 id="3-security-onion"><a class="header" href="#3-security-onion">[[3. Security Onion]]</a></h3>
+</li>
+<li>
+<h3 id="4-splunk"><a class="header" href="#4-splunk">[[4. Splunk]]</a></h3>
+</li>
+<li>
+<h3 id="5-forwarders"><a class="header" href="#5-forwarders">[[5. Forwarders]]</a></h3>
+</li>
+</ul>
+<h1 id="next-1-hypervisor--network"><a class="header" href="#next-1-hypervisor--network">Next: [[1. Hypervisor &amp; Network]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-soc101-lab0-project-introduction0-project-introduction"><a class="header" href="#previous-soc101-lab0-project-introduction0-project-introduction">Previous: [[SOC101-Lab/0. Project Introduction|0. Project Introduction]]</a></h1>
+<h1 id="proxmox"><a class="header" href="#proxmox">Proxmox</a></h1>
+<p>Proxmox is a free and open source type 1 hypervisor that is popular with home lab builders. It is a Debian Linux based OS that can be installed on almost anything, although your mileage may vary depending on the strength of the hardware you give it. In my case I will be installing on my desktop PC that I was previously using for gaming.</p>
+<p>I won't go into the specifics of how to install Proxmox, but you basically just download and install the Proxmox ISO to a flash drive and plug it into your computer. If you don't know what you're doing here just look up a video.</p>
+<h2 id="updating-proxmox"><a class="header" href="#updating-proxmox">Updating Proxmox</a></h2>
+<p>First make sure Proxmox is up to date. Open a new shell console by clicking on your PVE Node and selecting Shell. You will likely need to disable the subscription update sources and create a source list for no-subscription updates. This can be done with the commands below:</p>
+<pre><code>sed -i '1s/^/Enabled: no\n/' /etc/apt/sources.list.d/pve-enterprise.sources
+sed -i '1s/^/Enabled: no\n/' /etc/apt/sources.list.d/ceph.sources    # if you’re not using Ceph
+
+cat &gt; /etc/apt/sources.list.d/proxmox.sources &lt;&lt;'EOF'
+Types: deb
+URIs: http://download.proxmox.com/debian/pve
+Suites: trixie
+Components: pve-no-subscription
+Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
+EOF
+</code></pre>
+<p>Now you can update and reboot Proxmox with the following commands:</p>
+<pre><code>apt update &amp;&amp; apt full-upgrade -y
+reboot
+</code></pre>
+<h2 id="tweaking-network-settings"><a class="header" href="#tweaking-network-settings">Tweaking Network Settings</a></h2>
+<p>Now that Proxmox is updated we need to make a lab sub network that is isolated from the main home network that Proxmox sits on. Click <code>Datacenter &gt; [Node] &gt; Network</code> to get network settings for the current Proxmox node. We will want to make sure we have two bridges, <code>vmbr0</code> and <code>vmbr1</code> which will be the bridge to our outside and inside networks respectively.</p>
+<p><img src="SOC101-Lab/attachments/01-hypervisor-and-network-1.png" alt="Proxmox network configuration showing vmbr0 and vmbr1 bridges" /></p>
+<blockquote>
+<p>Note: I have chosen to call my node "tower"</p>
+</blockquote>
+<p>First we want to make sure <code>vmbr0</code> exists and is set to VLAN aware: <code>Yes</code>. To make changes to the bridge just double click it, then check the box for VLAN aware.</p>
+<p><img src="SOC101-Lab/attachments/01-hypervisor-and-network-2.png" alt="vmbr0 bridge settings with VLAN aware enabled" /></p>
+<p>Next we will need to create the a new bridge for <code>vmbr1</code>. For this one, we will want to use an Open vSwitch bridge instead of the default Linux Bridge because this interface will be getting mirrored to another interface <code>vmbr2</code> later on in the Security Onion section.</p>
+<p>First go to <code>Datacenter &gt; [Node] &gt; Shell</code> and run the following commands to install Open vSwitch:</p>
+<pre><code>apt update
+apt install openvswitch-switch
+</code></pre>
+<p>Now just click <code>Datacenter &gt; [Node] &gt; Network &gt; Create &gt; OVS Bridge</code> to open up the create wizard. The name should autofill to <code>vmbr1</code> but you will also need to make sure to click the VLAN Aware checkbox in this one as well. All other fields can be left blank. Once that is done save the settings by clicking Apply Configuration on the top of the Network config page.</p>
+<h1 id="pfsense"><a class="header" href="#pfsense">pfSense</a></h1>
+<p>pfSense is a free and open-sourced software that can operate as a router and firewall once installed on hardware. For our purposes, we can use it to create a walled-off network environment for the security lab. All of our devices will be connected to the PFSense router and PFSense will decide what connections are allowed.</p>
+<h2 id="downloading-iso"><a class="header" href="#downloading-iso">Downloading ISO</a></h2>
+<p>To download the PFSense ISO to Proxmox via the console run the following commands:</p>
+<pre><code>mkdir -p /var/lib/vz/template/iso
+cd /var/lib/vz/template/iso
+wget https://kr2.mirrors.naho.moe/naho/pfSense/2.7.2/pfSense-CE-2.7.2-RELEASE-amd64.iso.gz
+gunzip pfSense-CE-2.7.2-RELEASE-amd64.iso.gzls
+</code></pre>
+<p>Once that is downloaded and unzipped you can go to <code>Datacenter &gt; [Node] &gt; local ([Node]) &gt; ISO Images</code> where you can verify the ISO is recognized by Proxmox.</p>
+<p><img src="SOC101-Lab/attachments/01-hypervisor-and-network-3.png" alt="pfSense ISO file in Proxmox ISO Images storage" /></p>
+<p>Now this ISO can be used to create a new pfSense VM.</p>
+<h2 id="create-vm"><a class="header" href="#create-vm">Create VM</a></h2>
+<p>To get started creating the pfSense VM you just have to click the Create VM button in the top right of the Proxmox portal.</p>
+<p><img src="SOC101-Lab/attachments/01-hypervisor-and-network-4.png" alt="Create VM button in Proxmox web interface" /></p>
+<p>This will open a pop-up Create: Virtual Machine wizard you can use to tweak the details of the VM before installing it. I will use the following settings to create one for pfSense:</p>
+<ul>
+<li>General Page
+<ul>
+<li><strong>VM ID</strong>: 900</li>
+<li><strong>Name</strong>: pfSense</li>
+</ul>
+</li>
+<li>OS Page
+<ul>
+<li><strong>ISO</strong>: Select the ISO disk from previous step</li>
+</ul>
+</li>
+<li>System Page
+<ul>
+<li><strong>Machine</strong>: Default (i440fx)</li>
+<li><strong>BIOS</strong>: Default (SeaBIOS)</li>
+<li><strong>SCSI Controller</strong>: VirtIO SCSI single</li>
+</ul>
+</li>
+<li>Disks Page
+<ul>
+<li><strong>Size</strong>: 20GB</li>
+<li><strong>Cache</strong>: Write back</li>
+</ul>
+</li>
+<li>CPU Page
+<ul>
+<li><strong>Cores</strong>: 2</li>
+<li><strong>Type</strong>: host</li>
+</ul>
+</li>
+<li>Memory Page
+<ul>
+<li><strong>Memory (MiB)</strong>: 2048</li>
+</ul>
+</li>
+<li>Network Page
+<ul>
+<li><strong>Bridge</strong>: vmbr0</li>
+<li><strong>Model</strong>: VirtIO (paravirtualized)</li>
+<li><strong>Firewall</strong>: Checked</li>
+</ul>
+</li>
+</ul>
+<p>Before starting up the pfSense VM we need to add another network interface so the router has a WAN and LAN port. Go to <code>Datacenter &gt; [Node] &gt; pfSense &gt; Hardware &gt; Add &gt; Network Device</code> and give it the following settings:</p>
+<ul>
+<li><strong>Bridge</strong>: vmbr1</li>
+<li><strong>Model</strong>: VirtIO (paravirtualized)</li>
+<li><strong>Firewall</strong>: Checked</li>
+</ul>
+<h2 id="installing-and-configuring"><a class="header" href="#installing-and-configuring">Installing and Configuring</a></h2>
+<p>Now you can start the pfSense VM by going to <code>Datacenter &gt; [Node] &gt; pfSense &gt; Console</code> and clicking the Start Now button, or by clicking the Start button in the top right corner of Proxmox when pfSense is selected.</p>
+<p><img src="SOC101-Lab/attachments/01-hypervisor-and-network-5.png" alt="pfSense VM starting up in console view" /></p>
+<p>You will get to an installer that will guide you through the pfSense VM install.</p>
+<p><img src="SOC101-Lab/attachments/01-hypervisor-and-network-6.png" alt="pfSense installation welcome screen" /></p>
+<p>When prompted for partitioning select Auto (UFS) &gt; Entire Disk &gt; MBR &gt; Finish &gt; Commit to allow the installer to build the file system and boot manager. Once it gets to the end it will ask to reboot. Confirm the request and wait for the VM to come back online.</p>
+<p>After booting up, pfSense will ask a few questions:</p>
+<ul>
+<li>Should VLANs be set up now? -&gt; n</li>
+<li>Enter the WAN interface name -&gt; vtnet0</li>
+<li>Enter the LAN interface name -&gt; vtnet1</li>
+</ul>
+<p>pfSense will spin up and begin configuring itself. Once its done you will see a CLI menu of options. Select <code>2) Set interface(s) IP address</code> so we can update the interfaces.</p>
+<p><img src="SOC101-Lab/attachments/01-hypervisor-and-network-7.png" alt="pfSense console menu with interface configuration options" /></p>
+<p>Make the following changes within this menu:</p>
+<ul>
+<li>WAN
+<ul>
+<li>IPv4: DHCP</li>
+<li>IPv6: DHCP</li>
+<li>Revert to HTTP as webConfigurator: n</li>
+</ul>
+</li>
+<li>LAN
+<ul>
+<li>IPv4: Static</li>
+<li>IPv4 Address: 172.16.0.1/24</li>
+<li>Enable DHCP on LAN: y</li>
+<li>Start Address: 172.16.0.100</li>
+<li>End Address: 172.16.0.200</li>
+<li>Revert to HTTP as webConfigurator: n</li>
+</ul>
+</li>
+</ul>
+<p>Once this is done you will be brought back to the pfSense console menu. You can test the connection on the WAN side by choosing option 8 to open a shell interface and running <code>ping -c 3 8.8.8.8</code> to ensure you are able to send and receive packets. If it fails here something did not set up correctly in the previous steps.</p>
+<h2 id="gui-setup-wizard"><a class="header" href="#gui-setup-wizard">GUI Setup Wizard</a></h2>
+<p>Open the pfSense portal from the WAN side.</p>
+<pre><code>pfctl -d
+</code></pre>
+<p>Navigate to the WAN ip address in your browser to find the pfSense login window. Use the default login <code>admin:pfsense</code> to get in. You will get thrown into a setup wizard you will need to complete for pfSense to work correctly. Most settings will be left at default but it will ask you to create a new admin password. Do that, then let it reboot.</p>
+<p>After reboot, you will need to run <code>pfctl -d</code> in the shell again before you will be able to access the web portal again.</p>
+<p>Now go to <code>Services &gt; DNS Resolver &gt; Access Lists</code> and create a new list for the network <code>172.16.0.0/24</code> (Or whatever you made your lab network).</p>
+<h2 id="firewall-rules"><a class="header" href="#firewall-rules">Firewall Rules</a></h2>
+<p>Now we need to set some rules on the firewall so that none of the malware we run within the pfSense LAN network can escape out to the outer network. First we will create an alias for the Home network so it is easier to build the rules. Go to <code>Firewall &gt; Aliases &gt; Add</code> and give it a name of <code>HOME_LAN</code> and set it to the IP address of your Home network, which will likely be something like 192.168.0.0/24. Make sure to select Apply Changes when done to save the settings.</p>
+<p>Next go to <code>Firewall &gt; Rules &gt; LAN</code> and delete all rules except for the Anti-lockout Rule. Then create two new rules based on the following table:</p>
+<div class="table-wrapper"><table><thead><tr><th>Order</th><th>Action</th><th>Protocol</th><th>Source</th><th>Destination</th><th>Notes</th></tr></thead><tbody>
+<tr><td>1</td><td>Pass</td><td>Any</td><td>LAN subnets</td><td>!<code>HOME_LAN</code></td><td>Allows traffic not destined for home network</td></tr>
+<tr><td>2</td><td>Block</td><td>Any</td><td>LAN subnets</td><td><code>HOME_LAN</code></td><td>Blocks anything heading towards home network.</td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p>Note: The <code>!</code> in Rule #1 is achieved by checking the box for "invert match". Also make sure the Pass rule is above the Block rule or traffic will fail to travel.</p>
+</blockquote>
+<h1 id="tailscale"><a class="header" href="#tailscale">Tailscale</a></h1>
+<p>Now that I have pfSense up and running, any new VM I create for the lab will connect to the pfSense LAN interface rather than the Proxmox interface. This way, all lab devices are contained within their own network and segregated from the main home network it sits within. However, once the network is walled off we will need a way to connect to it.</p>
+<p>My plan is to create a small Tailscale VM, set it to advertise the pfSense LAN network, then set ACL rules to keep it separated from my Home Network.</p>
+<blockquote>
+<p>My setup will have two Tailscale VMs, one on the home network advertising the home subnet, and another on the lab network advertising the lab subnet. This way I can remotely connect to both networks without them bleeding into each other. My instructions will assume you want to set it up this way and have the home Tailscale VM already setup. You can repeat the instructions here to setup both.</p>
+</blockquote>
+<h2 id="create-the-vm"><a class="header" href="#create-the-vm">Create The VM</a></h2>
+<p>This time I will use a container instead of a VM due to being a little more lightweight. Proxmox makes it easy by having container templates available for download and use. To download a new container template go to <code>Datacenter &gt; [Node] &gt; local ([Node]) &gt; CT Templates &gt; Templates</code>. This will popup a window where you can select <code>debian-12-standard</code> from the list and click Download to get the template.</p>
+<p>Now create the new container by clicking Create CT in the top right of Proxmox. I used the following settings in the wizard to create the container:</p>
+<ul>
+<li><strong>CT ID</strong>: 901</li>
+<li><strong>Hostname</strong>: Tailscale-Lab</li>
+<li><strong>Unprivileged container</strong>: Unchecked</li>
+<li><strong>Template</strong>: Debian 12</li>
+<li><strong>Disk / RAM / CPU</strong>: 4GB / 256MB / 1 Core</li>
+<li><strong>Network</strong>: Bridge=vmbr1, IPv4=DHCP</li>
+</ul>
+<p>Before starting the container you will need to open the Proxmox host shell and enter the following command to bind the host /dev/net/tun folder to the Tailscale container /dev/net/tun. This is the recommended solution when running Tailscale through Proxmox.</p>
+<pre><code>cat &gt;&gt; /etc/pve/lxc/901.conf &lt;&lt;'EOF'
+lxc.cgroup2.devices.allow: c 10:200 rwm
+lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file
+EOF
+</code></pre>
+<blockquote>
+<p>Note: For the Tailscale-Home router you will want to use a different container ID (I chose 101) and Bridge=vmbr0. Make sure to change the CTID in the command above as well.</p>
+</blockquote>
+<h2 id="installing-tailscale"><a class="header" href="#installing-tailscale">Installing Tailscale</a></h2>
+<p>Once that's done you can start up the container then access it from the console by going to <code>Datacenter &gt; [Node] &gt; Tailscale-Lab &gt; Console</code> and use the terminal to log into the <code>root</code> user with the password chosen at setup. After login we need to run these commands to update and install Tailscale.</p>
+<pre><code>apt update &amp;&amp; apt upgrade -y
+apt install curl -y
+
+mkdir -p --mode=0755 /usr/share/keyrings
+mkdir /dev/net/   
+mkdir /dev/net/tun
+
+curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg | tee /usr/share/keyrings/tailscale-archive-keyring.gpg &gt;/dev/null
+
+echo "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/debian bookworm main" | tee /etc/apt/sources.list.d/tailscale.list
+
+apt update
+
+apt install -y tailscale
+systemctl enable --now tailscaled
+systemctl start tailscaled
+</code></pre>
+<p>These commands do the following:</p>
+<ul>
+<li>Updates the container and install curl</li>
+<li>Creates new folders for keys and</li>
+<li>Downloads the key and adds tailscale's repo</li>
+<li>Updates the container again and installs tailscale</li>
+<li>Enables Tailscale service</li>
+</ul>
+<h2 id="advertising-subroutes"><a class="header" href="#advertising-subroutes">Advertising Subroutes</a></h2>
+<p>Next we will need to advertise the pfSense LAN network via Tailscale so that the devices within the LAN are accessible via the Tailscale VPN.</p>
+<p>First we need to enable forwarding within the container. In the Tailscale CT Shell run these commands to enable the forwarder and make it persistent across sessions.</p>
+<pre><code>echo 1 &gt; /proc/sys/net/ipv4/ip_forward
+echo "net.ipv4.ip_forward=1" &gt;&gt; /etc/sysctl.conf
+</code></pre>
+<p>Next we need to run the <code>tailscale up</code> command and feed in the IP address of the pfSense LAN:</p>
+<pre><code>tailscale up --advertise-routes=172.16.0.0/24 --accept-dns=false --hostname=lab-router
+</code></pre>
+<blockquote>
+<p>Note: For the Tailscale-Home router you would want to use the HOME_LAN ip address here.</p>
+</blockquote>
+<p>This installer will spit out a URL for Tailscale. Copy/paste this into your browser and login with your Tailscale account. After successfully connecting you will be redirected to the Tailscale management dashboard. Here you can see the device you just connected.</p>
+<p><img src="SOC101-Lab/attachments/01-hypervisor-and-network-8.png" alt="Tailscale management dashboard showing connected lab-router device" /></p>
+<p>One last thing we need to do is click the 3-Dot button to the right of the device and select <code>Edit route settings</code>. This will pop up a window where you will need to check the box next to the IP address of the pfSense LAN network.</p>
+<p><img src="SOC101-Lab/attachments/01-hypervisor-and-network-9.png" alt="Tailscale route settings with pfSense LAN network subnet enabled" /></p>
+<p>Click save to confirm the settings.</p>
+<h2 id="testing-configuration"><a class="header" href="#testing-configuration">Testing Configuration</a></h2>
+<p>Now that everything is in place, your Tailscale-Lab container should be able to ping every IP address except for those within your home network. This ensures your network is safe from anything you decide to run within the lab. You can verify connectivity with a few commands:</p>
+<pre><code>ping 172.16.0.1 # Should pass
+ping 8.8.8.8 # Should pass
+ping google.com # Should pass
+ping [HOME_LAN] # Should fail
+</code></pre>
+<p>If these tests work out we should be good to move on.</p>
+<h1 id="next-2-windows-environment"><a class="header" href="#next-2-windows-environment">Next: [[2. Windows Environment]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-1-hypervisor--network"><a class="header" href="#previous-1-hypervisor--network">Previous: [[1. Hypervisor &amp; Network]]</a></h1>
+<p>Now that we have gotten a lot of the initial foundation done we have a place to build our lab environment in. On this page I am going to walk through setting up Windows in our lab environment. I am going to start with a Windows Server 2025 VM, promote it to domain controller, and join a Windows 11 workstation machine to it to simulate a small office environment. Later on I will install network sensors and feed logs up into a SIEM so we can do some real security stuff.</p>
+<h1 id="windows-server"><a class="header" href="#windows-server">Windows Server</a></h1>
+<p>Microsoft developed Windows Server as a solution to manage organization's Active Directories, DNS, DHCP, Group Policy all from a centralized location. You can set servers to act as Domain Controllers, Certificate Authorities and other important network appliances to organize company data and digital environments. In our case we will use it mainly as an Domain Controller so we can have an Active Directory domain in an attempt to simulate a real organization.</p>
+<h2 id="download--install"><a class="header" href="#download--install">Download &amp; Install</a></h2>
+<p>As with any virtual machine in Proxmox, setting it up begins with loading the ISO file into the hypervisor so it can be used to install the machine. To download Windows Server 2025 to our proxmox machine I am going to use the following commands:</p>
+<pre><code>STORAGEPATH="/var/lib/vz/template/iso"
+ISO_URL="https://go.microsoft.com/fwlink/?linkid=2293312&amp;clcid=0x409&amp;culture=en-us&amp;country=us"
+wget -c -L -O "${STORAGEPATH}/WinSrv2025_EVAL_en-us.iso" "${ISO_URL}"
+</code></pre>
+<p>To confirm the download was successful I can go to <code>Datacenter &gt; [Node] &gt; local([Node]) </code>. Here we can see it downloaded into our ISO bin.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-1.png" alt="Windows Server 2025 ISO file in Proxmox storage" /></p>
+<p>Confirm you see the ISO here, then click the Create VM button in the top right corner of the Proxmox portal to open the Create VM wizard again. I'm going to give the server install these values:</p>
+<ul>
+<li><strong>VM ID</strong>: 902</li>
+<li><strong>Name</strong>: WinServer-Lab</li>
+<li><strong>Guest OS Type</strong>: Microsoft Windows</li>
+<li><strong>Disk size</strong>: 60</li>
+<li><strong>CPU Cores</strong>: 4</li>
+<li><strong>Memory</strong>: 6144</li>
+<li><strong>Bridge</strong>: vmbr1</li>
+</ul>
+<p>Once these settings are in place and the VM is built, go ahead and turn it on. You will need to go to <code>Datacenter &gt; [Node] &gt; WinServer-Lab &gt; Console</code> to view the Windows installation wizard.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-2.png" alt="Windows Server installation wizard showing edition selection" /></p>
+<p>Make sure to select the Standard Evaluation (Desktop Experience) version of the install. Click Next, Accept the licensing terms, then choose the hard drive it will install on. There should only be the 60 GB VM drive we created earlier.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-3.png" alt="Windows Server installation drive selection screen" /></p>
+<p>Once the installer kicks off you can sit back and let Windows do its thing for a few minutes. Eventually you will be prompted to enter an Administrator password. Create a secure one, then log into the machine. With Proxmox you may need to use the NoVNC sidebar to send the CTRL+ALT+DEL button presses to the machine.</p>
+<p>Once logged in, open Command Prompt and run a ping to the pfSense router IP to make sure it is connected correctly.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-4.png" alt="Command prompt showing successful ping to pfSense router" /></p>
+<h2 id="lab-config"><a class="header" href="#lab-config">Lab Config</a></h2>
+<p>Now that the Windows Server is up and running there are a few settings we need to change. For the server to operate effectively it will need to have a static IP address. We also want RDP and WinRM turned on so that we can connect to the server via remote desktop.</p>
+<p>To set the static IP you just need to assign the MAC address of the Windows Server machine to the IP address you want in pfSense. First we need to grab the MAC Address by going to <code>Datacenter &gt; [Node] &gt; WinServer-Lab &gt; Hardware &gt; Network Device</code> and you can copy the address to paste into pfSense.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-5.png" alt="Windows Server MAC address in Proxmox hardware settings" /></p>
+<p>Now go back to the pfSense web portal and select <code>Services &gt; DHCP Server</code>. Make sure the Address Pool Range is set for 172.16.0.100-200 then scroll down to the bottom of the page and click the Add Static Mapping button. Paste the MAC Address into the field where it asks for, then enter the desired IP address.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-6.png" alt="pfSense DHCP static mapping configuration for Windows Server" /></p>
+<p>With that in place just scroll down to the bottom of the page and click Save &gt; Apply Changes. This change will not take effect until we reboot our Windows Server VM, but first lets enable RDP and WinRM.</p>
+<p>To do that we need to go back into our Windows Server machine and choose <code>Settings &gt; System &gt; Remote Desktop</code> and change the toggle to On. Next go to <code>Server Manager &gt; Local Server</code> and confirm that Remote management and Remote Desktop are both set to Enabled.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-7.png" alt="Windows Server Manager showing Remote Desktop and Remote Management enabled" /></p>
+<p>Lastly I wanted to change the name of the Windows PC. By clicking on the randomly generated name next to Computer Name you will open a window that allows you to change the name. Change it to WinServer-Lab and allow it restart when prompted.</p>
+<p>Now that RDP is enabled I can connect to the machine using a remote desktop tool such as Microsoft's Windows App. You will need to give it the IP address of the machine as the PC name. You can also create a friendly name for it like WinServer-Lab and make it a part of a machine group to keep it organized. I would also go ahead and save the Administrator credentials for easier use.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-8.png" alt="Windows App remote desktop connection configuration for WinServer-Lab" /></p>
+<p>Save and connect to the machine to verify it works. Now we can copy/paste commands into PowerShell and have a little better quality of life trying to use the server.</p>
+<h2 id="domain-controller"><a class="header" href="#domain-controller">Domain Controller</a></h2>
+<p>Up next is to promote our Windows Server to a Domain Controller. In a real environment there would likely be several DC's stitched together to provide availability and redundancy for Active Directory. It allows computers to connect to the organizational domain and have access to shared resources and management. It allows users to log in with an organization domain account rather than a local account and can carry it with them from computer to computer.</p>
+<p>Before we get started setting that up, I want to make sure the server is fully updated by going to <code>Settings &gt; Windows Update</code> and making sure all updates have been downloaded and installed.</p>
+<p>With updates done we can now move on to domain controller promotion. Click <code>Server Manager &gt; Manage &gt; Add Roles and Features</code> to open the wizard. Click the next button a few times until you get to the Server Roles page. Look for the Active Directory Domain Services option and check the box.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-9.png" alt="Server Manager Add Roles wizard showing Active Directory Domain Services selection" /></p>
+<p>A box will pop up asking you to Add Features related to this role. Keep the defaults and click Add Features. Now keep clicking Next until you get to the end of the wizard and click Install. Windows Server will need some time to run as it installs the features and roles we selected.</p>
+<p>Once the installation is finished close the box, then go back to the Yellow Flag icon in the top right corner of Server Manager. It will now have an option to "Promote this server to a domain controller".</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-10.png" alt="Server Manager notification to promote server to domain controller" /></p>
+<p>Select this option to open the Domain Services Configuration Wizard. This will let you select options to configure the domain controller. I used the following settings:</p>
+<ul>
+<li><strong>Add a new forest</strong>: Checked</li>
+<li><strong>Root Domain Name</strong>: busbeecorp.lab</li>
+<li><strong>DNS Delegation</strong>: Ignore warning and continue</li>
+<li><strong>NetBIOS name</strong>: BUSBEECORP</li>
+<li><strong>Prerequisite Checks</strong>: Ignore any soft warnings here about DNS delegation or static IP</li>
+</ul>
+<p>Put those settings in place then click Install to send the Windows Server off begin promoting itself to controller of the domain you built. You may notice the machine automatically reboot during this process. You can confirm the promotion took effect by going to <code>Server Manager &gt; Tools &gt; Active Directory Users and Computers</code>. If this page opens without error you should be good.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-11.png" alt="Active Directory Users and Computers management console" /></p>
+<h2 id="create-users"><a class="header" href="#create-users">Create Users</a></h2>
+<p>While in here we can make some users for our lab environment. Just go to <code>Users &gt; New &gt; User</code> which will pop up a new window to create a user.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-13.png" alt="New user creation dialog for Alice" /></p>
+<p>I will name our first user Alice and give her a strong password.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-14.png" alt="Password configuration for user Alice" /></p>
+<p>Alice will be the Domain Admin of our lab so I will add her to the Domain Admin and Administrator groups. To add a user to a group, just double-click that user then then go to the Member Of tab. Here you can type the names of the two groups and click Ok &gt; Apply to save the settings. You should see something like this:</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-16.png" alt="Alice user group membership showing Domain Admin and Administrator groups" /></p>
+<p>Now I will make a second user Bob, who will be our Analyst in the lab. Bob will be a member of the Domain Users and Remote Desktop Users groups. Since the first is a default group I just have to create the Bob user, then add the Remote Desktop Users group to his list of groups.</p>
+<h2 id="installing-sysmon"><a class="header" href="#installing-sysmon">Installing Sysmon</a></h2>
+<p>System Monitor aka Sysmon is a <a href="https://learn.microsoft.com/en-us/sysinternals/">Windows Sysinternals</a> tool used to collect and parse detailed Windows event data. For our lab we will use it to forward event data to our Splunk SIEM. Sysmon also lets you load a config file that can be used to fine-tune the log collection. There is a well known and trusted Sysmon config file created and maintained by SwiftOnSecurity that can be found <a href="https://github.com/SwiftOnSecurity/sysmon-config">here</a>.</p>
+<p>Sysmon and the SwiftOnSecurity config file and be downloaded and installed using the following elevated (admin) PowerShell that was adapted from <a href="https://gist.github.com/ajpc500/3a86ba1741d4868b69be5ce3a142d527">ajpc500's GitHub post</a>:</p>
+<pre><code>[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$wc = New-Object System.Net.WebClient
+if (!(Test-Path "C:\Tools")) { New-Item -Path "C:\" -Name "Tools" -ItemType "directory" }
+
+# Download Sysmon
+$SysmonDirectory = "C:\Tools\Sysmon\"
+$SysmonLocalZip = "C:\Tools\Sysmon.zip"
+$SysmonURL = "https://download.sysinternals.com/files/Sysmon.zip"
+if (!(Test-Path $SysmonLocalZip)) {
+    $wc.DownloadFile($SysmonURL, $SysmonLocalZip)
+    Expand-Archive -LiteralPath $SysmonLocalZip -DestinationPath $SysmonDirectory
+}
+
+# Download SwiftOnSecurity Config
+$SysmonLocalConfig = $SysmonDirectory + "sysmonconfig-export.xml"
+$SysmonConfigURL = "https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-config/master/sysmonconfig-export.xml"
+if (!(Test-Path $SysmonLocalConfig)) {
+    $wc.DownloadFile($SysmonConfigURL, $SysmonLocalConfig)
+}
+
+# Install Sysmon
+$ServiceName = 'Sysmon'
+$SysmonService = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
+if ($SysmonService.Status -ne 'Running') {
+    $SysmonExe = $SysmonDirectory + "Sysmon.exe"
+    &amp; $SysmonExe -i $SysmonLocalConfig -accepteula
+}
+</code></pre>
+<p>Once that's done we can move on to installing the Windows 11 workstation machine.</p>
+<h2 id="atomic-red-team"><a class="header" href="#atomic-red-team">Atomic Red Team</a></h2>
+<p>Atomic Red Team is an open-source framework for simulating MITRE ATT&amp;CK adversary techniques via executable tests, aiding red teaming, detection engineering, and security validation. We can use it to run attacks and test our detection setup thus far. To install Atomic Red Team on the Windows Server run the following commands:</p>
+<pre><code>Set-ExecutionPolicy RemoteSigned -Scope LocalMachine
+Register-PSRepository -Default
+Install-Module -Name invoke-atomicredteam,powershell-yaml -Scope AllUsers
+Import-Module invoke-atomicredteam
+</code></pre>
+<p>Verify Installation:</p>
+<pre><code>Get-Module -ListAvailable invoke-atomicredteam,powershell-yaml
+</code></pre>
+<h1 id="windows-workstation"><a class="header" href="#windows-workstation">Windows Workstation</a></h1>
+<p>Our lab will need a Windows workstation machine to simulate a real environment. We want it to connect to our domain so we can log in with our domain user accounts. By now we should be familiar with the process. To start off lets download the Windows 11 ISO:</p>
+<h2 id="download--install-1"><a class="header" href="#download--install-1">Download &amp; Install</a></h2>
+<pre><code>STORAGEPATH="/var/lib/vz/template/iso"
+ISO_URL="https://archive.org/download/windows-11-23h2-english-x64v2/Win11_23H2_English_x64v2.iso"
+wget -c -L -O "${STORAGEPATH}/Win11_23H2_English_x64.iso" "${ISO_URL}"
+</code></pre>
+<p>Once downloaded, click the Create VM button and add these settings to the wizard:</p>
+<ul>
+<li><strong>VM ID</strong>: 903</li>
+<li><strong>Name</strong>: WinWS01-Lab</li>
+<li><strong>ISO</strong>: Win11_23H2_English_x64.iso</li>
+<li><strong>Guest OS Type</strong>: Microsoft Windows</li>
+<li><strong>Disk Size</strong>: 64 GB</li>
+<li><strong>CPU Cores</strong>: 2</li>
+<li><strong>Memory</strong>: 4096 MB</li>
+<li><strong>Bridge</strong>: vmbr1</li>
+<li><strong>Start after created</strong>: Checked</li>
+</ul>
+<p>Now go to <code>Datacenter &gt; [Node] &gt; WinWS01-Lab &gt; Console</code> and walk through the Windows 11 installer. Make sure to select Windows 11 Pro so that the workstation is able to join the domain we created.</p>
+<blockquote>
+<p>Note: Windows 11 Home does not allow domain join and would need to be upgraded or replaced with Pro to support our needs.</p>
+</blockquote>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-17.png" alt="Windows 11 edition selection showing Windows 11 Pro" /></p>
+<p>The rest of the installer is pretty straight forward. Accept the license, Choose Custom (Install Only), choose the VM hard drive as the install location, and let the installer rip. Eventually you will get to the point where it asks the user to set up their device.</p>
+<p>During this setup I named the computer WinWS01-Lab like its called within Proxmox. The installer will next ask if you want to set up Windows for Home or for Work/School. Choose the Work/School option.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-18.png" alt="Windows 11 setup asking to choose between Home or Work/School" /></p>
+<p>It will ask you to login with a Microsoft account. You can instead click Sign-in options &gt; Domain join which will trigger the device to begin local account setup. We can make an account named <code>admin</code> and give it a strong password.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-19.png" alt="Windows 11 local account creation for admin user" /></p>
+<p>After creating the local account, the Windows installer will run a lengthy process of downloading and installing the latest updates. When this is done you will be able to log into the local account. Let's do that, then edit the Remote Desktop settings, change DNS to the Windows Server, and join the device to the domain.</p>
+<h2 id="join-the-domain"><a class="header" href="#join-the-domain">Join The Domain</a></h2>
+<p>Go to <code>Settings &gt; System &gt; Remote Desktop</code> and change the toggle to On. Here we will also need to give Bob rights to use this machine. Click Remote Desktop Users &gt; Add and search for the bob username. You will be prompted to verify this change with a domain admin so you can use Alice's login to make this work.</p>
+<p>Next go to <code>Settings &gt; Network &amp; internet &gt; Ethernet &gt; DNS Server assignment &gt; Edit</code> and change the IPv4 DNS Server address to 172.16.0.10.</p>
+<p>Once that's done, go to <code>Accounts &gt; Access work or school &gt; Connect &gt; Join this device to a local Active Directory domain</code> and type in the name of the domain we set in the previous step.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-20.png" alt="Domain join dialog with busbeecorp.lab domain entered" /></p>
+<p>Since Alice is our only domain admin, she will have to be the one to approve this device to join the domain.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-22.png" alt="Domain admin Alice credentials for authorizing domain join" /></p>
+<p>If you get a step to add a user, skip it and choose not to restart the computer.</p>
+<p>One last step before we can connect to RDP via our lab user Bob, is to give the workstation a static IP. Similar to before we need to go over to the WinWS01-Lab network settings to grab the MAC address then paste it into <code>Services &gt; DHCP Server &gt; Add Static Mapping</code> and give it the IP address 172.16.0.11.</p>
+<h2 id="connect-via-rdp"><a class="header" href="#connect-via-rdp">Connect via RDP</a></h2>
+<p>Now restart the Windows workstation machine and connect to it from the Windows App. You will need to create a new PC using the new static IP address.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-23.png" alt="Windows App PC configuration for WinWS01-Lab workstation" /></p>
+<p>Create a new user with Bob's credentials since this will be his machine.</p>
+<p><img src="SOC101-Lab/attachments/02-windows-environment-24.png" alt="User account configuration with Bob&#39;s domain credentials" /></p>
+<p>Now you should be able to connect to the WinWS01-Lab machine through RDP with Bob's login. If you have any errors connecting, go back and make sure you set everything correctly.</p>
+<h2 id="installing-sysmon-again"><a class="header" href="#installing-sysmon-again">Installing Sysmon (again)</a></h2>
+<p>We will want Sysmon installed on all Windows devices in our lab for monitoring purposes. Luckily the install instructions are exactly the same for Windows 11 as it is Windows Server. Just make sure to open a Windows PowerShell terminal as administrator then run the same commands as above.</p>
+<h2 id="atomic-red-team-again"><a class="header" href="#atomic-red-team-again">Atomic Red Team (again)</a></h2>
+<p>We also want to install Atomic Red Team on our workstation machine. To do so you can run the exact same commands again but from an Administrator PowerShell.</p>
+<p>Once you get to this step you should be basically done setting up the windows environment.Up next we need to build a Security Onion VM to act as a network monitor.</p>
+<h1 id="next-3-security-onion"><a class="header" href="#next-3-security-onion">Next: [[3. Security Onion]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-2-windows-environment"><a class="header" href="#previous-2-windows-environment">Previous: [[2. Windows Environment]]</a></h1>
+<p>Security Onion is a Swiss Army Knife of security tools that has several different systems built in such as Zeek, Suricata, osquery and can be used to monitor networks and capture network packets. For this lab we will use it mainly as a network monitor that will forward Zeek logs to Splunk for log analysis.</p>
+<h1 id="download-iso"><a class="header" href="#download-iso">Download ISO</a></h1>
+<p>Installing Security Onion is similar to the other VMs so far. First we need to download the ISO to Proxmox, then build out a VM for it in the Wizard. Here's a few commands you can use to download Security Onion from the Proxmox terminal:</p>
+<pre><code>STORAGEPATH="/var/lib/vz/template/iso"
+VERSION="2.4.180-20250916"
+ISO="securityonion-${VERSION}.iso"
+ISO_URL="https://download.securityonion.net/file/securityonion/${ISO}"
+
+wget -c -L -O "${STORAGEPATH}/${ISO}" "${ISO_URL}"
+</code></pre>
+<p>The ISO file is rather large (14GB) so you may want to go take a break while waiting for this to finish. Once its done you can click the Create VM in the top right corner of Proxmox to start the wizard. I used the following config for Security Onion:</p>
+<ul>
+<li><strong>VM ID</strong>: 904</li>
+<li><strong>Name</strong>: SecOnion-Lab</li>
+<li><strong>Disk size</strong>: 250GB</li>
+<li><strong>CPU Cores</strong>: 4</li>
+<li><strong>Memory</strong>: 24GB</li>
+<li><strong>Bridge</strong>: vmbr1</li>
+</ul>
+<h1 id="span-port"><a class="header" href="#span-port">SPAN port</a></h1>
+<p>Before turning on the machine and installing Security Onion we will need to make some changes to the network settings. Security Onion has the ability to listen to the network on a second port on the network called a SPAN port that allows it to hear all traffic flowing through the network, not just those intended for the SO machine or broadcasts to all machines. This means Security Onion can hear two other machines on the network talking to each other, which would be impossible only using the one standard network connection.</p>
+<p>We will need to make some changes within Proxmox to allow for this. First we need to create a second NIC on the Security Onion hardware settings by going to <code>Datacenter &gt; [Node] &gt; SecOnion-Lab &gt; Hardware &gt; Add &gt; Network Device &gt; OVS Bridge</code>. Use the following settings:</p>
+<ul>
+<li><strong>Model</strong>: VirtIO (paravirtualized)</li>
+<li><strong>Bridge</strong>: vmbr1</li>
+<li><strong>Firewall</strong>: Unchecked</li>
+</ul>
+<p>This sets the SPAN port to listen on vmbr1. Now we just need to get Proxmox to mirror all traffic on vmbr1 to this port. This can be done by going to the Proxmox terminal at <code>Datacenter &gt; [Node] &gt; Shell</code> and running this command:</p>
+<pre><code>ovs-vsctl clear bridge vmbr1 mirrors 
+
+ovs-vsctl -- --id=@p get port tap904i1 -- --id=@m create mirror name=span1 select-all=true output-port=@p -- set bridge vmbr1 mirrors=@m
+</code></pre>
+<p>The command above does the following:</p>
+<ul>
+<li>Clears out any previous mirrors on vmbr1</li>
+<li>Creates a new mirror called span1</li>
+<li>Sets it to mirror vmbr1</li>
+<li>Connects the mirror to output to the net1 NIC on VM ID 904.</li>
+</ul>
+<blockquote>
+<p>For better understanding of this command I found this blog post incredibly helpful: https://vext.info/2018/09/03/cheat-sheet-port-mirroring-ids-data-into-a-proxmox-vm.html</p>
+</blockquote>
+<p>Unfortunately, Proxmox does not save this mirror setting in the event of a power off or reboot. This means we will either need to run this command every time Proxmox restarts or create a script to automate that action. The blog post above provides a solution to this which I will show below as well.</p>
+<pre><code>#!/bin/bash
+
+# seconiontap.sh
+
+SECONIONLOG=/root/seconiontap.log
+
+date &gt;&gt; $SECONIONLOG
+
+echo "####################" &gt;&gt; $SECONIONLOG
+
+
+echo "Clearing any existing mirror..." &gt;&gt; $SECONIONLOG
+
+ovs-vsctl clear bridge vmbr1 mirrors
+
+echo "Creating mirror on vmbr1 for Security Onion..." &gt;&gt; $SECONIONLOG
+
+ovs-vsctl -- --id=@p get port tap904i1 -- --id=@m create mirror name=span1 select-all=true output-port=@p -- set bridge vmbr1 mirrors=@m &gt;&gt; $SECONIONLOG
+
+echo "Showing existing mirrors..." &gt;&gt; $SECONIONLOG
+
+ovs-vsctl list Mirror &gt;&gt; $SECONIONLOG
+
+echo "####################" &gt;&gt; $SECONIONLOG
+</code></pre>
+<p>The script sets the mirror but more importantly provides logging functionality so we can look into any issues that may arise over time. I created this script in the <code>/root/</code> folder and called it <code>seconiontap.sh</code>.</p>
+<p>I then ran <code>crontab -e</code> to add this line to the Crontab file:</p>
+<pre><code>@reboot sleep 120 &amp;&amp; /root/seconiontap.sh
+</code></pre>
+<p>This will tell Proxmox to run the script 120 seconds after rebooting. You may have to fine tune the number of seconds to make sure the Security Onion VM is up and running first before the script runs.</p>
+<h1 id="set-static-mapping"><a class="header" href="#set-static-mapping">Set Static Mapping</a></h1>
+<p>Now find the MAC address of the Security Onion VM by going to <code>Datacenter &gt; [Node] &gt; Hardware &gt; Network Device (net0)</code> which should be the NIC of the vmbr1 network interface. Now lets go to the pfSense console at https://172.16.0.1 and log in with your admin account.
+Next go to <code>Services &gt; DHCP Server &gt; Add Static Mappings</code> and add a new entry for Security Onion. Paste in the MAC address for the Security Onion VM vmbr1 NIC and set it to the IP address 172.16.0.12. Now click Save &gt; Apply Changes to save the mapping.</p>
+<h1 id="install-vm"><a class="header" href="#install-vm">Install VM</a></h1>
+<p>Now we can turn on the Security Onion VM and walk through setup. After clicking Start go to the console page for the VM where you should be greeted with the initial install page for Security Onion. You can select the first option which will give us a standard Security Onion install.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-3.png" alt="Security Onion installation welcome screen with install options" /></p>
+<p>You will then be asked whether it's okay to delete the contents of the VM hard drive to install Security Onion. Since this is a fresh virtual HD we have nothing to worry about.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-4.png" alt="Security Onion disk deletion confirmation prompt" /></p>
+<p>Type <code>yes</code> to continue. You will then be asked to create an administrative user for this install. I chose the name <code>admin</code> and gave it a strong password. Next it will kick off the installer. You will need to let this run for a while. Eventually you will see a screen asking you to press Enter to Reboot. Do that and wait for it to turn back on.</p>
+<p>After the reboot finishes Security Onion will ask you to login with the account created during setup. Give it those credentials then click Yes on the screen asking you to continue.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-5.png" alt="Security Onion login screen after reboot" /></p>
+<p>Next choose Install from the menu.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-6.png" alt="Security Onion setup menu with Install option highlighted" /></p>
+<p>On the next screen choose Standalone.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-7.png" alt="Security Onion installation type selection showing Standalone option" /></p>
+<p>Type AGREE to accept the license terms then select Standard as the network type.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-8.png" alt="Security Onion network type selection showing Standard option" /></p>
+<p>Give it the hostname seconion-lab to match the Proxmox naming.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-9.png" alt="Security Onion hostname configuration screen" /></p>
+<blockquote>
+<p>Note: Uppercase characters can cause conflicts in some instances so its best to make sure your hostname uses all lowercase.</p>
+</blockquote>
+<p>Next you will be asked to select the NIC to be used for management. This is referring to the standard network connection that will be provided by the vmbr1 interface. Make sure to select the correct MAC address that corresponds to this NIC.</p>
+<blockquote>
+<p>Note: You may have to look at the hardware settings for the Security Onion VM to tell these apart.</p>
+</blockquote>
+<p><img src="SOC101-Lab/attachments/03-security-onion-10.png" alt="Security Onion management NIC selection screen" /></p>
+<p>Next it will ask whether to use a Static IP or DHCP. I will set it to DHCP here so that our pfSense static mapping can take over. On the next page you will be warned that a DHCP address can cause problems but don't worry about that if you have the static mapping in pfSense set up.</p>
+<p>On the next two pages you will be asked whether to connect to the internet directly or via proxy and whether to use the default docker IP range. Choose direct and yes respectively.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-11.png" alt="Security Onion proxy configuration screen showing direct connection option" /></p>
+<p>On the next page you will be asked to select the Monitor Interface. We want to make sure the MAC address of the vmbr2 SPAN port we created is selected. You can tap the Spacebar with the selection highlighted to add an asterisk to the selection. Then click Ok to move on to the next page.</p>
+<p>The next page will ask to enter an email address for an admin user. Provide this and create a strong password to go with it.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-12.png" alt="Security Onion admin email and password configuration" /></p>
+<p>The next page will ask which method you would like to use to access the Security Onion web interface. Select IP here for simplicity. If we decide to implement DNS later we can come back to this. On the next page choose Yes to allow access to the web interface.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-13.png" alt="Security Onion web interface access configuration with IP option selected" /></p>
+<p>You will then be asked to provide an IP or network range that is allowed to view the web interface. Here enter 172.16.0.0/24 so it is visible from our network. Later we may want to consider restricting this down somewhat.</p>
+<p>On the last page you will be given a list of your chosen configuration settings. Click Yes to approve these settings and let Security Onion go off and begin installing its necessary items.</p>
+<p>When the install finishes you should be spit back out into the terminal console. You can type <code>sudo so-status</code> to see the current status of the Security Onion services.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-17.png" alt="Security Onion so-status command output showing service status" /></p>
+<p>You should also be able to visit https://172.16.0.12 in your browser to see the Security Onion web console. You will need to login using the email address and password supplied during setup.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-18.png" alt="Security Onion web console login page" /></p>
+<p>Once logged in you should see the dashboard with several views and tools on the left sidebar. Now there are just a few bits of housekeeping left to do to get us up and running.</p>
+<h1 id="post-install-config"><a class="header" href="#post-install-config">Post-Install Config</a></h1>
+<p>Go back to your Security Onion terminal in Proxmox and run the following commands to switch to the root user and update the SO packages.</p>
+<pre><code>sudo su -
+soup
+</code></pre>
+<blockquote>
+<p>Note: You will either need to reboot because updates were found or switch back to your user account if reboot is unnecessary by using <code>su &lt;username&gt;</code></p>
+</blockquote>
+<p>Next we need to run a series of commands to enable promiscuous mode on the the SPAN interface in a way that is persistent. First we need to create a new service by first switching to root <code>sudo su -</code> and then running the following command:</p>
+<pre><code>echo "[Unit]
+Description=Enable promisc on SPAN iface
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/ip link set ens19 promisc on
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target" &gt; /etc/systemd/system/promisc.service
+</code></pre>
+<p>Next run these commands to enable the service and reboot Security Onion.</p>
+<pre><code>systemctl daemon-reload &amp;&amp; systemctl enable promisc.service
+reboot
+</code></pre>
+<p>After it reboots check that <code>ens19</code> is running in promiscuous mode by running:</p>
+<pre><code>ip link show ens19
+</code></pre>
+<p>You should see something that looks like this:</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-19.png" alt="Terminal output showing ens19 interface in promiscuous mode" /></p>
+<p>If you see this it should mean everything was installed correctly.</p>
+<h1 id="testing-mirrored-traffic"><a class="header" href="#testing-mirrored-traffic">Testing Mirrored Traffic</a></h1>
+<p>There are two ways you can check whether Proxmox is correctly mirroring traffic to the SPAN port, by running tcpdump and viewing the Kibana dashboard on Security Onion's web portal.</p>
+<p>For tcpdump, go to a Proxmox shell and run:</p>
+<pre><code>tcpdump -i tap904i1 -n 
+</code></pre>
+<p>You should see a lot of packets begin to flow in from various source and destination IP addresses.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-20.png" alt="tcpdump output showing mirrored network traffic on SPAN port" /></p>
+<p>You can also go to your Security Onion web portal at https://172.16.0.12 and choose Kibana on the left side to get to the Kibana data visualization page.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-21.png" alt="Kibana dashboard showing network event data" /></p>
+<p>The Kibana dashboard will show you a lot of information about what it sees. To drill deeper into the network data you can click Network in the Event Category section.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-22.png" alt="Kibana event category section with Network events highlighted" /></p>
+<p>Here you can see a breakdown of network traffic by a few different dimensions.</p>
+<p><img src="SOC101-Lab/attachments/03-security-onion-23.png" alt="Kibana detailed network traffic breakdown by various dimensions" /></p>
+<p>Seeing all of this tells me that our Security Onion install is a success and we can move on to setting up Splunk for log management and visibility.</p>
+<h1 id="next-4-splunk"><a class="header" href="#next-4-splunk">Next: [[4. Splunk]]</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="previous-3-security-onion"><a class="header" href="#previous-3-security-onion">Previous: [[3. Security Onion]]</a></h1>
+<p>Splunk is a powerful tool that can be used to collect, analyze, and visualize log data from virtually all devices on a network. It helps organizations monitor and investigate security issues that arise and help track events as they affect multiple devices.</p>
+<p>Splunk has options to deploy in the cloud or on premises. For our lab I am going to install it on-prem as another VM in Proxmox. From there we will just need to install the Splunk Universal Forwarder on all devices so that all events across the lab network can be viewed together in one place.</p>
+<h1 id="optional-developer-license"><a class="header" href="#optional-developer-license">(Optional) Developer License</a></h1>
+<p>Splunk has a very limited free plan that lets users ingest up to 500MB of log data per day as well as limits that lock you down to one single Splunk instance. This should be plenty for our lab, but if you can also sign up for a Splunk Developer License to get your ingest limit increased to 10GB per day. This will give a bit more overhead so you can get a bit more done in your labs if you want.</p>
+<p>Go to https://dev.splunk.com/enterprise/dev_license/ for instructions on how to sign up. You will need to create a Splunk account on the <a href="https://dev.splunk.com/developer-program/">Splunk Developer page</a>. The sign up page will ask you several questions about what you plan to do with the platform. I just said I was a student and hobbyist developer and that I just want to play around with the tools.</p>
+<h1 id="download--install-vm"><a class="header" href="#download--install-vm">Download &amp; Install VM</a></h1>
+<p>First we need to download and install Ubuntu Server as a base for Splunk to sit on. To download the Ubuntu Server 24.04 ISO to Proxmox run the following in a Proxmox shell:</p>
+<pre><code>STORAGEPATH="/var/lib/vz/template/iso"
+VERSION="24.04.3"
+ISO="ubuntu-${VERSION}-live-server-amd64.iso"
+ISO_URL="https://releases.ubuntu.com/noble/${ISO}"
+wget ${ISO_URL} -O ${STORAGEPATH}/${ISO}
+</code></pre>
+<p>Now Click Create VM in the top right to create a new Ubuntu Server VM with the following settings:</p>
+<ul>
+<li><strong>VM ID</strong>: 905</li>
+<li><strong>Name</strong>: Splunk-Lab</li>
+<li><strong>Start at boot</strong>: Checked</li>
+<li><strong>Bus/Device</strong>: VirtIO Block</li>
+<li><strong>Disk size</strong>: 200 GB</li>
+<li><strong>CPU Cores</strong>: 8</li>
+<li><strong>CPU Type</strong>: host</li>
+<li><strong>Memory</strong>: 16384</li>
+<li><strong>Bridge</strong>: vmbr1</li>
+</ul>
+<p>Before powering on the VM go into pfSense and give it a static IP mapping. I will chose 172.16.0.13 for Splunk. Remember this can be found by going to pfSense console at https://172.16.0.1 and selecting <code>Services &gt; DHCP Server &gt; Add Static Mapping</code> and connect the IP to the MAC address of the Splunk VM. When this is done click Save &gt; Apply Changes to save the mapping.</p>
+<p>Now just power it on and run through the Ubuntu Server setup. Here's a list of the settings I selected for the install:</p>
+<ul>
+<li><strong>Type of Installation</strong>: Ubuntu Server</li>
+<li><strong>Search for Third Party Drivers</strong>: Checked</li>
+<li><strong>Use Entire Disk</strong>: Checked</li>
+<li><strong>Your name</strong>: splunk</li>
+<li><strong>Server name</strong>: splunk</li>
+<li><strong>Pick a username</strong>: splunk</li>
+<li><strong>Install OpenSSH Server</strong>: Checked</li>
+</ul>
+<p>After finishing the install wizard it will ask you to confirm the settings and reboot the machine. Wait for everything to finish, then reboot.</p>
+<h1 id="installing-splunk"><a class="header" href="#installing-splunk">Installing Splunk</a></h1>
+<p>Once the Splunk VM comes back online you will be asked to login with the user created during setup. After logging in you will need to run a few commands to get the VM updated and make sure the qemu guest agent is installed.</p>
+<pre><code>sudo apt update &amp;&amp; sudo apt upgrade -y
+sudo apt install qemu-guest-agent -y &amp;&amp; sudo systemctl enable qemu-guest-agent
+sudo reboot
+</code></pre>
+<p>Wait for the VM to reboot then run the following commands to download, install, and start Splunk.</p>
+<pre><code>wget -O splunk.deb 'https://download.splunk.com/products/splunk/releases/10.0.1/linux/splunk-10.0.1-c486717c322b-linux-amd64.deb'
+sudo dpkg -i splunk.deb
+sudo /opt/splunk/bin/splunk start --accept-license
+sudo /opt/splunk/bin/splunk enable boot-start
+</code></pre>
+<p>During setup you will be asked to create a new Splunk user. I chose the username <code>admin</code> and a strong password.</p>
+<p>Once the install is complete Splunk can be accessed by going to its URL at https://172.16.0.13:8000. You will need to then login using the username and password chosen during the Splunk install setup. You should then be taken the the default homepage for Splunk.</p>
+<p><img src="SOC101-Lab/attachments/04-splunk-1.png" alt="Splunk web interface default homepage" /></p>
+<p>I also added the following lines to allow Splunk through the UFW firewall:</p>
+<pre><code>sudo ufw allow 8000/tcp
+sudo ufw allow 8089/tcp
+sudo ufw enable
+</code></pre>
+<p>With this done we now just need to install the Splunk Universal Forwarder on all of our lab devices:</p>
+<ul>
+<li>pfSense</li>
+<li>Tailscale</li>
+<li>Windows Server</li>
+<li>Windows Workstation</li>
+<li>Security Onion</li>
+</ul>
+<p>Once they are in place they will push log data from each device up into Splunk for us to analyze in the lab. Without this step there would still be no data to look at.</p>
+<h1 id="creating-network-index"><a class="header" href="#creating-network-index">Creating Network Index</a></h1>
+<p><code>Splunk &gt; Settings &gt; Indexes &gt; New Index</code></p>
+<ul>
+<li><strong>Name</strong>: network</li>
+</ul>
+<p>Click Save</p>
+<div style="break-before: page; page-break-before: always;"></div><p>Splunk provides a convenient way to send log data from endpoints to the Splunk receiver by way of the <a href="https://www.splunk.com/en_us/download/universal-forwarder.html">Splunk Universal Forwarder</a>. It just has to be downloaded on each device and pointed to the Splunk server. Alternately, there are manual ways to export logs to Splunk, and for some of our VMs it will be the preferred way to do it.</p>
+<h1 id="pfsense-1"><a class="header" href="#pfsense-1">pfSense</a></h1>
+<p>Splunk will need an extra app installed to correctly parse data from pfSense. To add it we will need to log into our Splunk device, either on Proxmox shell or ssh. Run the following commands inside Splunk's terminal.</p>
+<pre><code>sudo su -
+cd /opt/splunk/etc/apps
+git clone https://github.com/barakat-abweh/TA-pfsense.git
+/opt/splunk/bin/splunk restart
+</code></pre>
+<p>While we're here let's also add a firewall rule for the 5514 port we will use:</p>
+<pre><code>sudo ufw allow 5514/udp
+</code></pre>
+<p>Now if you go to your Splunk Web Console in <code>Splunk &gt; Apps &gt; Manage Apps</code> you should see TA-pfsense on the list. You may have to move to the second page to see it.</p>
+<p>Next, still in the Splunk Web Console, go to <code>Splunk &gt; Settings &gt; Data Inputs &gt; UDP &gt; Add new</code> and use the following inputs in the wizard:</p>
+<ul>
+<li><strong>Port</strong>: 5514</li>
+<li><strong>Source type</strong>: pfsense</li>
+<li><strong>Index</strong>: network</li>
+<li><strong>Host</strong>: DNS</li>
+</ul>
+<p>Navigate to the pfSense web portal at https://172.16.0.1 and go to <code>Status &gt; System Logs &gt; Settings</code>. Check the box for <code>Send log messages to remote syslog server</code> which will open up a settings box below where you will need to enter the following:</p>
+<ul>
+<li><strong>Source Address</strong>: Any</li>
+<li><strong>Remote Log Servers</strong>: 172.16.0.13:5514</li>
+<li><strong>Remote Syslog Contents</strong>: Everything</li>
+</ul>
+<p>With these set just hit Save and that should be all you need to do.</p>
+<h1 id="tailscale-1"><a class="header" href="#tailscale-1">Tailscale</a></h1>
+<p>Next we will want to log into a shell on our Tailscale-Lab machine and run the following commands to download and install the Splunk Universal Forwarder:</p>
+<pre><code>apt update &amp;&amp; apt install -y wget
+wget -O splunkforwarder-10.0.1-c486717c322b-linux-amd64.deb "https://download.splunk.com/products/universalforwarder/releases/10.0.1/linux/splunkforwarder-10.0.1-c486717c322b-linux-amd64.deb"
+dpkg -i splunkforwarder-10.0.1-c486717c322b-linux-amd64.deb 
+chown -R splunkfwd:splunkfwd /opt/splunkforwarder
+</code></pre>
+<p>Start Forwarder:</p>
+<pre><code>/opt/splunkforwarder/bin/splunk start --accept-license --answer-yes --no-prompt --seed-passwd CHANGEME
+</code></pre>
+<blockquote>
+<p>Note: In the command above you will need to feed a strong password into the forwarder. This can be used at the forwarder web instance.</p>
+</blockquote>
+<p>Next you will need to edit the config file so Splunk can forward to the right IP address with this command:</p>
+<pre><code>echo "[tcpout]
+defaultGroup = splunkenterprise
+[tcpout:splunkenterprise]
+server = 172.16.0.13:9997" &gt;&gt; /opt/splunkforwarder/etc/system/local/outputs.conf
+</code></pre>
+<p>You will also need to edit Splunk Forwarder to watch /var/log and report it:</p>
+<pre><code>cat &gt;/opt/splunkforwarder/etc/system/local/inputs.conf &lt;&lt;'EOF'
+[monitor:///var/log]
+recursive = true
+sourcetype = syslog
+index = main
+EOF
+</code></pre>
+<pre><code>usermod -aG adm splunkfwd
+systemctl restart splunkforwarder || /opt/splunkforwarder/bin/splunk restart
+</code></pre>
+<pre><code>apt update &amp;&amp; apt install -y rsyslog
+systemctl enable --now rsyslog
+logger -p user.notice "UF rsyslog test $(date)"
+sleep 2
+tail -n3 /var/log/syslog
+</code></pre>
+<p>Lastly, restart the forwarder:</p>
+<pre><code>/opt/splunkforwarder/bin/splunk restart
+</code></pre>
+<p>Once all that is in place the Tailscale VM should be good to go.</p>
+<h1 id="windows"><a class="header" href="#windows">Windows</a></h1>
+<p>The instructions for installing the forwarder for Windows 11 and Server are exactly the same so I will condense the info to just one section here.</p>
+<blockquote>
+<p>Note: You will want to make sure you installed Sysmon back in the Windows Environment setup page. Sysmon logs will have much of the info we will want to collect from the Windows machines beyond the network logs.</p>
+</blockquote>
+<p>Use the following script in an elevated (admin) PowerShell instance to download, install, and start the Splunk Universal Forwarder:</p>
+<pre><code>$URL  = 'https://download.splunk.com/products/universalforwarder/releases/10.0.1/windows/splunkforwarder-10.0.1-c486717c322b-windows-x64.msi'
+$MSI  = 'splunkforwarder-10.0.1-c486717c322b-windows-x64.msi'
+$INDEXER = '172.16.0.13:9997'
+$UF_ADMIN_PASS = 'CHANGEME'
+
+
+Invoke-WebRequest -Uri $URL -OutFile $MSI
+
+$InstallArgs = @(
+  '/i', $MSI,
+  'AGREETOLICENSE=Yes',
+  'SPLUNKUSERNAME=admin',
+  "SPLUNKPASSWORD=$UF_ADMIN_PASS",
+  "RECEIVING_INDEXER=$INDEXER",
+  'WINEVENTLOG_SEC_ENABLE=1',
+  'WINEVENTLOG_SYS_ENABLE=1',
+  '/qn','/norestart'
+)
+Start-Process msiexec.exe -Verb RunAs -ArgumentList $InstallArgs -Wait -PassThru
+
+
+Start-Sleep -Seconds 2
+Get-Service SplunkForwarder -ErrorAction SilentlyContinue | Start-Service
+Get-Service SplunkForwarder
+</code></pre>
+<blockquote>
+<p>Note that the commands have a hardcoded forwarder password and IP address for the Splunk receiver</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-line-arguments"><a class="header" href="#command-line-arguments">Command Line Arguments</a></h1>
+<pre><pre class="playground"><code class="language-rust">use std:: env;
+
+fn main() {
+	let args: Vec&lt;String&gt; = env::args().collect();
+	let config = read_args(&amp;args);
+}
+
+struct Config {
+	first: String,
+	second: String,
+}
+
+fn read_args(args: &amp;[String]) -&gt;  Config {
+
+	let first = &amp;args[1].clone();	
+	let second = &amp;args[2].clone();
+	
+	Config { first, second }
+}</code></pre></pre>
+<h1 id="read-from-file"><a class="header" href="#read-from-file">Read From File</a></h1>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std:fs;
+
+let contents = fs::read_to_string(file_path)
+	.expect("Should have been able to read the file");
+
+println!("With text:\n{contents}");
+<span class="boring">}</span></code></pre></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>
