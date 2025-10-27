@@ -1,0 +1,5 @@
+[book]
+authors = ["Michael Busbee"]
+language = "en"
+src = "src"
+title = "techbook"
