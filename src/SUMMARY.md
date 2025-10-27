@@ -1,7 +1,8 @@
 # Summary
 
 [Introduction](./README.md)
-- [Rust](./Rust/rust-notes.md)
+- [Rust](./Rust/introduction.md)
+	- [Common Tasks](./Rust/common-tasks.md)
 - [Intune Lab](./Intune-Lab/introduction.md)
     - [Setting Up The Lab](./Intune-Lab/01-setting-up-the-lab.md)
     - [Enrolling Devices](./Intune-Lab/02-enrolling-devices.md)
