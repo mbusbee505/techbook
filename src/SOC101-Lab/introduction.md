@@ -25,5 +25,3 @@
 - ### [[3. Security Onion]]
 - ### [[4. Splunk]]
 - ### [[5. Forwarders]]
-
-# Next: [[1. Hypervisor & Network]]

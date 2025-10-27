@@ -1,5 +1,3 @@
-# Previous: [[Intune-Lab/0. Project Introduction|0. Project Introduction]] 
-
 # Signing Up for Intune
 
 First things first, I had to sign up for the [Intune Free Trial](https://aka.ms/IntuneTrial), provided an email address and a few other pieces of info.
@@ -222,4 +220,3 @@ On the Intune side you will need to go to `Intune > Tenant Administration > Conn
 
 These being connected ensures Defender for Endpoint is able to connect to the Intune devices.
 
-# Next: [[2. Enrolling Devices]]

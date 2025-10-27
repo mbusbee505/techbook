@@ -1,5 +1,3 @@
-# Previous: [[7. Enrolling iPhones]]
-
 # Benefits of Managed Androids
 
 Intune allows you to enroll and manage other devices beyond just Windows 11. With some additional setup, you can connect Apple iPhone and Google Android devices. In this section I will show how to connect a Managed Google Play account to Intune. 
@@ -37,5 +35,3 @@ When you click begin it will give you an outline of what the organization is and
 ![Android work and personal apps separation explanation](attachments/08-enrolling-androids-7.png)
 
 Once you move on from this page you will be shown another screen explaining that your work and personal apps will now be separated. Apps for work will now come with a briefcase icon in the bottom right corner to differentiate themselves. In the app drawer you will now see two separate folders to separate Personal and Work apps. You can click the Google Play for Work icon to see apps provided by the organization available for download.
-
-# Next: [[9. Monitoring and Reporting]]

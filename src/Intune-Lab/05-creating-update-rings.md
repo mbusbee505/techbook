@@ -1,5 +1,3 @@
-# Previous: [[4. Installing Apps]]
-
 # What is an Update Ring?
 
 An Update Ring is a policy setting within Intune that controls how and when the connected devices are able to run Windows updates. You can set different options like number of deferral days, update deadlines, reboot behavior, etc. You can develop different Update Rings and apply each to a different device group in what ever configuration makes the most sense for your environment. Its also important to know that Update Ring only affects Windows OS and Microsoft First Party updates which means custom LOB/Win32 apps will need to be kept up-to-date separately.
@@ -53,4 +51,3 @@ When all is said and done you should have something that looks like this.
 
 This one is a little tougher to test since we would have to wait for Microsoft to issue a new update for Windows so we could see how it hit user devices differently. For now however, let's just trust that it's working properly.
 
-# Next: [[6. Securing Devices]]

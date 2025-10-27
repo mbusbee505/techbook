@@ -1,6 +1,4 @@
 
-# Previous: [[1. Hypervisor & Network]]
-
 Now that we have gotten a lot of the initial foundation done we have a place to build our lab environment in. On this page I am going to walk through setting up Windows in our lab environment. I am going to start with a Windows Server 2025 VM, promote it to domain controller, and join a Windows 11 workstation machine to it to simulate a small office environment. Later on I will install network sensors and feed logs up into a SIEM so we can do some real security stuff.
 
 # Windows Server
@@ -251,4 +249,3 @@ We also want to install Atomic Red Team on our workstation machine. To do so you
 
 Once you get to this step you should be basically done setting up the windows environment.Up next we need to build a Security Onion VM to act as a network monitor.
 
-# Next: [[3. Security Onion]]

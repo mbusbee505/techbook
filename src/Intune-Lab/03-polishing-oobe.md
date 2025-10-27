@@ -1,5 +1,3 @@
-# Previous: [[2. Enrolling Devices]]
-
 # Removing Windows Hello
 
 When I ran my first OOBE test my user was prompted with the requirement to setup Windows Hello. I want to turn this off entirely so I found going to `Intune > Devices > Enrollment > Windows Hello for Business` and set Configure Windows Hello for Business to Disabled and clicked Save.
@@ -32,4 +30,3 @@ I checked settings and it shows I'm logged in with my corporate account and the 
 
 ![Windows settings showing corporate account and device name](attachments/03-polishing-oobe-5.png)
 
-# Next: [[4. Installing Apps]]

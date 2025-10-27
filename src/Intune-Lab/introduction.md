@@ -70,6 +70,3 @@ To keep things realistic, I asked ChatGPT to generate simulation data—a 25‑u
 - **Intune free trial:** <https://aka.ms/IntuneTrial>
 - **Entra ID free trial:** <https://aka.ms/EntraSuiteTrial>
 - **Defender for Endpoint P2 trial:** <https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint>
-
-
-# Next: [[1. Setting Up The Lab]]

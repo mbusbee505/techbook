@@ -1,6 +1,3 @@
-
-# Previous: [[SOC101-Lab/0. Project Introduction|0. Project Introduction]]
-
 # Proxmox
 
 Proxmox is a free and open source type 1 hypervisor that is popular with home lab builders. It is a Debian Linux based OS that can be installed on almost anything, although your mileage may vary depending on the strength of the hardware you give it. In my case I will be installing on my desktop PC that I was previously using for gaming. 
@@ -279,5 +276,3 @@ ping [HOME_LAN] # Should fail
 ```
 
 If these tests work out we should be good to move on. 
-
-# Next: [[2. Windows Environment]]

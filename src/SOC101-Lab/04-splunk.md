@@ -1,6 +1,4 @@
 
-# Previous: [[3. Security Onion]]
-
 Splunk is a powerful tool that can be used to collect, analyze, and visualize log data from virtually all devices on a network. It helps organizations monitor and investigate security issues that arise and help track events as they affect multiple devices. 
 
 Splunk has options to deploy in the cloud or on premises. For our lab I am going to install it on-prem as another VM in Proxmox. From there we will just need to install the Splunk Universal Forwarder on all devices so that all events across the lab network can be viewed together in one place.

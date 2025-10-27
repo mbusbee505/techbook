@@ -1,6 +1,7 @@
 # Summary
 
 [Introduction](./README.md)
+- [Rust](./Rust/rust-notes.md)
 - [Intune Lab](./Intune-Lab/introduction.md)
     - [Setting Up The Lab](./Intune-Lab/01-setting-up-the-lab.md)
     - [Enrolling Devices](./Intune-Lab/02-enrolling-devices.md)
@@ -18,7 +19,6 @@
     - [Security Onion](./SOC101-Lab/03-security-onion.md)
     - [Splunk](./SOC101-Lab/04-splunk.md)
     - [Forwarders](./SOC101-Lab/05-forwarders.md)
-- [Rust](./Rust/rust-notes.md)
 - [Lets Defend Challenges](./Lets%20Defend/README.md)
     - [Disclose The Agent](./Lets%20Defend/Disclose%20The%20Agent/disclose-the-agent.md)
     - [Http Basic Auth](./Lets%20Defend/Http%20Basic%20Auth/http-basic-auth.md)

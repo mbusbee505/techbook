@@ -1,5 +1,3 @@
-# Previous: [[3. Polishing OOBE]]
-
 # Installation Methods
 
 I wanted to test a few commonly used apps that also showcase the different methods of installing apps with Intune. I decided on the following:
@@ -181,5 +179,3 @@ For the Win32 App I used the following settings:
 	- **Detection method**: File or folder exists
 	- **Associated with a 32-bit app on 64-bit clients**: Yes
 - **Assignment**: All-VMware
-
-# Next: [[5. Creating Update Rings]]

@@ -1,6 +1,4 @@
 
-# Previous: [[2. Windows Environment]]
-
 Security Onion is a Swiss Army Knife of security tools that has several different systems built in such as Zeek, Suricata, osquery and can be used to monitor networks and capture network packets. For this lab we will use it mainly as a network monitor that will forward Zeek logs to Splunk for log analysis. 
 
 # Download ISO
@@ -239,5 +237,3 @@ Here you can see a breakdown of network traffic by a few different dimensions.
 ![Kibana detailed network traffic breakdown by various dimensions](attachments/03-security-onion-23.png)
 
 Seeing all of this tells me that our Security Onion install is a success and we can move on to setting up Splunk for log management and visibility.
-
-# Next: [[4. Splunk]]

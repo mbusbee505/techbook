@@ -1,5 +1,3 @@
-# Previous: [[9. Monitoring and Reporting]]
-
 # Now What?
 
 I have reached the end of things I intended to experiment with in my lab for now, although there are many more stones to turn over that we didn't even get a chance to play with. It sometimes requires a living breathing environment to get a sense of how some of the tools and features work within Intune. I am not too heartbroken I wasn't able to test everything, but I am excited to get the chance to work on an even more complex Microsoft 365 environment. 

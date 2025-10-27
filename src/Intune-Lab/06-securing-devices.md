@@ -1,5 +1,3 @@
-# Previous: [[5. Creating Update Rings]]
-
 # Introduction to Security
 
 One benefit of managing devices with Intune is that it gives you control of security features across the devices it manages and allows IT admins the ability to fine-tune their environments to meet their security and compliance needs. There are several methods available such as security baselines, defender for endpoint, compliance policies, conditional access, etc. that can be used to our benefit.
@@ -152,4 +150,3 @@ In my Intune Devices list I can confirm one of my devices is non-compliant. It i
 
 Since these two failure points are things we would want to have setup before we ever ship devices to users I won't worry about fixing this now. It does at least show as a proof-of-concept that we can build compliance policies in Intune and use Entra to apply them with conditional access policies. 
 
-# Next: [[7. Enrolling iPhones]]
