@@ -6,20 +6,23 @@ use std:: env;
 
 fn main() {
 	let args: Vec<String> = env::args().collect();
-	let config = read_args(&args);
+	let config = Config::new(&args);
+	let query = config.query;
+	let file_path = config.file_path;
 }
 
 struct Config {
-	first: String,
-	second: String,
+    query: String,
+    file_path: String,
 }
 
-fn read_args(args: &[String]) ->  Config {
-
-	let first = &args[1].clone();	
-	let second = &args[2].clone();
-	
-	Config { first, second }
+impl Config {
+	fn new(args: &[String]) -> Config {
+		let query = args[1].clone();
+		let file_path = args[2].clone();
+		
+		Config { query, file_path }
+	}
 }
 ```
 
