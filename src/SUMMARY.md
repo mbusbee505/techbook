@@ -14,12 +14,6 @@
     - [Enrolling Androids](./Intune-Lab/08-enrolling-androids.md)
     - [Monitor & Report](./Intune-Lab/09-monitor-and-report.md)
     - [Conclusion](./Intune-Lab/10-conclusion.md)
-- [SOC Lab](./SOC101-Lab/introduction.md)
-    - [Hypervisor & Network](./SOC101-Lab/01-hypervisor-and-network.md)
-    - [Windows Environment](./SOC101-Lab/02-windows-environment.md)
-    - [Security Onion](./SOC101-Lab/03-security-onion.md)
-    - [Splunk](./SOC101-Lab/04-splunk.md)
-    - [Forwarders](./SOC101-Lab/05-forwarders.md)
 - [Lets Defend Challenges](./Lets%20Defend/README.md)
     - [Disclose The Agent](./Lets%20Defend/Disclose%20The%20Agent/disclose-the-agent.md)
     - [Http Basic Auth](./Lets%20Defend/Http%20Basic%20Auth/http-basic-auth.md)
@@ -34,3 +28,4 @@
     - [Ransomware Attack](./Lets%20Defend/Ransomware%20Attack/ransomware-attack.md)
     - [Remote Working](./Lets%20Defend/Remote%20Working/remote-working.md)
     - [Shellshock Attack](./Lets%20Defend/Shellshock%20Attack/shellshock-attack.md)
+
