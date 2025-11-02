@@ -21,7 +21,7 @@
 
         const tocTitle = document.createElement('div');
         tocTitle.className = 'toc-title';
-        tocTitle.textContent = 'On this page';
+        tocTitle.textContent = 'Page Outline';
 
         const toggleBtn = document.createElement('button');
         toggleBtn.className = 'toc-toggle';
