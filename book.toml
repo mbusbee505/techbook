@@ -2,11 +2,11 @@
 authors = ["Michael Busbee"]
 language = "en"
 src = "src"
-title = "techbook"
+title = "busbeetech.com"
 
 [output.html]
-additional-css = ["theme/toc.css"]
-additional-js = ["theme/toc.js", "theme/sidebar.js"]
+additional-css = ["theme/toc.css", "theme/nav.css"]
+additional-js = ["theme/toc.js", "theme/sidebar.js", "theme/nav.js"]
 favicon = "favicon.ico"
 
 [output.html.fold]
