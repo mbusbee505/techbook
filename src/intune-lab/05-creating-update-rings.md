@@ -43,11 +43,11 @@ The following settings will create an update ring for the remaining users in the
 
 When all is said and done you should have something that looks like this.
 
-![Pilot Update Ring configuration settings](src/intune-lab/attachments/05-creating-update-rings-1.png)
+![Pilot Update Ring configuration settings](attachments/05-creating-update-rings-1.png)
 
-![Broad Update Ring configuration settings](src/intune-lab/attachments/05-creating-update-rings-2.png)
+![Broad Update Ring configuration settings](attachments/05-creating-update-rings-2.png)
 
-![Update rings list in Intune portal](src/intune-lab/attachments/05-creating-update-rings-3.png)
+![Update rings list in Intune portal](attachments/05-creating-update-rings-3.png)
 
 This one is a little tougher to test since we would have to wait for Microsoft to issue a new update for Windows so we could see how it hit user devices differently. For now however, let's just trust that it's working properly.
 

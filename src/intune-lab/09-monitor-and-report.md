@@ -6,15 +6,15 @@ Intune provides several ways to monitor devices it manages. You can make configu
 
 Go to `Intune > Reports > Device compliance` to view a summary of device compliance information. If nothing shows here you may need to click the "Generate" button to refresh the data on the page.
 
-![Device compliance summary dashboard](src/intune-lab/attachments/09-monitor-and-report-1.png)
+![Device compliance summary dashboard](attachments/09-monitor-and-report-1.png)
 
 Here you will be able to see a breakdown of devices that are compliant vs not. You can also go deeper and get Intune to generate more specific reports such as a Noncompliant devices and settings report.
 
-![Noncompliant devices and settings report](src/intune-lab/attachments/09-monitor-and-report-2.png)
+![Noncompliant devices and settings report](attachments/09-monitor-and-report-2.png)
 
 The full list of built-in reports related to compliance can be found in the reports tab `Intune > Reports > Device compliance > Reports`
 
-![List of built-in device compliance reports](src/intune-lab/attachments/09-monitor-and-report-3.png)
+![List of built-in device compliance reports](attachments/09-monitor-and-report-3.png)
 
 Options include: 
 
@@ -30,7 +30,7 @@ Options include:
 
 On the `Intune > Reports > Device configuration` screen you can see a summary of configuration policies and their success/failure device totals.
 
-![Device configuration summary with policy status](src/intune-lab/attachments/09-monitor-and-report-4.png)
+![Device configuration summary with policy status](attachments/09-monitor-and-report-4.png)
 
 
 
@@ -38,11 +38,11 @@ On the `Intune > Reports > Device configuration` screen you can see a summary of
 
 On the `Intune > Reports > Microsoft Defender Antivirus` to see a summary of Antivirus scans on devices managed by Intune. It will give a breakdown of number of devices by status such as clean, pending, critical etc.
 
-![Microsoft Defender Antivirus summary by device status](src/intune-lab/attachments/09-monitor-and-report-5.png)
+![Microsoft Defender Antivirus summary by device status](attachments/09-monitor-and-report-5.png)
 
 In the Reports section of this page you can also get a report of detected malware on endpoints.
 
-![Detected malware report on endpoints](src/intune-lab/attachments/09-monitor-and-report-6.png)
+![Detected malware report on endpoints](attachments/09-monitor-and-report-6.png)
 
 # Device and App Monitoring
 
@@ -50,8 +50,8 @@ Both `Intune > Devices` and `Intune > Apps` have their own page called Monitorin
 
 Screenshot of available Device reports:
 
-![Available device monitoring reports list](src/intune-lab/attachments/09-monitor-and-report-7.png)
+![Available device monitoring reports list](attachments/09-monitor-and-report-7.png)
 
 Screenshot of available App reports:
 
-![Available app monitoring reports list](src/intune-lab/attachments/09-monitor-and-report-8.png)
+![Available app monitoring reports list](attachments/09-monitor-and-report-8.png)

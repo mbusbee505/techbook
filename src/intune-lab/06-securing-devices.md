@@ -15,7 +15,7 @@ To access Security Baselines just go to `Intune > Endpoint security > Security B
 - **Configuration Settings**: Keep Defaults
 - **Assignments**: All-Employees and All-Windows-11
 
-![Security baseline configuration settings](src/intune-lab/attachments/06-securing-devices-1.png)
+![Security baseline configuration settings](attachments/06-securing-devices-1.png)
 
 Once you save this baseline the security settings chosen in Configuration Settings will be enforced on all users and Windows 11 devices. If we wanted to tweak these settings later on we could come back and change the settings or possibly create a new baseline and assign it to a different group of users or devices. 
 
@@ -27,14 +27,14 @@ Microsoft Defender for Endpoint can be used as an Endpoint Detection and Respons
 
 Now go to `Defender > Settings > Endpoints > Onboarding` where you can find the download button for the Onboarding package. Make sure to select "Mobile Device Management / Microsoft Intune" from the Deployment method dropdown first.
 
-![Defender onboarding package download screen](src/intune-lab/attachments/06-securing-devices-3.png)
+![Defender onboarding package download screen](attachments/06-securing-devices-3.png)
 
 Clicking download will get you a file called `WindowsDefenderATP.onboarding` that can be uploaded into the Intune Portal. 
 
 To create a new onboarding policy go to `Intune > Endpoint security > Endpoint detection and response > Create policy`
 
 >On this page Intune will also show you how many devices you currently do not have onboarded.
-> ![Devices not onboarded count in Intune](src/intune-lab/attachments/06-securing-devices-2.png)
+> ![Devices not onboarded count in Intune](attachments/06-securing-devices-2.png)
 
 Now you will need to get the text from within the `WindowsDefenderATP.onboarding` file which Microsoft calls the Onboarding blob. You can open it in something standard like Notepad or VSCode and paste the entire thing in the field called Onboarding (Device) below. In the Create Profile wizard I added the following settings:
 
@@ -49,9 +49,9 @@ Now you will need to get the text from within the `WindowsDefenderATP.onboarding
 
 It took some time for the settings to sync but after a bit I came back and saw I had one onboarded device and two successful device checkins.
 
-![EDR onboarding status showing one onboarded device](src/intune-lab/attachments/06-securing-devices-4.png)
+![EDR onboarding status showing one onboarded device](attachments/06-securing-devices-4.png)
 
-![Successful device checkins to MDE](src/intune-lab/attachments/06-securing-devices-5.png)
+![Successful device checkins to MDE](attachments/06-securing-devices-5.png)
 
 This means that Intune is successfully connected to MDE and onboarded to the EDR. Intune is now able to push security profiles to devices it manages as well as pull status reports from them. 
 
@@ -76,7 +76,7 @@ Your device has been marked noncompliant. Please call the IT department at 555-5
 
 **Set to default locale**: Toggled On
 
-![Non-compliance email notification template settings](src/intune-lab/attachments/06-securing-devices-9.png)
+![Non-compliance email notification template settings](attachments/06-securing-devices-9.png)
 
 
 Now that we have an email template to send to users we can create the Compliance Policy by going to `Intune > Devices > Compliance > Create Policy` and entering the following policy settings:
@@ -88,26 +88,26 @@ Now that we have an email template to send to users we can create the Compliance
 
 On the next page you can choose security settings to be required for compliance at the granular level. Microsoft separates them into categories so you will need to browse through the options.
 
-![Compliance policy settings categories](src/intune-lab/attachments/06-securing-devices-8.png)
+![Compliance policy settings categories](attachments/06-securing-devices-8.png)
 
 
 Under the Device Health header you can find settings to require BitLocker and Secure Boot
 
-![Device Health settings requiring BitLocker and Secure Boot](src/intune-lab/attachments/06-securing-devices-6.png)
+![Device Health settings requiring BitLocker and Secure Boot](attachments/06-securing-devices-6.png)
 
 Under the Microsoft Defender for Endpoint section you can find the option that requires devices report all clear on their machine risk score to be considered compliant.
 
-![Microsoft Defender for Endpoint machine risk requirements](src/intune-lab/attachments/06-securing-devices-7.png)
+![Microsoft Defender for Endpoint machine risk requirements](attachments/06-securing-devices-7.png)
 
 Under the Actions for noncompliance page the policy will automatically set a rule to immediately mark the device as noncompliant but that can be delayed by a number of days. On the line underneath choose `send email to end user` with 0 days scheduled which will cause the email to send immediately. On the Choose template field, select the `Non-Compliance Email` template we created earlier.
 
-![Actions for noncompliance email configuration](src/intune-lab/attachments/06-securing-devices-10.png)
+![Actions for noncompliance email configuration](attachments/06-securing-devices-10.png)
 
 There is also an option to select additional recipients of the email. We could choose to send this to a specific group of users such as the IT team. For now I will leave this blank.
 
 I will assign this policy to the All-Windows-11 group and finish creating the policy. Now if you refresh the page on Compliance Policies it will warn you that we are not using Conditional Access to enforce the policy.
 
-![Warning about missing Conditional Access enforcement](src/intune-lab/attachments/06-securing-devices-11.png)
+![Warning about missing Conditional Access enforcement](attachments/06-securing-devices-11.png)
 
 This means we will need to move on to the next section where we will create a Conditional Access policy in Entra and connect it to the compliance policy.
 
@@ -126,11 +126,11 @@ Conditional Access Policies can be set in Entra and be used for enforcing the Co
 
 Click create to finish out the policy wizard.
 
-![Conditional Access policy requiring compliant device](src/intune-lab/attachments/06-securing-devices-12.png)
+![Conditional Access policy requiring compliant device](attachments/06-securing-devices-12.png)
 
 Report-only will just create logs but not actually lock you out so you can test for a few times. You can verify the sign-in logs by going to `Entra > Monitoring & health > Sign-in logs` and take a look at your logs while this policy is in Report-only mode.
 
-![Sign-in logs showing successful conditional access](src/intune-lab/attachments/06-securing-devices-13.png)
+![Sign-in logs showing successful conditional access](attachments/06-securing-devices-13.png)
 
 Since my sign-ins though the online portal are showing as a Success it looks like its okay to turn the policy on for real. Your mileage may vary. This is why testing is important.
 
@@ -142,11 +142,11 @@ Next up we want to create another policy to block legacy authentication. Go to `
 **Grant**: Block access
 **Enable**: Report-only to test then On
 
-![Conditional Access policy blocking legacy authentication](src/intune-lab/attachments/06-securing-devices-14.png)
+![Conditional Access policy blocking legacy authentication](attachments/06-securing-devices-14.png)
 
 In my Intune Devices list I can confirm one of my devices is non-compliant. It is currently not using BitLocker or Secure Boot.  
 
-![Device list showing non-compliant device status](src/intune-lab/attachments/06-securing-devices-15.png)
+![Device list showing non-compliant device status](attachments/06-securing-devices-15.png)
 
 Since these two failure points are things we would want to have setup before we ever ship devices to users I won't worry about fixing this now. It does at least show as a proof-of-concept that we can build compliance policies in Intune and use Entra to apply them with conditional access policies. 
 

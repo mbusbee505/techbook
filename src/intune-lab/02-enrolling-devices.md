@@ -19,11 +19,11 @@ Install-Script -Name Get-WindowsAutopilotInfo -Force
 Get-WindowsAutopilotInfo -Online
 ```
 
-![PowerShell command prompt installing Autopilot modules](src/intune-lab/attachments/02-enrolling-devices-1.png)
+![PowerShell command prompt installing Autopilot modules](attachments/02-enrolling-devices-1.png)
 
 To confirm this was successful you can go to Intune > Devices > Enrollment > Windows Autopilot > Devices 
 
-![Windows Autopilot devices list in Intune](src/intune-lab/attachments/02-enrolling-devices-2.png)
+![Windows Autopilot devices list in Intune](attachments/02-enrolling-devices-2.png)
 
 Here I can see my VM running on VMware "hardware". With this in place I'm ready to move on. 
 
@@ -59,7 +59,7 @@ I gave the following settings to create the profile:
 
 Summary of the Out-of-box experience (OOBE) settings 
 
-![Deployment profile OOBE settings summary](src/intune-lab/attachments/02-enrolling-devices-3.png)
+![Deployment profile OOBE settings summary](attachments/02-enrolling-devices-3.png)
 
 # Creating an Enrollment Status Page (ESP)
 
@@ -71,7 +71,7 @@ I gave it a name to match the Configuration Profile and set **Show app and profi
 
 Summary of ESP Settings below:
 
-![Enrollment Status Page settings summary](src/intune-lab/attachments/02-enrolling-devices-4.png)
+![Enrollment Status Page settings summary](attachments/02-enrolling-devices-4.png)
 
 The following settings are important here to make sure apps we install during setup finish before the computer is released to the user:
 

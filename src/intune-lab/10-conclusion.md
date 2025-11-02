@@ -25,7 +25,7 @@ Start-IntuneBackup -Path ./IntuneBackup
 
 Running the PowerShell commands above prompted me to sign in with my Microsoft account, then connected me to Intune and downloaded my Intune configurations into a folder on my Desktop called IntuneBackup.
 
-![IntuneBackup folder contents on desktop](src/intune-lab/attachments/10-conclusion-1.png)
+![IntuneBackup folder contents on desktop](attachments/10-conclusion-1.png)
 
 Inside the folder there were several subfolders that contain apps for devices, policies, profiles, scripts and settings. This folder should be all we need to import into a new Intune environment to get us back to where we were before. Now I just need to do another one of these for Entra. 
 
@@ -38,7 +38,7 @@ Export-Entra -Path ~\Desktop\EntraBackup -All
 
 The above PowerShell commands will create a folder on the Desktop called EntraBackup. Sign into Microsoft when the pop-up requires it.
 
-![EntraBackup exported items list](src/intune-lab/attachments/10-conclusion-2.png)
+![EntraBackup exported items list](attachments/10-conclusion-2.png)
 
 The image above shows all the items that Entra exported for us. 
 
@@ -50,7 +50,7 @@ In the real world having your users personal info in JSON files publicly hosted 
 
 One last thing I wanted to do with my project is end the free trial to make sure I don't get charged unexpectedly when the 30 day period ends. You can go to `Microsoft 365 Admin > Billing > Your products` and see a full list of every product connected to the account. You can go through them all and hit Cancel Subscription.
 
-![Microsoft 365 billing products and subscription cancellation](src/intune-lab/attachments/10-conclusion-3.png)
+![Microsoft 365 billing products and subscription cancellation](attachments/10-conclusion-3.png)
 
 I found that the default setting was for recurring billing to be turned off and to expire the trial at the end of the period which was kind of them. If you wanted to take it a step further you could also delete the tenant and Microsoft account for the trial. For now I'll leave that up in case I realize I need anything. With this now done I can consider this lab complete.
 
