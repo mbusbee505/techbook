@@ -14,7 +14,29 @@
         // Create TOC container
         const tocContainer = document.createElement('div');
         tocContainer.className = 'page-toc';
-        tocContainer.innerHTML = '<div class="toc-title">On this page</div>';
+
+        // Create header with title and toggle button
+        const tocHeader = document.createElement('div');
+        tocHeader.className = 'toc-header';
+
+        const tocTitle = document.createElement('div');
+        tocTitle.className = 'toc-title';
+        tocTitle.textContent = 'On this page';
+
+        const toggleBtn = document.createElement('button');
+        toggleBtn.className = 'toc-toggle';
+        toggleBtn.innerHTML = '×';
+        toggleBtn.setAttribute('aria-label', 'Close table of contents');
+
+        tocHeader.appendChild(tocTitle);
+        tocHeader.appendChild(toggleBtn);
+        tocContainer.appendChild(tocHeader);
+
+        // Create external toggle button (shown when TOC is collapsed)
+        const externalToggle = document.createElement('button');
+        externalToggle.className = 'toc-toggle-btn';
+        externalToggle.innerHTML = '☰';
+        externalToggle.setAttribute('aria-label', 'Open table of contents');
 
         const tocList = document.createElement('ul');
         tocList.className = 'toc-list';
@@ -44,6 +66,24 @@
 
         tocContainer.appendChild(tocList);
         document.body.appendChild(tocContainer);
+        document.body.appendChild(externalToggle);
+
+        // Toggle functionality
+        function toggleToc() {
+            tocContainer.classList.toggle('collapsed');
+            // Save state to localStorage
+            const isCollapsed = tocContainer.classList.contains('collapsed');
+            localStorage.setItem('tocCollapsed', isCollapsed);
+        }
+
+        toggleBtn.addEventListener('click', toggleToc);
+        externalToggle.addEventListener('click', toggleToc);
+
+        // Restore collapsed state from localStorage
+        const savedState = localStorage.getItem('tocCollapsed');
+        if (savedState === 'true') {
+            tocContainer.classList.add('collapsed');
+        }
 
         // Highlight current section on scroll
         let currentActive = null;
