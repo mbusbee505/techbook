@@ -70,10 +70,23 @@
 
         // Toggle functionality
         function toggleToc() {
-            tocContainer.classList.toggle('collapsed');
-            // Save state to localStorage
             const isCollapsed = tocContainer.classList.contains('collapsed');
-            localStorage.setItem('tocCollapsed', isCollapsed);
+
+            if (isCollapsed) {
+                // Show TOC
+                tocContainer.classList.remove('collapsed');
+                externalToggle.classList.remove('show');
+            } else {
+                // Hide TOC
+                tocContainer.classList.add('collapsed');
+                // Show external toggle button after TOC animation completes
+                setTimeout(function() {
+                    externalToggle.classList.add('show');
+                }, 300);
+            }
+
+            // Save state to localStorage
+            localStorage.setItem('tocCollapsed', !isCollapsed);
         }
 
         toggleBtn.addEventListener('click', toggleToc);
@@ -83,6 +96,7 @@
         const savedState = localStorage.getItem('tocCollapsed');
         if (savedState === 'true') {
             tocContainer.classList.add('collapsed');
+            externalToggle.classList.add('show');
         }
 
         // Highlight current section on scroll
