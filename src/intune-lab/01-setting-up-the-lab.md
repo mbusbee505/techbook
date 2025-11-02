@@ -198,7 +198,7 @@ Set-MgGroupLicense -GroupId $groupId `
 
 I confirmed this took effect by going to Entra > Billing > Licenses > All Products and saw 25 Assigned licenses for each product.
 
-![Assigned licenses](attachments/01-setting-up-the-lab-11.png)
+![Assigned licenses](01-setting-up-the-lab-11.png)
 
 ## Signing Up for Defender for Endpoint
 

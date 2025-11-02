@@ -1,6 +1,15 @@
-/* Hide default navigation buttons on desktop only */
+/* Show navigation buttons at bottom only on desktop */
 @media (min-width: 769px) {
+    .nav-wide-wrapper {
+        display: flex !important;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 40px;
+        padding: 20px 0;
+    }
+
     .nav-chapters {
-        display: none !important;
+        position: relative !important;
+        top: auto !important;
     }
 }
