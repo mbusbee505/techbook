@@ -8,7 +8,7 @@ Another thing I noticed on the last OOBE test was a prompt asking the user to pi
 
 Turns out you can go to `Microsoft 365 > Copilot > Settings > User Access` and set Pin Microsoft 365 Copilot App to the Windows Taskbar setting to Do Not Pin and click save.
 
-![Microsoft 365 Copilot taskbar pin settings](attachments/03-polishing-oobe-1.png)
+![Microsoft 365 Copilot taskbar pin settings](src/intune-lab/attachments/03-polishing-oobe-1.png)
 
 While I was in here I also went through and disabled Copilot across most of the tenant settings. 
 
@@ -16,17 +16,17 @@ While I was in here I also went through and disabled Copilot across most of the 
 
 Now comes the time to reboot/startup the VM and see if the changes too effect. I started it up and instead of the initial questions where setup asks me to choose a region and language, it instead immediately asked me to sign in with a Microsoft account. Here this should let my user log in with their corporate account that was made for them.
 
-![Windows OOBE Microsoft account sign-in screen](attachments/03-polishing-oobe-2.png)
+![Windows OOBE Microsoft account sign-in screen](src/intune-lab/attachments/03-polishing-oobe-2.png)
 
 After logging in I got a screen that says "Please wait while we set up your device..."
 
-![Device setup progress screen](attachments/03-polishing-oobe-3.png)
+![Device setup progress screen](src/intune-lab/attachments/03-polishing-oobe-3.png)
 
 Once set up completed it logged me into my account and showed me the desktop. I was not prompted with any Windows Hello or 365 Copilot questions.
 
-![Windows desktop after successful setup](attachments/03-polishing-oobe-4.png)
+![Windows desktop after successful setup](src/intune-lab/attachments/03-polishing-oobe-4.png)
 
 I checked settings and it shows I'm logged in with my corporate account and the name scheme took effect labeling the device as `[Serial Number]-W`. It looks like the initial run was successful. Next I want to test installing apps on the device.
 
-![Windows settings showing corporate account and device name](attachments/03-polishing-oobe-5.png)
+![Windows settings showing corporate account and device name](src/intune-lab/attachments/03-polishing-oobe-5.png)
 

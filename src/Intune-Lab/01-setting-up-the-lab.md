@@ -5,14 +5,14 @@ First things first, I had to sign up for the [Intune Free Trial](https://aka.ms/
 The trial allows for 25 users but we get all the same features as the paid version of the environment. 
 
 
-![Setting up Intune screenshot 1](attachments/01-setting-up-the-lab-1.png)
+![Setting up Intune screenshot 1](src/intune-lab/attachments/01-setting-up-the-lab-1.png)
 
 
 # Nuke The Security Defaults
 
 Next up I needed to turn off the Entra security defaults so theres room for my conditional access policies to take effect without conflict. To do this I went to Entra > Overview > Properties > Manage security defaults and set it to `Disabled (not recommended)`. 
 
-![Security defaults settings](attachments/01-setting-up-the-lab-2.png)
+![Security defaults settings](src/intune-lab/attachments/01-setting-up-the-lab-2.png)
 
 When asked for the reason, I selected "My organization plans to use Conditional Access". 
 
@@ -30,13 +30,13 @@ Every good organization needs at least a few users, so to make things seem more 
 
 To get to the user upload I went to Entra > Users > Bulk Operations > Bulk Create and selected my file in the search field. 
 
-![Bulk create users](attachments/01-setting-up-the-lab-3.png)
+![Bulk create users](src/intune-lab/attachments/01-setting-up-the-lab-3.png)
 
 If you need a fresh template for new users you can download one provided by Microsoft here as well.
 
 To see that it worked I refreshed the page and went to the All Users section.
 
-![All users list](attachments/01-setting-up-the-lab-4.png)
+![All users list](src/intune-lab/attachments/01-setting-up-the-lab-4.png)
 
 # Setting Up Security Groups
 
@@ -56,7 +56,7 @@ Connect-MgGraph -Scopes "Group.ReadWrite.All" -TenantID "<Your Tenant ID>"
 
 The Tenant ID can be found by going to Entra > Overview
 
-![Tenant ID location](attachments/01-setting-up-the-lab-5.png)
+![Tenant ID location](src/intune-lab/attachments/01-setting-up-the-lab-5.png)
 
 After running this command for the first time like I was, you may have a pop-up browser window asking for permission to connect. Make sure to give it the access so you can continue running commands.
 
@@ -68,7 +68,7 @@ Get-MgContext
 
 It should output some info about your Tenant like below. If this doesn't work you will need to check your connect command again and ensure you are using the right Tenant ID.
 
-![Get-MgContext output](attachments/01-setting-up-the-lab-6.png)
+![Get-MgContext output](src/intune-lab/attachments/01-setting-up-the-lab-6.png)
 
 Once I confirmed connection I ran the command below which added the following security groups to Entra. Since its a dynamic group, users and devices will be added to them automatically based on their properties.
 
@@ -121,19 +121,19 @@ foreach ($kv in $dynamicMap.GetEnumerator()) {
 }
 ```
 
-![PowerShell group creation success](attachments/01-setting-up-the-lab-7.png)
+![PowerShell group creation success](src/intune-lab/attachments/01-setting-up-the-lab-7.png)
 
 Once I saw the success screen come through I went to Entra > Groups > All Groups and found the groups added via PowerShell.
 
-![All groups view](attachments/01-setting-up-the-lab-8.png)
+![All groups view](src/intune-lab/attachments/01-setting-up-the-lab-8.png)
 
 According to Microsoft, it can take up to 24 hours for these groups to apply to users. While I waited for this to end I moved on to setting up a dynamic device group for Windows 11 devices.
 
-![Dynamic device group](attachments/01-setting-up-the-lab-9.png)
+![Dynamic device group](src/intune-lab/attachments/01-setting-up-the-lab-9.png)
 
 In the `Add dynamic query` page I added the following settings:
 
-![Dynamic query settings](attachments/01-setting-up-the-lab-10.png)
+![Dynamic query settings](src/intune-lab/attachments/01-setting-up-the-lab-10.png)
 
 # Assigning Entra+Intune Licenses
 
@@ -198,7 +198,7 @@ Set-MgGroupLicense -GroupId $groupId `
 
 I confirmed this took effect by going to Entra > Billing > Licenses > All Products and saw 25 Assigned licenses for each product.
 
-![Assigned licenses](attachments/01-setting-up-the-lab-11.png)
+![Assigned licenses](src/intune-lab/attachments/01-setting-up-the-lab-11.png)
 
 # Signing Up for Defender for Endpoint
 
@@ -216,7 +216,7 @@ You will next need to go to the Defender portal and connect Defender to Intune o
 
 On the Intune side you will need to go to `Intune > Tenant Administration > Connectors and tokens > Microsoft Defender for Endpoint` and make sure all devices are set to connect to MDE.
 
-![Defender for Endpoint connection](attachments/01-setting-up-the-lab-13.png)
+![Defender for Endpoint connection](src/intune-lab/attachments/01-setting-up-the-lab-13.png)
 
 These being connected ensures Defender for Endpoint is able to connect to the Intune devices.
 

@@ -13,15 +13,15 @@ I will also need to make sure my [[2. Enrolling Devices#Creating an Enrollment S
 
 To create a LOB app you basically just need to find the .msi version of the app's installer and load it into Intune. Just go to `Intune > Apps > All apps > Create > App type > Line-of-business app`.
 
-![Intune app creation menu showing line-of-business option](attachments/04-installing-apps-1.png)
+![Intune app creation menu showing line-of-business option](src/intune-lab/attachments/04-installing-apps-1.png)
 
 Next it will ask to upload the file you can select it from your computer locally after downloading it from the internet or wherever else.
 
-![App package file upload screen](attachments/04-installing-apps-2.png)
+![App package file upload screen](src/intune-lab/attachments/04-installing-apps-2.png)
 
 In my case I went to [Zoom's Downloads for IT Admins](https://zoom.us/download/admin), selected the Download (ARM64), and downloaded it to my computer. I then went back to Intune and selected this file for the upload.
 
-![Zoom installer file selected for upload](attachments/04-installing-apps-3.png)
+![Zoom installer file selected for upload](src/intune-lab/attachments/04-installing-apps-3.png)
 
 > Keep in mind I only chose ARM due to the VM used for testing. In another environment you would want to consider the architecture and OS requirements for your app/device compatibility.
 
@@ -39,7 +39,7 @@ I also needed to set the App install context to `Device` so that it automaticall
 
 On the Assignments page I chose the `All-Windows-11` group to receive this install. This is where I could consider separating app availability by group membership but for now I will allow it on all Windows 11 devices.
 
-![Zoom app configuration settings in Intune](attachments/04-installing-apps-4.png)
+![Zoom app configuration settings in Intune](src/intune-lab/attachments/04-installing-apps-4.png)
 
 # Win32 App - Google Chrome
 
@@ -103,7 +103,7 @@ With all of that in place I hit Create and let Intune build the app for me and e
 
 To create a Microsoft Store app you just need to go to `Intune > Apps > All Apps > Create > App type > Microsoft Store app (new)` and searched for "GlobalProtect" in the search bar.
 
-![Microsoft Store app search for GlobalProtect](attachments/04-installing-apps-5.png)
+![Microsoft Store app search for GlobalProtect](src/intune-lab/attachments/04-installing-apps-5.png)
 
 When I selected this it auto-populated most of the information for me in the App Information settings. I did however change the Install behavior to `system` to ensure this would apply to all users on the device.
 
@@ -131,11 +131,11 @@ On the assignments page I set the install to run for all devices in the All-Wind
 
 After all the apps were set up in the portal I restarted my VM OOBE snapshot to start fresh. I let it run for a few minutes and saw the Enrollment Status Page say Installed Apps: 4 out of 4. I was then taken to the device desktop where I confirmed all apps installed.
 
-![Enrollment Status Page showing 4 out of 4 apps installed](attachments/04-installing-apps-6.png)
+![Enrollment Status Page showing 4 out of 4 apps installed](src/intune-lab/attachments/04-installing-apps-6.png)
 
 You can also confirm the apps were installed from the Intune portal by going to  `Intune > Devices > Windows > [Device Name] > Managed Apps`.
 
-![Managed apps list in Intune portal for device](attachments/04-installing-apps-7.png)
+![Managed apps list in Intune portal for device](src/intune-lab/attachments/04-installing-apps-7.png)
 
 # Bonus: VMware Tools (Win32 App)
 
