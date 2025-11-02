@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/intune-lab/02-enrolling-devices.md",
+                "file": "src/how-to/proxmox-iso-dump.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "02-enrolling-devices"
+              "title": "proxmox-iso-dump"
             }
           }
         ]
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/intune-lab/02-enrolling-devices.md",
+                "file": "src/how-to/proxmox-iso-dump.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 02-enrolling-devices"
+              "title": "Outline of proxmox-iso-dump"
             }
           }
         ],
@@ -172,6 +172,19 @@
   },
   "active": "6d17428924eda3f0",
   "lastOpenFiles": [
+    "src/how-to/how-to.md",
+    "src/security-lab/malware-sandbox.md",
+    "src/security-lab/introduction.md",
+    "src/intune-lab/introduction.md",
+    "src/intune-lab/10-conclusion.md",
+    "src/intune-lab/09-monitor-and-report.md",
+    "src/intune-lab/08-enrolling-androids.md",
+    "src/intune-lab/07-enrolling-iphones.md",
+    "src/intune-lab/06-securing-devices.md",
+    "src/intune-lab/05-creating-update-rings.md",
+    "src/intune-lab/04-installing-apps.md",
+    "src/intune-lab/03-polishing-oobe.md",
+    "src/intune-lab/02-enrolling-devices.md",
     "src/intune-lab/01-setting-up-the-lab.md",
     "book/Unpublished/Archived/Lets Defend/Shellshock Attack/attachments/image-2.png",
     "book/Unpublished/Archived/Lets Defend/Shellshock Attack/attachments/01-setting-up-the-lab-1.png",
@@ -195,16 +208,6 @@
     "book/Unpublished/Archived/Lets Defend/IcedID Malware Family/attachments",
     "src/how-to/proxmox-iso-dump.md",
     "src/README.md",
-    "src/how-to/how-to.md",
-    "src/security-lab/introduction.md",
-    "src/security-lab/malware-sandbox.md",
-    "src/intune-lab/07-enrolling-iphones.md",
-    "src/intune-lab/06-securing-devices.md",
-    "src/intune-lab/05-creating-update-rings.md",
-    "src/intune-lab/04-installing-apps.md",
-    "src/intune-lab/03-polishing-oobe.md",
-    "src/intune-lab/02-enrolling-devices.md",
-    "src/intune-lab/introduction.md",
     "src/intune-lab-temp/introduction.md",
     "src/intune-lab-temp/10-conclusion.md",
     "src/intune-lab-temp/09-monitor-and-report.md",
@@ -215,8 +218,6 @@
     "src/intune-lab-temp/03-polishing-oobe.md",
     "src/intune-lab-temp/04-installing-apps.md",
     "src/intune-lab-temp/02-enrolling-devices.md",
-    "src/intune-lab-temp/01-setting-up-the-lab.md",
-    "src/SUMMARY.md",
     "src/Unpublished/Malware.canvas",
     "src/Unpublished/Untitled.canvas"
   ]

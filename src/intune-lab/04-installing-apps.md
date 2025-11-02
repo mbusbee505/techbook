@@ -1,4 +1,4 @@
-# Installation Methods
+## Installation Methods
 
 I wanted to test a few commonly used apps that also showcase the different methods of installing apps with Intune. I decided on the following:
 
@@ -9,7 +9,7 @@ I wanted to test a few commonly used apps that also showcase the different metho
 
 I will also need to make sure my [[2. Enrolling Devices#Creating an Enrollment Status Page (ESP)|Enrollment Status Page]] settings block the user from accessing the device until the installations are complete.
 
-# Line-of-business (LOB) - Zoom Workplace
+## Line-of-business (LOB) - Zoom Workplace
 
 To create a LOB app you basically just need to find the .msi version of the app's installer and load it into Intune. Just go to `Intune > Apps > All apps > Create > App type > Line-of-business app`.
 
@@ -41,7 +41,7 @@ On the Assignments page I chose the `All-Windows-11` group to receive this insta
 
 ![Zoom app configuration settings in Intune](attachments/04-installing-apps-4.png)
 
-# Win32 App - Google Chrome
+## Win32 App - Google Chrome
 
 If the app developer does not provide an MSI version of the installer and you are forced to use an EXE or some form of script, you can wrap it in a Win32 App to make it usable within Intune. This can be done by using Microsoft's [Content-Prep-Tool](https://github.com/Microsoft/Microsoft-Win32-Content-Prep-Tool) which is a Windows only tool for creating Win32 Apps. 
 
@@ -99,7 +99,7 @@ For Assignments I selected this app be required for the All-Windows-11 group to 
 
 With all of that in place I hit Create and let Intune build the app for me and everything seemed good to go.
 
-# Microsoft Store app - GlobalProtect VPN
+## Microsoft Store app - GlobalProtect VPN
 
 To create a Microsoft Store app you just need to go to `Intune > Apps > All Apps > Create > App type > Microsoft Store app (new)` and searched for "GlobalProtect" in the search bar.
 
@@ -108,7 +108,7 @@ To create a Microsoft Store app you just need to go to `Intune > Apps > All Apps
 When I selected this it auto-populated most of the information for me in the App Information settings. I did however change the Install behavior to `system` to ensure this would apply to all users on the device.
 
 On the next page I assigned this to be required for the All-Windows-11 group then hit Create to let Intune build this for me. 
-# Microsoft 365 Apps for Windows 11
+## Microsoft 365 Apps for Windows 11
 
 Microsoft Office 365 Apps are another install that will often be requested in corporate enterprise environments. Microsoft makes it easy to install this by offering the Office 365 installer as a built in option in the Intune Apps Create menu. Just go to `Intune > Apps > All Apps > Create > App Type > Microsoft 365 Apps > Windows 10 and later` to start the creation wizard.
 
@@ -127,7 +127,7 @@ For the App Setup Information I kept the defaults, feel free to tweak as needed.
 
 On the assignments page I set the install to run for all devices in the All-Windows-11 group and clicked Create so Intune could start building the app.
 
-# Testing
+## Testing
 
 After all the apps were set up in the portal I restarted my VM OOBE snapshot to start fresh. I let it run for a few minutes and saw the Enrollment Status Page say Installed Apps: 4 out of 4. I was then taken to the device desktop where I confirmed all apps installed.
 
@@ -137,7 +137,7 @@ You can also confirm the apps were installed from the Intune portal by going to 
 
 ![Managed apps list in Intune portal for device](attachments/04-installing-apps-7.png)
 
-# Bonus: VMware Tools (Win32 App)
+## Bonus: VMware Tools (Win32 App)
 
 I decided it would be easier on me if I could have my test devices automatically install VMware Tools. Since the installer only comes in the form of an EXE I had to do it as a Win32 App. 
 

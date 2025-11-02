@@ -1,10 +1,10 @@
-# Introduction to Security
+## Introduction to Security
 
 One benefit of managing devices with Intune is that it gives you control of security features across the devices it manages and allows IT admins the ability to fine-tune their environments to meet their security and compliance needs. There are several methods available such as security baselines, defender for endpoint, compliance policies, conditional access, etc. that can be used to our benefit.
 
 Every organization will have different concerns when it comes to data governance, risk, compliance, regulation, and other requirements make demands on how things can be structured. Since there is no one-size-fits-all solution to security, this section is meant as more of a walkthrough of options available within Intune rather than a comprehensive list of air-tight security measures. As always with security, consider your own threat model and how it applies to the resources available. 
 
-# Security Baselines
+## Security Baselines
 
 Conveniently, Microsoft created a way for administrators to change granular security settings that can be saved as templates called Security Baselines. 
 
@@ -21,7 +21,7 @@ Once you save this baseline the security settings chosen in Configuration Settin
 
 We could also consider, for testing purposes, limiting the rollout of this Security Baseline to our IT pilot users similar to howe we did with the Update Rings. This way we could ensure the baseline works correctly for non-critical users before pushing it out to all users.
 
-# Defender for Endpoint
+## Defender for Endpoint
 
 Microsoft Defender for Endpoint can be used as an Endpoint Detection and Response solution within your environment. You can create policies with Intune that onboard MDE to each device so you have visibility into the security of your devices. 
 
@@ -55,7 +55,7 @@ It took some time for the settings to sync but after a bit I came back and saw I
 
 This means that Intune is successfully connected to MDE and onboarded to the EDR. Intune is now able to push security profiles to devices it manages as well as pull status reports from them. 
 
-# Compliance Policies
+## Compliance Policies
 
 Compliance policies in Intune can be used as a way to enforce that certain security features are required on devices assigned to the policy. For instance you can require devices use BitLocker and Secure Boot to be marked compliant. Compliance policies can also send emails to the user that has a device marked non-compliant. 
 
@@ -111,7 +111,7 @@ I will assign this policy to the All-Windows-11 group and finish creating the po
 
 This means we will need to move on to the next section where we will create a Conditional Access policy in Entra and connect it to the compliance policy.
 
-# Conditional Access Policy
+## Conditional Access Policy
 
 Conditional Access Policies can be set in Entra and be used for enforcing the Compliance Policy we created in the previous step. To create the policy go to `Entra > Conditional Access > Create new policy` and fill out the fields like below:
 

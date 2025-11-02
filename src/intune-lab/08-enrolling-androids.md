@@ -1,8 +1,8 @@
-# Benefits of Managed Androids
+## Benefits of Managed Androids
 
 Intune allows you to enroll and manage other devices beyond just Windows 11. With some additional setup, you can connect Apple iPhone and Google Android devices. In this section I will show how to connect a Managed Google Play account to Intune. 
 
-# Managed Google Play
+## Managed Google Play
 
 To make the connection just go to `Intune > Devices > Enrollment >  Android > Managed Google Play` which will open a blade allowing you to give permission to Intune to connect to Google Play then a button to log in with a Google account.
 
@@ -20,7 +20,7 @@ If everything worked correctly you should be able to go back to the Managed Goog
 
 ![Successful Managed Google Play connection status](attachments/08-enrolling-androids-4.png)
 
-# Testing Enrollment
+## Testing Enrollment
 
 To test enrollment I grabbed a virtual android install from the Android Studio and once it finished setting up I went to the Google Play Store and downloaded the Intune Company Portal app. 
 

@@ -1,8 +1,8 @@
-# Removing Windows Hello
+## Removing Windows Hello
 
 When I ran my first OOBE test my user was prompted with the requirement to setup Windows Hello. I want to turn this off entirely so I found going to `Intune > Devices > Enrollment > Windows Hello for Business` and set Configure Windows Hello for Business to Disabled and clicked Save.
 
-# Removing 365 Copilot Pin Prompt
+## Removing 365 Copilot Pin Prompt
 
 Another thing I noticed on the last OOBE test was a prompt asking the user to pin Microsoft 365 Copilot to their taskbar. I do not want users to have to worry about this so I looked into how to disable it in the portal. 
 
@@ -12,7 +12,7 @@ Turns out you can go to `Microsoft 365 > Copilot > Settings > User Access` and s
 
 While I was in here I also went through and disabled Copilot across most of the tenant settings. 
 
-# Testing Setup
+## Testing Setup
 
 Now comes the time to reboot/startup the VM and see if the changes too effect. I started it up and instead of the initial questions where setup asks me to choose a region and language, it instead immediately asked me to sign in with a Microsoft account. Here this should let my user log in with their corporate account that was made for them.
 

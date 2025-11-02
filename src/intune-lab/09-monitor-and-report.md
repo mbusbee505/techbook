@@ -1,8 +1,8 @@
-# What can I monitor?
+## What can I monitor?
 
 Intune provides several ways to monitor devices it manages. You can make configuration and compliance reports, you can view deployment history or endpoint antivirus reports, or even drill down into a specific device for more information. When in doubt, poke around and take a look at anything that says monitoring and reporting.
 
-# Compliance Reports
+## Compliance Reports
 
 Go to `Intune > Reports > Device compliance` to view a summary of device compliance information. If nothing shows here you may need to click the "Generate" button to refresh the data on the page.
 
@@ -26,7 +26,7 @@ Options include:
 - Policy compliance
 - Windows hardware attestation report
 
-# Configuration Reports
+## Configuration Reports
 
 On the `Intune > Reports > Device configuration` screen you can see a summary of configuration policies and their success/failure device totals.
 
@@ -34,7 +34,7 @@ On the `Intune > Reports > Device configuration` screen you can see a summary of
 
 
 
-# Microsoft Defender Antivirus
+## Microsoft Defender Antivirus
 
 On the `Intune > Reports > Microsoft Defender Antivirus` to see a summary of Antivirus scans on devices managed by Intune. It will give a breakdown of number of devices by status such as clean, pending, critical etc.
 
@@ -44,7 +44,7 @@ In the Reports section of this page you can also get a report of detected malwar
 
 ![Detected malware report on endpoints](attachments/09-monitor-and-report-6.png)
 
-# Device and App Monitoring
+## Device and App Monitoring
 
 Both `Intune > Devices` and `Intune > Apps` have their own page called Monitoring that has a list of reports specific to their category that can be generated to give teams more insight.
 

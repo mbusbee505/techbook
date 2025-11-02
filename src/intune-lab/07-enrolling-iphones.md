@@ -1,10 +1,10 @@
-# Benefits of Managed iPhones
+## Benefits of Managed iPhones
 
 Intune allows you to enroll and manage other devices beyond just Windows 11. With some additional setup, you can connect Apple iPhone and Google Android devices. In this section I will show how to install an Apple Push Certificate so their servers are able to connect with Intune. 
 
 When iPhones get enrolled through the Intune Company Portal, IT teams gain visibility into the device setting such as hardware, OS version, jailbreak status, and compliance status. Intune also can control settings on the device like passcode, Wi-Fi, certificate requirements as well as OS update deferral capability. Intune also has the ability to protect apps on the device with a MAM policy to prevent actions such as copy/paste from a managed app to an unmanaged one. Intune can also take action in the event the device is lost or stolen: full/selective wipe, lost-mode, lock-screen PIN reset, etc.
 
-# Apple MDM Push Certificate
+## Apple MDM Push Certificate
 
 An Apple MDM Push Certificate is required to create a handshake between Intune and Apple's Push Notification (APN) service. It its what builds the trust relationship between the individual device and the Intune server. Every MDM command we order through Intune must pass through APN to reach the devices.
 
@@ -46,7 +46,7 @@ Once finished you should immediately see a successful connection on the Apple MD
 
 ![Successful Apple MDM Push Certificate connection](attachments/07-enrolling-iphones-8.png)
 
-# Company Portal App
+## Company Portal App
 
 The Company Portal app is one way to enroll devices on iPhone into the Intune. Users will need to download an app called Intune Company Portal from the Apple App Store and sign in using their organization login. Since this enrollment method requires user's devices to already be setup to access the App Store, Company Portal is better as an option for BYOD devices or those that require fewer restrictions.
 
@@ -58,7 +58,7 @@ To setup the Company Portal go to `Intune > Apps > iOS/iPadOS apps > Create > iO
 
 For App Information I will keep the defaults the app provides. On the Assignments page I will apply this app to members of the All-Employees group under the "Available for enrolled devices" section.
 
-# Testing Enrollment
+## Testing Enrollment
 
 It seems the only way to test an iPhone enrollment is to grab a device and download the Company Portal app. I tried running an iPhone simulator through Xcode but it does not allow app installs from the app store. Instead, enjoy these photos from my phone:
 

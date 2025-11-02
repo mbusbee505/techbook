@@ -1,4 +1,4 @@
-# About the Project
+## About the Project
 
 The **Intune‑Lab** exists to give me (and anyone who follows along) hands‑on, end‑to‑end practice with **Intune**, **Autopilot**, **Entra ID**, **Defender for Endpoint**, and adjacent Microsoft 365 technologies.  The focus is on building a *production‑style* lab that:
 
@@ -11,7 +11,7 @@ To keep things realistic, I asked ChatGPT to generate simulation data—a 25‑u
 > **Quick links**  
 > • **Repo:** [`mbusbee505/Intune-Lab`](https://github.com/mbusbee505/Intune-Lab)  
 > • **User CSV:** [`busbeecorp_user_import.csv`](https://raw.githubusercontent.com/mbusbee505/IntuneLab/main/busbeecorp_user_import.csv)
-# Lab Outline
+## Lab Outline
 
 1. **Set up the lab environment**
 	1. Sign up for free trials
@@ -48,20 +48,20 @@ To keep things realistic, I asked ChatGPT to generate simulation data—a 25‑u
 	2. Company Portal login
 	3. Deploy Intune apps from Managed Play Store
 
-# Helpful Links
+## Helpful Links
 
-## Admin Portals
+### Admin Portals
 
 - **Intune admin center:** <https://intune.microsoft.com>
 - **Entra admin center:** <https://entra.microsoft.com>
 - **Defender portal:** <https://security.microsoft.com>
 
-## Lab Resources
+### Lab Resources
 
 - **GitHub repo:** <https://github.com/mbusbee505/IntuneLab>
 - **Users CSV:** <https://raw.githubusercontent.com/mbusbee505/IntuneLab/main/busbeecorp_user_import.csv>
 
-## Microsoft 365 Free Trials
+### Microsoft 365 Free Trials
 
 - **Intune free trial:** <https://aka.ms/IntuneTrial>
 - **Entra ID free trial:** <https://aka.ms/EntraSuiteTrial>
