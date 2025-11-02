@@ -133,7 +133,7 @@ According to Microsoft, it can take up to 24 hours for these groups to apply to 
 
 In the `Add dynamic query` page I added the following settings:
 
-![Dynamic query settings](attachments/01-setting-up-the-lab-10.png)
+![Dynamic query settings](01-setting-up-the-lab-10.png)
 
 # Assigning Entra+Intune Licenses
 

@@ -25,7 +25,7 @@
 
         const toggleBtn = document.createElement('button');
         toggleBtn.className = 'toc-toggle';
-        toggleBtn.innerHTML = '×';
+        toggleBtn.innerHTML = '☰';
         toggleBtn.setAttribute('aria-label', 'Close table of contents');
 
         tocHeader.appendChild(tocTitle);
