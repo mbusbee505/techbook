@@ -1,4 +1,4 @@
-# Signing Up for Intune
+## Signing Up for Intune
 
 First things first, I had to sign up for the [Intune Free Trial](https://aka.ms/IntuneTrial), provided an email address and a few other pieces of info.
 
@@ -8,7 +8,7 @@ The trial allows for 25 users but we get all the same features as the paid versi
 ![Setting up Intune screenshot 1](attachments/01-setting-up-the-lab-1.png)
 
 
-# Nuke The Security Defaults
+## Nuke The Security Defaults
 
 Next up I needed to turn off the Entra security defaults so theres room for my conditional access policies to take effect without conflict. To do this I went to Entra > Overview > Properties > Manage security defaults and set it to `Disabled (not recommended)`. 
 
@@ -16,7 +16,7 @@ Next up I needed to turn off the Entra security defaults so theres room for my c
 
 When asked for the reason, I selected "My organization plans to use Conditional Access". 
 
-# Signing Up for Entra ID
+## Signing Up for Entra ID
 
 You will need to use [this page](https://signup.microsoft.com/get-started/signup?products=2ebf8ffa-7de1-4d14-9b15-238f5ca77671&mproducts=CFQ7TTC0NZT8:0001&fmproducts=CFQ7TTC0NZT8:0001&ali=1) to sign up for Entra ID and use the same Microsoft account as you used for the Intune trial. Once this is complete you will be able to use Entra in your environment. 
 
@@ -24,7 +24,7 @@ Before you begin you may need to assign a license to your user. If this happens 
 
 Next we will move on to adding more users for our organization and ensure they have licenses. 
 
-# Uploading Corporate Workforce
+## Uploading Corporate Workforce
 
 Every good organization needs at least a few users, so to make things seem more real I'm going to upload to Entra a [CSV file of simulated User data](https://raw.githubusercontent.com/mbusbee505/IntuneLab/refs/heads/main/busbeecorp_user_import.csv) that makes up my fake company workforce.
 
@@ -38,7 +38,7 @@ To see that it worked I refreshed the page and went to the All Users section.
 
 ![All users list](attachments/01-setting-up-the-lab-4.png)
 
-# Setting Up Security Groups
+## Setting Up Security Groups
 
 With Microsoft Azure you can do most things through the web portal online or using PowerShell. When you want to solve problems at scale or do something in an automated way its sometimes better to use PowerShell. I wanted a way to automate the group creation in this way so I tried with a PowerShell command.
 
@@ -135,7 +135,7 @@ In the `Add dynamic query` page I added the following settings:
 
 ![Dynamic query settings](01-setting-up-the-lab-10.png)
 
-# Assigning Entra+Intune Licenses
+## Assigning Entra+Intune Licenses
 
 I discovered in order to get the Automatic Enrollment to work on Intune during the OOBE setup I needed each user to have an Entra and Intune license assigned. Since I had only signed up for the Intune Trial so far, I had to go back and make sure to sign up for an Entra ID Free Trial as well under the same Microsoft account. 
 
@@ -200,7 +200,7 @@ I confirmed this took effect by going to Entra > Billing > Licenses > All Produc
 
 ![Assigned licenses](attachments/01-setting-up-the-lab-11.png)
 
-# Signing Up for Defender for Endpoint
+## Signing Up for Defender for Endpoint
 
 First, Go to the sign up page for [Microsoft Defender for Endpoint P2 Free Trial](https://www.microsoft.com/en-us/security/business/endpoint-security/microsoft-defender-endpoint) and sign up using the same login you used for the rest of the lab. Complete the sign up flow, then go to `Microsoft 365 Admin Center > Billing > Licenses` page and click Microsoft Defender for Endpoint P2. In this page click `Groups > Assign Licenses` and assign them to the All-Employees group.
 

@@ -1,4 +1,4 @@
-# Getting the Hardware Hash
+## Getting the Hardware Hash
 
 In a real world scenario hardware hashes for each device would be provided to the organization by the device manufacturer, but since I can't do that I had to fake it a bit. 
 
@@ -27,7 +27,7 @@ To confirm this was successful you can go to Intune > Devices > Enrollment > Win
 
 Here I can see my VM running on VMware "hardware". With this in place I'm ready to move on. 
 
-# Creating Autopilot Device Group
+## Creating Autopilot Device Group
 
 I created a Dynamic Security group called All-Registered-Autopilot that will grab all devices registered to Autopilot. This will be the group I assign the Deployment Profile and Enrollment Status Page to.
 
@@ -43,7 +43,7 @@ Edit Dynamic Query > Configuration Rules
 (device.devicePhysicalIds -any (_ -startsWith "[ZTDId]"))
 ```
 
-# Creating The Deployment Profile
+## Creating The Deployment Profile
 
 My goal is to get a Windows 11 device to the point it could be purchased from the manufacturer, sent to a new employee, then the employee can use their corporate login credentials to sign in and set up the laptop. The configuration should take care of all setup and installs and leave as little as possible to the user.
 
@@ -61,7 +61,7 @@ Summary of the Out-of-box experience (OOBE) settings
 
 ![Deployment profile OOBE settings summary](attachments/02-enrolling-devices-3.png)
 
-# Creating an Enrollment Status Page (ESP)
+## Creating an Enrollment Status Page (ESP)
 
 Next I needed to create an Enrollment Status Page to prevent the user from affecting the device setup and also provide them visibility into the setup status.
 
@@ -77,7 +77,7 @@ The following settings are important here to make sure apps we install during se
 
 - **Block device use until all apps and profiles are installed**: Yes
 - **Block device use until required apps are installed if they are assigned to the user/device**: All
-# Testing Out-of-box experience (OOBE)
+## Testing Out-of-box experience (OOBE)
 
 With the command prompt still open on the Windows VM, I ran the command below to shutdown the device and set it back to OOBE mode.
 

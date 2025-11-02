@@ -1,3 +1,4 @@
+## Security Lab Goals
 
 I wanted to build this security lab as a place I can learn and practice security concepts. I needed a place I could safely download and detonate malware and practice detections. Since I already have a Proxmox Virtual Environment setup I decided I would use it as the basis of my lab.
 

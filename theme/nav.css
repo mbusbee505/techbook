@@ -1,0 +1,6 @@
+/* Hide default navigation buttons on desktop only */
+@media (min-width: 769px) {
+    .nav-chapters {
+        display: none !important;
+    }
+}

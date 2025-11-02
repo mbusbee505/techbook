@@ -5,7 +5,7 @@ src = "src"
 title = "busbeetech.com"
 
 [output.html]
-additional-css = ["theme/toc.css"]
+additional-css = ["theme/toc.css", "theme/nav.css"]
 additional-js = ["theme/toc.js", "theme/sidebar.js"]
 favicon = "favicon.ico"
 
