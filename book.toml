@@ -5,6 +5,10 @@ src = "src"
 title = "techbook"
 
 [output.html]
-additional-css = []
-additional-js = []
+additional-css = ["theme/toc.css"]
+additional-js = ["theme/toc.js"]
 favicon = "favicon.ico"
+
+[output.html.fold]
+enable = true
+level = 0

@@ -30,7 +30,7 @@ Options include:
 
 On the `Intune > Reports > Device configuration` screen you can see a summary of configuration policies and their success/failure device totals.
 
-![Device configuration summary with policy status](attachments/09-monitor-and-report-4.png)
+![Device configuration summary with policy status](src/intune-lab/attachments/09-monitor-and-report-4.png)
 
 
 
