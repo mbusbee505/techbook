@@ -6,7 +6,7 @@ What is the date the file was created?
 
 I unzipped the malicious file and uploaded it to VirusTotal for analysis. To find the date the file was created I opened the Details tab and looked at the History section.
 
-![image](src/lets-defend/Remote%20Working/attachments/image.png)
+![image](attachments/image.png)
 
 This gave me the time of 2020-02-01 18:28:07 UTC
 
@@ -19,7 +19,7 @@ With what name is the file detected by Bitdefender antivirus?
 
 I moved on to the Detection tab and in the Security Vendor's Analysis section I found BitDefender's results.
 
-![image 1](src/lets-defend/Malicious%20Doc/attachments/image-1.png)
+![image 1](attachments/image-1.png)
 
 Answer:
 
@@ -39,7 +39,7 @@ What is the sha-256 hash of the file with emf extension it drops?
 
 I found the answer to this by going to the Associations tab and looking at the Dropped Files tab. It was listed as a "Windows Enhanced Metafile" file type.
 
-![image 2](src/lets-defend/Malicious%20Doc/attachments/image-2.png)
+![image 2](attachments/image-2.png)
 
 Answer:
 
@@ -50,7 +50,7 @@ What is the exact URL to which the relevant file goes to download spyware?
 
 I found the answer to this in the Behavior tab under the HTTP Requests section.
 
-![image 3](src/lets-defend/Malicious%20Doc/attachments/image-3.png)
+![image 3](attachments/image-3.png)
 
 Answer:
 

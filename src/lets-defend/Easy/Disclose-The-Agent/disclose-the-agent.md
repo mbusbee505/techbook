@@ -13,13 +13,13 @@ frame matches "[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+"
 
 This gave me six packets with results.
 
-![image-1](src/lets-defend/Disclose%20The%20Agent/attachments/image-1.png)
+![image-1](attachments/image-1.png)
 
 The last result shows a message sent between "Ann Dercover" using the email address `sneakyg33k@aol.com` and an anonymous user with the email address `mistersecretx@aol.com`. 
 
 The content of the message implies the two have an intimate relationship.
 
-![image-2](src/lets-defend/Disclose%20The%20Agent/attachments/image-2.png)
+![image-2](attachments/image-2.png)
 
 This is likely the secret boyfriend.
 
@@ -37,13 +37,13 @@ ip.src == 92.168.1.159 && smtp
 
 I then discovered a result that appeared to be a Base64 encoded password:
 
-![image-3](src/lets-defend/Disclose%20The%20Agent/attachments/image-3.png)
+![image-3](attachments/image-3.png)
 
 To decode the data I right clicked the packet, and selected `Protocol Preferences` > `Decode Base64 encoded AUTH parameters` to ensure it was checked. This would decode the password for me.
 
-![image-4](src/lets-defend/Disclose%20The%20Agent/attachments/image-4.png)
+![image-4](attachments/image-4.png)
 
-![image-5](src/lets-defend/Disclose%20The%20Agent/attachments/image-5.png)
+![image-5](attachments/image-5.png)
 
 Answer:
 
@@ -60,7 +60,7 @@ The full display filter used is below:
 ip.src == 192.168.1.159 && frame matches "\b[\w,\s-]+\.[A-Za-z0-9]{1,5}\b"
 ```
 
-![image-6](src/lets-defend/Disclose%20The%20Agent/attachments/image-6.png)
+![image-6](attachments/image-6.png)
 
 This led me to a packet that looked a little suspicious. Upon closer inspection I found the word document Ann sent to her secret boyfriend.
 
@@ -73,25 +73,25 @@ In what country will Ann meet with her secret lover?
 
 I had hoped there was a quick way to just download the attachment found in the email but I could not find one. Instead I ended up downloading the Email file connected to the attachment instead. I did this by going to `File` > `Export Objects` > `IMF`.
 
-![image-7](src/lets-defend/Disclose%20The%20Agent/attachments/image-7.png)
+![image-7](attachments/image-7.png)
 
 This brought up all IMF objects found within the PCAP file which includes the `.eml` file I needed.
 
-![image-8](src/lets-defend/Disclose%20The%20Agent/attachments/image-8.png)
+![image-8](attachments/image-8.png)
 
 I saved this file to the same folder as the challenge file. Next I needed to open the email to get to the attachment. After researching a few different ways I discovered the easiest thing to do was to open the email in Thunderbird, then save the attachment.
 
-![image-9](src/lets-defend/Disclose%20The%20Agent/attachments/image-9.png)
+![image-9](attachments/image-9.png)
 
-![image-10](src/lets-defend/Disclose%20The%20Agent/attachments/image-10.png)
+![image-10](attachments/image-10.png)
 
 I saved the file to the challenge directory, then opened it in the pre-installed LibreOffice.
 
-![image-11](src/lets-defend/Disclose%20The%20Agent/attachments/image-11.png)
+![image-11](attachments/image-11.png)
 
 The document quickly gave me my answer. It appears they are meeting in Mexico.
 
-![image-12](src/lets-defend/Disclose%20The%20Agent/attachments/image-12.png)
+![image-12](attachments/image-12.png)
 
 Answer:
 
@@ -106,7 +106,7 @@ To get the MD5 hash value I opened the directory in the terminal and ran the fol
 md5sum secretrendezvous.docx
 ```
 
-![image-13](src/lets-defend/Disclose%20The%20Agent/attachments/image-13.png)
+![image-13](attachments/image-13.png)
 
 Answer:
 

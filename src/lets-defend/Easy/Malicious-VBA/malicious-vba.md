@@ -8,19 +8,19 @@ The document initiates the download of a payload after the execution, can you te
 
 I opened up the file `invoice.vb` in notepad and found a file full of obfuscated code.
 
-![image-1](src/lets-defend/Malicious%20VBA/attachments/image-1.png)
+![image-1](attachments/image-1.png)
 
 I figured Cyberchef would be a useful tool here so I copied a string of text being input to a function in the script to see what Cyberchef would give me.
 
-![image-2](src/lets-defend/Malicious%20VBA/attachments/image-2.png)
+![image-2](attachments/image-2.png)
 
-![image-3](src/lets-defend/Malicious%20VBA/attachments/image-3.png)
+![image-3](attachments/image-3.png)
 
 This appeared to be a hexadecimal value which gave the first part of a URL when decoded. This partial URL next made me think to grab the input from the other function call right beside it.
 
 This got me the full URL.
 
-![image-4](src/lets-defend/Malicious%20VBA/attachments/image-4.png)
+![image-4](attachments/image-4.png)
 
 Answer:
 
@@ -30,7 +30,7 @@ What is the filename of the payload (include the extension)?
 
 I used the same trick as in the last question to find the obfuscated filename.
 
-![image-5](src/lets-defend/Malicious%20VBA/attachments/image-5.png)
+![image-5](attachments/image-5.png)
 
 Answer:
 
@@ -41,7 +41,7 @@ What method is it using to establish an HTTP connection between files on the mal
 
 I kept decoding the function inputs and found one that appeared to be an HTTP function.
 
-![image-6](src/lets-defend/Malicious%20VBA/attachments/image-6.png)
+![image-6](attachments/image-6.png)
 
 Answer:
 
@@ -52,7 +52,7 @@ What user-agent string is it using?
 
 So far all of these answers have been HEX encoded function inputs: 
 
-![image-7](src/lets-defend/Malicious%20VBA/attachments/image-7.png)
+![image-7](attachments/image-7.png)
 
 Answer:
 
@@ -63,7 +63,7 @@ What object does the attacker use to be able to read or write text and binary fi
 
 Scanning through the file I noted a CreateObject function:
 
-![image-8](src/lets-defend/Malicious%20VBA/attachments/image-8.png)
+![image-8](attachments/image-8.png)
 
 Answer:
 
@@ -74,7 +74,7 @@ What is the object the attacker uses for WMI execution? Possibly they are using 
 
 Using the same strategy as all previous questions I kept decoding HEX values until I found the answer. It was one of the last decodable items in the script.
 
-![image-9](src/lets-defend/Malicious%20VBA/attachments/image-9.png)
+![image-9](attachments/image-9.png)
 
 
 Answer:

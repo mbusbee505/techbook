@@ -9,7 +9,7 @@ I opened the challenge folder and found a .pcap file. Naturally, I opened this w
 
 Most of them were encrypted content, but on packet #15 I discovered some clear-text information describing the server setup which would answer the next two questions.
 
-![image-1](src/lets-defend/Shellshock%20Attack/attachments/image-1.png)
+![image-1](attachments/image-1.png)
 
 Answer:
 
@@ -27,7 +27,7 @@ What is the exact command that the attacker wants to run on the target server?
 
 Since I did not see anything related to a command on the previous packet I kept looking around. On packet 11 I discovered what looks like an attempt to use the ping binary to reach out to a specified IP address.
 
-![image-2](src/lets-defend/Shellshock%20Attack/attachments/image-2.png)
+![image-2](attachments/image-2.png)
 
 
 

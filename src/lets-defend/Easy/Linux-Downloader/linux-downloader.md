@@ -14,7 +14,7 @@ Get-Content C:\Users\LetsDefend\Desktop\ChallengeFile\downloader | Select-String
 ```
 
 
-![image-1](src/lets-defend/Linux-Downloader/attachments/image-1.png)
+![image-1](attachments/image-1.png)
 
 Answer:
 

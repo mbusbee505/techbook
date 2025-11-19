@@ -7,19 +7,19 @@ What is the IP address scanning the environment?
 
 I started by opening the PCAP file in Wireshark. I then went to `Analyze` > `Expert Information` to get more information about the PCAP.
 
-![image-1](src/lets-defend/Port%20Scan%20Activity/attachments/image-1.png)
+![image-1](attachments/image-1.png)
 
 In here I noticed a large number of TCP packets with an RST flag flipped.
 
-![image-2](src/lets-defend/Port%20Scan%20Activity/attachments/image-2.png)
+![image-2](attachments/image-2.png)
 
 Since RST response is created when a client reaches out to a closed port, this likely indicated evidence of network scanning. I applied the RST flag as a filter to only show these packets.
 
-![image-3](src/lets-defend/Port%20Scan%20Activity/attachments/image-3.png)
+![image-3](attachments/image-3.png)
 
 I noticed that all of these RST responses were getting sent to the same IP: `10.42.42.253`
 
-![image-4](src/lets-defend/Port%20Scan%20Activity/attachments/image-4.png)
+![image-4](attachments/image-4.png)
 
 Answer:
 
@@ -37,7 +37,7 @@ ip.src == 10.42.42.253 && tcp.flags.ack eq 1
 
 From these results it seemed `10.42.42.50` was the main answer.
 
-![image-5](src/lets-defend/Port%20Scan%20Activity/attachments/image-5.png)
+![image-5](attachments/image-5.png)
 
 Answer:
 
@@ -47,15 +47,15 @@ What is the MAC address of the Apple system it finds?
 
 I selected `Statistics` > `Endpoints` to get a list of all devices found in the PCAP.
 
-![image-6](src/lets-defend/Port%20Scan%20Activity/attachments/image-6.png)
+![image-6](attachments/image-6.png)
 
 I checked the box at the bottom of the results for `Name resolution` to have the results display a name as well.
 
-![image-7](src/lets-defend/Port%20Scan%20Activity/attachments/image-7.png)
+![image-7](attachments/image-7.png)
 
 This showed that one of the results was an Apple device.
 
-![image-8](src/lets-defend/Port%20Scan%20Activity/attachments/image-8.png)
+![image-8](attachments/image-8.png)
 
 Answer:
 

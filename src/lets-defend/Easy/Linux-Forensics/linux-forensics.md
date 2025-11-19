@@ -27,7 +27,7 @@ ls /mnt/hackerman
 Once the `.img` file mounted I was able to see its file structure in `/mnt/hackerman` . If the folder is empty you may have done something wrong and need to take a look at the steps.
 
 
-![image](src/lets-defend/Remote%20Working/attachments/image.png)
+![image](attachments/image.png)
 
 
 
@@ -67,7 +67,7 @@ In Linux, the history of recent commands run by a user is saved in the `.bash_hi
 less /mnt/hackerman/home/hackerman/.bash_history
 ```
 
-![image 1](src/lets-defend/Linux-Forensics/attachments/image-1.png)
+![image 1](attachments/image-1.png)
 
 It appeared the user made several attempts to download and install google chrome.
 
@@ -85,7 +85,7 @@ cat /mnt/hackerman/var/log/apt/history.log | grep "apt install gimp" -A 1 -B 1
 - `-A 1` - Shows 1 line before the discovered line
 - `-B 1` - Shows 1 line after the discovered line
   
-![image 2](src/lets-defend/Linux-Forensics/attachments/image-2.png)
+![image 2](attachments/image-2.png)
 
 Answer:
 
@@ -98,7 +98,7 @@ What is the hidden secret that the attacker believes they have successfully conc
 
 Earlier in the investigation, while looking for the bash history I found a hidden file called `.secrets` saved in the "hackerman" user folder. Running `cat` on this file gave me this output:
 
-![image 3](src/lets-defend/Linux-Forensics/attachments/image-3.png)
+![image 3](attachments/image-3.png)
 
 Answer:
 
@@ -114,7 +114,7 @@ cat /mnt/hackerman/etc/fstab
 
 There were two UUIDs listed in the file. The one next to the `/` signifying the root file seemed to be the answer.
 
-![image 4](src/lets-defend/Linux-Forensics/attachments/image-4.png)
+![image 4](attachments/image-4.png)
 Answer:
 
 `29153a2e-48a7-4e89-a844-dfa637a5d461`
@@ -125,11 +125,11 @@ I did some researching and discovered the log of privileged commands could be fo
 
 This created several lines showing various commands. In this output I noticed there was a column that had either `sudo` or `pkexec` listed for each command.
 
-![image 5](src/lets-defend/Linux-Forensics/attachments/image-5.png)
+![image 5](attachments/image-5.png)
 
 Per Google AI Overview, `pkexec` is: "a command that allows a user to execute a program with elevated privileges (typically as root) by going through an authentication process." Looking back at the lines that include `pkexec` also have `USER=root` listed which would indicate these commands were run with root access.
 
-![image 6](src/lets-defend/Linux-Forensics/attachments/image-6.png)
+![image 6](attachments/image-6.png)
 
 Since it seemed all of the commands I listed previously were run with privileged access, all that was left to do was count the number of output lines. The command that ultimately provided my answer to this question is listed below:
 
@@ -145,14 +145,14 @@ What is the last thing the user searches for in the installed browser?
 
 Considering the previous question showed the user had installed chrome at some point I assumed this was the browser in question. I had to do some research to try to find a default install location for chrome... which came back empty. I did however discover that applications installed manually by a user can sometimes have information about them in `~/.config` for that user. Sure enough when searching through `/mnt/hackerman/home/hackerman/.comfig` gave me a folder called `google-chrom`.
 
-![image 7](src/lets-defend/Linux-Forensics/attachments/image-7.png)
+![image 7](attachments/image-7.png)
 
 Listing the contents of this `google-chrome` folder did not immediately result in anything useful. There were several different sub-folders that did not seem to be related to search history information.
 
-![image 8](src/lets-defend/Linux-Forensics/attachments/image-8.png)
+![image 8](attachments/image-8.png)
 I took my search another level deeper and searched the contents of the `Defaults` folder. In here I found a few files related to "History" that I thought may mean I'm on the right track.
 
-![image 9](src/lets-defend/Linux-Forensics/attachments/image-9.png)
+![image 9](attachments/image-9.png)
 
 The `History` file contained a lot of unreadable characters that initially had me thinking I would need a special application to read it. Before things got that far, I scanned near the bottom of the file and found a string of readable text that corresponds to a google search URL with the same text. I was pretty sure this was my answer.
 
@@ -164,7 +164,7 @@ From Q8 we know that the user tried to write a script, what is the script name t
 
 Now I needed to find the location where the user saved the script file they were researching. I searched several folders in the user's home folder as well as around the file system such as `/opt` to no avail until I finally found something useful in the `/tmp` folder.
 
-![image 10](src/lets-defend/Linux-Forensics/attachments/image-10.png)
+![image 10](attachments/image-10.png)
 
 This looked rather suspicious...
   
@@ -176,7 +176,7 @@ What is the URL that the user uses to download the malware?
 
 Now I needed to analyze the contents of the `superhackingscript.sh`. I used the `less` command to see what was written.
 
-![image 11](src/lets-defend/Linux-Forensics/attachments/image-11.png)
+![image 11](attachments/image-11.png)
 
 The script gives us the malicious URL right at the beginning.
 
@@ -188,7 +188,7 @@ What is the name of the malware that the user tried to download?
 
 Also in the malicious script is a line with a reference to a `DESTINATION` variable that contains the string `ed6baf485cde6e94caa8326b91d323dbc53af58e954520ee55fed80b044c1985`. Since this caught my eye and seemed to be a hash value, I searched it on VirusTotal. I discovered it is a hash of a Mirai trojan.
 
-![image 12](src/lets-defend/Linux-Forensics/attachments/image-12.png)
+![image 12](attachments/image-12.png)
 
 Answer:
 
@@ -204,11 +204,11 @@ cat /mnt/hackerman/home/hackerman/.bash_history | grep "ping"
 
 Which gave me one result: `ping mmox.challenges`
 
-![image 13](src/lets-defend/Linux-Forensics/attachments/image-13.png)
+![image 13](attachments/image-13.png)
 
 `.challenges` did not seem to be a legitimate TLD so I figured it may have been manually created in the `/etc/hosts` file.
 
-![image 14](src/lets-defend/Linux-Forensics/attachments/image-14.png)
+![image 14](attachments/image-14.png)
 
 My suspicion was confirmed when I found `mmox.challenges` listed in the file.
 
@@ -226,7 +226,7 @@ cat /mnt/hackerman/etc/shadow | grep "hackerman"
 
 This gave the following output for the user "hackerman":
 
-![image 15](src/lets-defend/Linux-Forensics/attachments/image-15.png)
+![image 15](attachments/image-15.png)
 
 The hash is the second field between the semi-colons.
 

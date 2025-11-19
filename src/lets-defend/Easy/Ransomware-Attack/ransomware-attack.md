@@ -11,33 +11,33 @@ Here I skimmed through and found a few interesting points:
 
 1. A notepad file created by a user on the system
 
-![image-1](src/lets-defend/Ransomware%20Attack/attachments/image-1.png)
+![image-1](attachments/image-1.png)
 
 2. MsMpEng.exe running from a Temp folder.
 
-![image-2](src/lets-defend/Ransomware%20Attack/attachments/image-2.png)
+![image-2](attachments/image-2.png)
 
 Doing some research on `MsMpEng.exe` I discovered it is an antivirus application that is a part of Windows Security/Defender. The fact this was running from a Temp folder was suspicious so I decided to investigate further.
 
-![image-3](src/lets-defend/Ransomware%20Attack/attachments/image-3.png)
+![image-3](attachments/image-3.png)
 
 I moved to the File System tab on the left sidebar and searched for the keyword `msmpeng.exe` in the search box to bring up the file. 
 
-![image-4](src/lets-defend/Ransomware%20Attack/attachments/image-4.png)
+![image-4](attachments/image-4.png)
 
 Once the file appeared in the search results I double clicked to get its detailed information. The question is asking for a `.DLL` that is dropped. Considering this, I then opened the Imports tab on the bottom of the File Detailed Information page.
 
-![image-5](src/lets-defend/Ransomware%20Attack/attachments/image-5.png)
+![image-5](attachments/image-5.png)
 
 In the Imports tab I discovered a `mpsvc.dll` file that looked a little out of place. I hoped this was the one I was looking for. 
 
 I then took this file name back to the File System search bar to find its location. The results brought back more than one result so it was important to make sure I was selecting the one from the Temp folder.
 
-![image-6](src/lets-defend/Ransomware%20Attack/attachments/image-6.png)
+![image-6](attachments/image-6.png)
 
 Here I found the full file path of the DLL and the MD5 hash.
 
-![image-7](src/lets-defend/Ransomware%20Attack/attachments/image-7.png)
+![image-7](attachments/image-7.png)
 
 This turned out the be the answer the question was looking for.
 
@@ -61,7 +61,7 @@ This question remined me about the Notepad process I noticed earlier. I went bac
 
 Since there was not much important on the Details tab I moved to the Strings tab.
 
-![image-8](src/lets-defend/Ransomware%20Attack/attachments/image-8.png)
+![image-8](attachments/image-8.png)
 
 Here I found what looks to be a ransom letter.
 
@@ -76,13 +76,13 @@ Here I realized the URL might be in the File Download History tab on the left si
 
 I went back to the `MsMpEng.exe` file in the File System tab and found the following timestamp:
 
-![image-9](src/lets-defend/Ransomware%20Attack/attachments/image-9.png)
+![image-9](attachments/image-9.png)
 
 Then in the File Download History I discovered only one download that happened on this day.
 
-![image-10](src/lets-defend/Ransomware%20Attack/attachments/image-10.png)
+![image-10](attachments/image-10.png)
 
-![image-11](src/lets-defend/Ransomware%20Attack/attachments/image-11.png)
+![image-11](attachments/image-11.png)
 
 Here I found a file that was downloaded from the following URL to the users Download folder.
 
@@ -105,7 +105,7 @@ What is name of the ransomware?
 
 I went back and read through the ransom note left behind but did not find a reference to the ransomware in use. When that didn't work I then took the MD5 hash I found previously and searched it on VirusTotal.
 
-![image-12](src/lets-defend/Ransomware%20Attack/attachments/image-12.png)
+![image-12](attachments/image-12.png)
 
 I found that most Security vendors label this ransomware as `sodinokibi`
 
