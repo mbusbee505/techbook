@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/Unpublished/Malware Analysis/Notes.md",
+                "file": "src/SUMMARY.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Notes"
+              "title": "SUMMARY"
             }
           }
         ],
@@ -157,13 +157,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/Unpublished/Malware Analysis/Notes.md",
+                "file": "src/SUMMARY.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Notes"
+              "title": "Outline of SUMMARY"
             }
           }
         ],
@@ -187,6 +187,8 @@
   },
   "active": "4e53f9d6833528e0",
   "lastOpenFiles": [
+    "src/lets-defend/introduction.md",
+    "src/Unpublished/Malware Analysis/Notes.md",
     "src/lets-defend/Easy/Shellshock-Attack/attachments/image-2.png",
     "src/lets-defend/Easy/Shellshock-Attack/attachments/image-1.png",
     "src/lets-defend/Easy/Shellshock-Attack/shellshock-attack.md",
@@ -203,7 +205,6 @@
     "src/lets-defend/Easy/Ransomware-Attack/attachments/image-7.png",
     "src/lets-defend/Easy/Ransomware-Attack/attachments/image-8.png",
     "src/lets-defend/Easy/Ransomware-Attack/attachments/image-6.png",
-    "src/lets-defend/Easy/Ransomware-Attack/attachments/image-4.png",
     "src/lets-defend/Easy/Ransomware-Attack/ransomware-attack.md",
     "src/lets-defend/Easy/Ransomware-Attack/attachments",
     "src/lets-defend/Easy/Ransomware-Attack",
@@ -232,7 +233,6 @@
     "src/lets-defend/Easy/IcedID Malware Family/icedid-malware-family.md",
     "src/lets-defend/Easy/Http Basic Auth/http-basic-auth.md",
     "src/lets-defend/Easy/Disclose The Agent/disclose-the-agent.md",
-    "src/Unpublished/Malware Analysis/Advanced Static Analysis.md",
     "src/Unpublished/Malware.canvas",
     "src/Unpublished/Untitled.canvas"
   ]
