@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "1a498584d23b329c",
+        "id": "ec644bfd7c03e97e",
         "type": "tabs",
         "children": [
           {
-            "id": "6d17428924eda3f0",
+            "id": "dba6ff2554212e7d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/Unpublished/Archived/SOC101-Lab/03-security-onion.md",
+                "file": "src/Unpublished/Malware Analysis/Advanced Static Analysis.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "03-security-onion"
+              "title": "Advanced Static Analysis"
+            }
+          },
+          {
+            "id": "4e53f9d6833528e0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/Unpublished/Malware Analysis/Notes.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Notes"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -78,7 +93,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 259.5
+    "width": 379.5
   },
   "right": {
     "id": "ba1ec06a672fb227",
@@ -142,13 +157,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/Unpublished/Archived/SOC101-Lab/03-security-onion.md",
+                "file": "src/Unpublished/Malware Analysis/Notes.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 03-security-onion"
+              "title": "Outline of Notes"
             }
           }
         ],
@@ -170,54 +185,54 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "6d17428924eda3f0",
+  "active": "4e53f9d6833528e0",
   "lastOpenFiles": [
-    "src/Unpublished/Archived/SOC101-Lab/04-splunk.md",
-    "src/Unpublished/Malware Analysis/Book Notes.md",
-    "book/Unpublished/Archived/SOC101-Lab/attachments/01-hypervisor-and-network-1.png",
-    "book/Unpublished/Archived/Lets Defend/Malicious VBA/attachments/image-1.png",
-    "book/Unpublished/Archived/Lets Defend/Disclose The Agent/attachments/image-1.png",
-    "book/Unpublished/Archived/Lets Defend/Investigate Web Attacks/attachments/image-1.png",
-    "book/Unpublished/Archived/Lets Defend/Ransomware Attack/attachments/image-1.png",
-    "book/Unpublished/Archived/Lets Defend/IcedID Malware Family/attachments/image-1.png",
-    "book/Unpublished/Archived/Lets Defend/Http Basic Auth/attachments/image-1.png",
-    "book/Unpublished/Archived/Lets Defend/Remote Working/attachments/image 1.png",
-    "book/Unpublished/Archived/Lets Defend/Linux-Downloader/attachments/image-1.png",
-    "book/Unpublished/Archived/Lets Defend/Shellshock Attack/attachments/image-1.png",
-    "book/Unpublished/Archived/SOCNOTES/1. SOC Fundamentals..pdf",
-    "book/favicon.ico",
-    "book/how-to/how-to.html",
-    "book/intune-lab/01-setting-up-the-lab.html",
-    "book/security-lab/introduction.html",
-    "book/toc.html",
-    "book/searchindex.js",
-    "book/theme/toc.js",
-    "book/theme/toc.css",
+    "src/lets-defend/Medium",
+    "src/lets-defend/Easy/Shellshock Attack/attachments/image-2.png",
+    "src/lets-defend/Easy/Shellshock Attack/attachments/image-1.png",
+    "src/lets-defend/Easy/Shellshock Attack/shellshock-attack.md",
+    "src/lets-defend/Easy/Shellshock Attack/attachments",
+    "src/lets-defend/Easy/Shellshock Attack",
+    "src/lets-defend/Easy/Remote Working/attachments/image.png",
+    "src/lets-defend/Easy/Remote Working/attachments/image 3.png",
+    "src/lets-defend/Easy/Remote Working/attachments/image 2.png",
+    "src/lets-defend/Easy/Remote Working/attachments/image 1.png",
+    "src/lets-defend/Easy/Remote Working/remote-working.md",
+    "src/lets-defend/Easy/Remote Working/attachments",
+    "src/lets-defend/Easy/Remote Working",
+    "src/lets-defend/Easy/Ransomware Attack/attachments/image-8.png",
+    "src/lets-defend/Easy/Ransomware Attack/attachments/image-9.png",
+    "src/lets-defend/Easy/Ransomware Attack/attachments/image-7.png",
+    "src/lets-defend/Easy/Ransomware Attack/attachments/image-6.png",
+    "src/lets-defend/Easy/Ransomware Attack/ransomware-attack.md",
+    "src/lets-defend/Easy/Ransomware Attack/attachments",
+    "src/lets-defend/Easy/Ransomware Attack",
+    "src/lets-defend/Easy/Presentation as a Malware/presentation-as-a-malware.md",
+    "src/lets-defend/Easy/Presentation as a Malware/attachments",
+    "src/lets-defend/Easy/Presentation as a Malware",
+    "src/lets-defend/Easy/Port Scan Activity/port-scan-activity.md",
+    "src/lets-defend/Easy/Port Scan Activity/attachments",
+    "src/lets-defend/Easy/Port Scan Activity",
+    "src/lets-defend/Easy/Malicious VBA/malicious-vba.md",
+    "src/lets-defend/Easy/Malicious Doc/malicious-doc.md",
+    "src/lets-defend/Easy/Linux-Forensics/linux-forensics.md",
+    "src/lets-defend/Easy/Linux-Downloader/linux-downloader.md",
+    "src/lets-defend/Easy/Investigate Web Attacks/investigate-web-attack.md",
+    "src/lets-defend/Easy/IcedID Malware Family/icedid-malware-family.md",
+    "src/lets-defend/Easy/Http Basic Auth/http-basic-auth.md",
+    "src/lets-defend/Easy/Disclose The Agent/disclose-the-agent.md",
+    "src/Unpublished/Malware Analysis/Advanced Static Analysis.md",
+    "src/Unpublished/Practice Questions/Posts/Scenario - Suspicious PowerShell Execution.md",
+    "src/Unpublished/Practice Questions/Cyber Kill Chain vs MITRE ATT&CK.md",
+    "src/Unpublished/Malware Analysis/Notes.md",
+    "src/lets-defend/IcedID Malware Family/icedid-malware-family.md",
+    "src/Unpublished/Malware Development/Hello World.md",
+    "src/SUMMARY.md",
     "src/security-lab/introduction.md",
-    "src/Unpublished/Personal/Cat Groomer.md",
-    "src/intune-lab/06-securing-devices.md",
+    "src/Unpublished/Malware Analysis/Challenge 1 - SillyPutty.md",
+    "src/Unpublished/Malware Development/Inject Process.md",
+    "src/Unpublished/Malware Development/Create Process.md",
     "src/how-to/proxmox-iso-dump.md",
-    "book/Unpublished/Archived/SOCNOTES/proxmox-iso-dump-1.pdf",
-    "src/how-to/how-to.md",
-    "src/security-lab/malware-sandbox.md",
-    "src/intune-lab/introduction.md",
-    "src/intune-lab/10-conclusion.md",
-    "src/intune-lab/09-monitor-and-report.md",
-    "src/intune-lab/08-enrolling-androids.md",
-    "src/intune-lab/07-enrolling-iphones.md",
-    "src/intune-lab/05-creating-update-rings.md",
-    "src/intune-lab/04-installing-apps.md",
-    "src/intune-lab/03-polishing-oobe.md",
-    "src/intune-lab/02-enrolling-devices.md",
-    "src/intune-lab/01-setting-up-the-lab.md",
-    "src/README.md",
-    "src/intune-lab-temp/introduction.md",
-    "src/intune-lab-temp/10-conclusion.md",
-    "src/intune-lab-temp/09-monitor-and-report.md",
-    "src/intune-lab-temp/08-enrolling-androids.md",
-    "src/intune-lab-temp/07-enrolling-iphones.md",
-    "src/intune-lab-temp/06-securing-devices.md",
-    "src/intune-lab-temp/05-creating-update-rings.md",
     "src/Unpublished/Malware.canvas",
     "src/Unpublished/Untitled.canvas"
   ]

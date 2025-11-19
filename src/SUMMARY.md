@@ -1,6 +1,22 @@
 # Summary
 
 [Introduction](./README.md)
+- [Lets Defend](lets-defend/)
+	- [Easy]
+		- [Disclose The Agent](lets-defend/Easy/Disclose%20The%20Agent/disclose-the-agent.md)
+		- [Http Basic Auth](lets-defend/Easy/Http%20Basic%20Auth/http-basic-auth.md)
+		- [IcedID Malware Family](lets-defend/Easy/IcedID%20Malware%20Family/icedid-malware-family.md)
+		- [Investigate Web Attacks](lets-defend/Easy/Investigate%20Web%20Attacks/investigate-web-attack.md)
+		- [Linux Downloader](lets-defend/Easy/Linux-Downloader/linux-downloader.md)
+		- [Linux Forensics](lets-defend/Easy/Linux-Forensics/linux-forensics.md)
+		- [Malicious Doc](lets-defend/Easy/Malicious%20Doc/malicious-doc.md)
+		- [Malicious VBA](lets-defend/Easy/Malicious%20VBA/malicious-vba.md)
+		- [Port Scan Activity](lets-defend/Easy/Port%20Scan%20Activity/port-scan-activity.md)
+		- [Presentation as a Malware](lets-defend/Easy/Presentation%20as%20a%20Malware/presentation-as-a-malware.md)
+		- [Ransomware Attack](lets-defend/Easy/Ransomware%20Attack/ransomware-attack.md)
+		- [Remote Working](lets-defend/Easy/Remote%20Working/remote-working.md)
+		- [Shellshock Attack](lets-defend/Easy/Shellshock%20Attack/shellshock-attack.md)
+	- [Medium]
 - [Security Lab](security-lab/introduction.md)
 	- [Malware Sandbox](security-lab/malware-sandbox.md)
 - [Intune Lab](intune-lab/introduction.md)

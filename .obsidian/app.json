@@ -5,7 +5,7 @@
   "promptDelete": false,
   "attachmentFolderPath": "./attachments",
   "pdfExportSettings": {
-    "includeName": true,
+    "includeName": false,
     "pageSize": "Letter",
     "landscape": false,
     "margin": "0",
