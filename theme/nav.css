@@ -1,3 +1,13 @@
+/* Style sidebar section headers with empty links like regular links */
+.sidebar a[href=""] {
+    color: var(--sidebar-fg) !important;
+    cursor: default;
+}
+
+.sidebar a[href=""]:hover {
+    color: var(--sidebar-fg) !important;
+}
+
 /* Show navigation buttons at bottom only on desktop */
 @media (min-width: 769px) {
     .nav-wide-wrapper {
