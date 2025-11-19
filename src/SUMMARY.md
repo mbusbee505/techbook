@@ -1,8 +1,8 @@
 # Summary
 
 [Introduction](./README.md)
-- [Lets Defend](lets-defend/)
-	- [Easy]
+- [Lets Defend]()
+	- [Easy]()
 		- [Disclose The Agent](lets-defend/Easy/Disclose The Agent/disclose-the-agent.md)
 		- [Http Basic Auth](lets-defend/Easy/Http Basic Auth/http-basic-auth.md)
 		- [IcedID Malware Family](lets-defend/Easy/IcedID Malware Family/icedid-malware-family.md)
@@ -16,7 +16,7 @@
 		- [Ransomware Attack](lets-defend/Easy/Ransomware Attack/ransomware-attack.md)
 		- [Remote Working](lets-defend/Easy/Remote Working/remote-working.md)
 		- [Shellshock Attack](lets-defend/Easy/Shellshock Attack/shellshock-attack.md)
-	- [Medium]
+	- [Medium]()
 - [Security Lab](security-lab/introduction.md)
 	- [Malware Sandbox](security-lab/malware-sandbox.md)
 - [Intune Lab](intune-lab/introduction.md)
