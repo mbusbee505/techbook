@@ -187,6 +187,7 @@
   },
   "active": "4e53f9d6833528e0",
   "lastOpenFiles": [
+    "theme/SUMMARY-1.js",
     "src/lets-defend/Medium/introduction.md",
     "src/lets-defend/Easy/introduction.md",
     "src/lets-defend/introduction.md",
@@ -232,7 +233,6 @@
     "src/lets-defend/Easy/Linux-Forensics/linux-forensics.md",
     "src/lets-defend/Easy/Linux-Downloader/linux-downloader.md",
     "src/lets-defend/Easy/Investigate Web Attacks/investigate-web-attack.md",
-    "src/lets-defend/Easy/IcedID Malware Family/icedid-malware-family.md",
     "src/Unpublished/Malware.canvas",
     "src/Unpublished/Untitled.canvas"
   ]
