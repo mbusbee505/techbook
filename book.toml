@@ -6,7 +6,7 @@ title = "busbeetech.com"
 
 [output.html]
 additional-css = ["theme/toc.css", "theme/nav.css"]
-additional-js = ["theme/toc.js", "theme/sidebar.js", "theme/print.js"]
+additional-js = ["theme/toc.js", "theme/sidebar.js"]
 
 [output.html.print]
 enable = false
